@@ -1445,7 +1445,7 @@ var NosApiService = /** @class */ (function () {
         if (window.NOS) {
             this.nos = window.NOS.V1;
         }
-        if (this.getAddress()) {
+        if (this.isConnected()) {
             this.getAddress().subscribe(function (address) {
                 return _this.address = address;
             });
