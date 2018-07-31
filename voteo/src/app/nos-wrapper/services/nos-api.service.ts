@@ -13,10 +13,12 @@ export class NosApiService {
     if ((window as any).NOS) {
       this.nos = (window as any).NOS.V1;
     }
-    this.getAddress().subscribe(
-      address =>
-        this.address = address
-    );
+    if (this.getAddress()) {
+      this.getAddress().subscribe(
+        address =>
+          this.address = address
+      );
+    }
   }
 
   isConnected() {

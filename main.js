@@ -1445,9 +1445,11 @@ var NosApiService = /** @class */ (function () {
         if (window.NOS) {
             this.nos = window.NOS.V1;
         }
-        this.getAddress().subscribe(function (address) {
-            return _this.address = address;
-        });
+        if (this.getAddress()) {
+            this.getAddress().subscribe(function (address) {
+                return _this.address = address;
+            });
+        }
     }
     NosApiService.prototype.isConnected = function () {
         return this.nos;
