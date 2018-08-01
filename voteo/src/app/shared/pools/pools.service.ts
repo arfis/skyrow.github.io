@@ -3,6 +3,7 @@ import {NosApiService} from '../../nos-wrapper/services/nos-api.service';
 import {Methods} from '../Methods';
 import {Observable, of} from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -120,11 +121,11 @@ export class PoolsService {
   }
 
   public createPool(poolParams: any) {
-
+      var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
    return this._nosService.invoke(
       Methods.scriptHash,
       Methods.createPoolOperation,
-      [this._nosService.address, JSON.stringify(poolParams), '']
+      [this._nosService.address, JSON.stringify(poolParams), poll_name, '']
     );
   }
 

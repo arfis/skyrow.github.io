@@ -17,11 +17,11 @@ export class PublicPoolsPageComponent {
    _poolsService.getAllPublic().subscribe(
       result => {
         this.pools = [];
-
+        alert(JSON.stringify(result))
         // this.result = result.stack[0];
         for (const pool of result.stack[0].value) {
           // alert('here');
-          this.pools.push(pool.value);
+          this.pools.push(stringFromHex(pool.value));
         }
       },
       error => this.error = error
