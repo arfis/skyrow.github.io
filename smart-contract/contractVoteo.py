@@ -36,7 +36,7 @@ def Main(operation, args):
 
     if operation == 'GetPollById':
         #input parameters
-        pollID = Serialize(args[1])
+        pollID = args[1]
         poll = Get(GetContext(),pollID)
 
         if poll is None:
@@ -74,13 +74,13 @@ def Main(operation, args):
         else:
             return Deserialize(pollsAssigned)
 
-    if operation == 'GetLatestId':
-        pollID = Get(GetContext(),"latestId")
+    if operation == 'GetPollCount':
+        pollCount = Get(GetContext(),"pollCount")
 
-        if pollID is None:
+        if pollCount is None:
             return "Contract does not contain any poll"
         else:
-            return Deserialize(pollID)
+            return Deserialize(pollCount)
 
     if operation == 'GetVoteListById':
         pollID = Serialize(args[1])
@@ -135,35 +135,38 @@ def Main(operation, args):
     if operation == 'RegisterPoll':
         #input parameters
         data = args[1]
-        address_list = args[2]
+        poll_name = args[2]
+        address_list = args[3]
 
         #Save latest poll ID
-        pollID = Get(GetContext(),"latestId")
-        if pollID == "":
+        pollID = Get(GetContext(),"pollCount")
+        poll_key = poll_name
+
+        if pollID is None:
             pollIDInt = 1
             pollID = Serialize(pollIDInt)
-            Put(GetContext(),"latestId",pollID)
+            Put(GetContext(),"pollCount",pollID)
         else:
             pollIDInt = Deserialize(pollID)
             pollIDInt += 1
             pollID = Serialize(pollIDInt)
-            Put(GetContext(),"latestId",pollID)
+            Put(GetContext(),"pollCount",pollID)
 
         #Save poll to corresponding addresses
         if address_list is None:
             publicPolls = Get(GetContext(),"public")
             if publicPolls is None:
                 publicPolls = []
-                publicPolls.append(pollIDInt)
+                publicPolls.append(poll_key)
                 Put(GetContext(),"public",Serialize(publicPolls))
             else:
                 publicPolls = Deserialize(publicPolls)
-                publicPolls.append(pollIDInt)
+                publicPolls.append(poll_key)
                 Put(GetContext(),"public",Serialize(publicPolls))
         else:
             iterator = 0
             for argument in args:
-                if iterator > 1:
+                if iterator > 2:
                     target_address = argument
                     user_key = concat(target_address,".assigned")
 
@@ -190,8 +193,8 @@ def Main(operation, args):
             pollsCreated.append(pollIDInt)
             Put(GetContext(),owner_key,Serialize(pollsCreated))
 
-        Put(GetContext(),pollID,Serialize(args))
-        return Deserialize(pollID)
+        Put(GetContext(),poll_key,Serialize(args))
+        return poll_key
 
     # Everything after this requires authorization
     authorized = CheckWitness(user_address)
@@ -202,3 +205,4 @@ def Main(operation, args):
 
 
     return False
+
