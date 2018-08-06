@@ -17,7 +17,6 @@ export class PublicPoolsPageComponent {
    _poolsService.getAllPublic().subscribe(
       result => {
         this.pools = [];
-        alert(JSON.stringify(result))
         // this.result = result.stack[0];
         for (const pool of result.stack[0].value) {
           // alert('here');

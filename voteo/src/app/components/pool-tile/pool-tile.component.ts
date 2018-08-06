@@ -11,10 +11,18 @@ export class PoolTileComponent implements OnInit {
   @Input()
   pool;
 
+  poolTitle;
+  numberOfQuestions = 0;
+
   constructor(private router: Router) {
   }
 
   ngOnInit() {
+    const parsedArray = this.pool.split('_');
+    if (parsedArray.length > 2) {
+      this.poolTitle = parsedArray[1] ? parsedArray[1] : '-';
+      this.numberOfQuestions = parsedArray[2] ? parsedArray[2] : '0';
+    }
   }
 
   openVoting() {
@@ -23,13 +31,6 @@ export class PoolTileComponent implements OnInit {
     }
   }
 
-  get poolTitle() {
-    return (this.pool.name) ? this.pool.name : this.pool;
-  }
-
-  get numberOfQuestions() {
-    return (this.pool.questionCount) ? this.pool.questionCount : 0;
-  }
 
   get voted() {
     return (this.pool.voted) ? this.pool.voted : 0;

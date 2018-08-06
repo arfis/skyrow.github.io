@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { PoolsService } from '../../shared/pools/pools.service';
 
 @Component({
   selector: 'app-pool',
@@ -11,20 +12,35 @@ export class PoolComponent implements OnInit {
   @Input()
   pool;
 
-  poolForm;
+  result = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private _poolService: PoolsService) {
 
   }
 
   ngOnInit() {
-    this.poolForm = this.fb.group({
-      'id': [this.pool.id],
-      questions: this.fb.array([]),
-    });
+
+    this.result = new Array<any>(this.pool.questions.length);
+    this.result.fill([]);
+    // const option = this.fb.group({
+    //   'label': [label, Validators.required]
+    // });
+    // this.options.push(option);
   }
 
-  submitForm({value}) {
+  vote() {
+    this._poolService.registerVote(this.result, this.pool.id).subscribe(
+      result => alert(result),
+      error => alert(error)
+    );
+  }
 
+  updateAnswer(event, questionIndex, answer) {
+    alert(event);
+    if (this.result[questionIndex].indexOf(answer) === -1) {
+      this.result[questionIndex].push(answer);
+    } else {
+      this.result[questionIndex].splice(answer, 1);
+    }
   }
 }

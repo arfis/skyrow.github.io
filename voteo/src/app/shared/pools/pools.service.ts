@@ -103,6 +103,14 @@ export class PoolsService {
       ['eqweqw']);
   }
 
+  public registerVote(results, poolId) {
+    alert(poolId);
+    return this._nosService.invoke(
+      Methods.scriptHash,
+      Methods.registerVote,
+      [this._nosService.address, JSON.stringify(results), poolId]
+    );
+  }
   public getAllPublic() {
     return this._nosService.testInvoke(
       Methods.scriptHash,
@@ -120,12 +128,12 @@ export class PoolsService {
     );
   }
 
-  public createPool(poolParams: any) {
-      var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
+  public createPool(poolParams: any, poolName) {
+      // var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
    return this._nosService.invoke(
       Methods.scriptHash,
       Methods.createPoolOperation,
-      [this._nosService.address, JSON.stringify(poolParams), poll_name, '']
+      [this._nosService.address, JSON.stringify(poolParams), poolName, '']
     );
   }
 

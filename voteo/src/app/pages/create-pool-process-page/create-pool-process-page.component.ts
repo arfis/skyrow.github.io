@@ -2,6 +2,8 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {PoolsService} from '../../shared/pools/pools.service';
 import {stringFromArray, stringFromHex} from '../../shared/helper';
 
+import { v4 as uuid } from 'uuid';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-pool-process-page',
   templateUrl: './create-pool-process-page.component.html',
@@ -10,7 +12,7 @@ import {stringFromArray, stringFromHex} from '../../shared/helper';
 })
 export class CreatePoolProcessPageComponent implements OnInit {
 
-  pool = {questions: [], settings: {}};
+  pool = {questions: [], settings: {}, title: '', id: ''};
   currentIndex = 0;
   currentQuestion = {};
   waitingValidation = false;
@@ -18,8 +20,10 @@ export class CreatePoolProcessPageComponent implements OnInit {
   receivedPool;
   newPool;
   error;
+  poolName;
 
-  constructor(private _poolsService: PoolsService) { }
+  constructor(private _poolsService: PoolsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.currentIndex = 0;
@@ -79,9 +83,13 @@ export class CreatePoolProcessPageComponent implements OnInit {
 
   createPool() {
     if (this.hasQuestions) {
-      this._poolsService.createPool(this.pool).subscribe(
+
+      this.pool.title = this.poolName;
+      this.pool.id = `${uuid()}_${this.poolName}_${this.pool.questions.length}`;
+      this._poolsService.createPool(this.pool, this.pool.id).subscribe(
         result => {
           alert('Poll was written into the blockchain');
+          this.router.navigate['/'];
           // this.receivedPool = result.script.replace('\'','');
         },
         error => {alert('NEUSPECH'); this.error = error}

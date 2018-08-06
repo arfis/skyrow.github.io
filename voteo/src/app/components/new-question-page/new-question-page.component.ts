@@ -26,6 +26,7 @@ export class NewQuestionPageComponent implements OnChanges {
   currentQuestionIndex;
 
   createQuestionForm: FormGroup;
+  optionIndex = 0;
 
   constructor(private fb: FormBuilder) {
     this.initForm();
@@ -48,6 +49,8 @@ export class NewQuestionPageComponent implements OnChanges {
   }
 
   initForm() {
+    this.optionIndex = 0;
+
     this.createQuestionForm = this.fb.group({
       'name': [''],
       'openEnded': [false],
@@ -65,8 +68,11 @@ export class NewQuestionPageComponent implements OnChanges {
 
   addOption(label = '') {
     const option = this.fb.group({
+      'id': [this.optionIndex],
       'label': [label, Validators.required]
     });
+    this.optionIndex++;
+
     this.options.push(option);
   }
 
