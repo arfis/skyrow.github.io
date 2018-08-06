@@ -32,7 +32,34 @@ def Main(operation, args):
         if publicPolls is None:
             return "There are no public polls"
         else:
-            return Deserialize(publicPolls)
+            publicPolls = Deserialize(publicPolls)
+
+            publicPollsObj = []
+
+            for pollID in publicPolls:
+                pollItem = []
+                pollItem.append(pollID)
+
+                Log(pollID)
+
+                vote_list = concat(pollID,".vote_list")
+                vl = Get(GetContext(),vote_list)
+                if vl is None:
+                    pollItem.append('0')
+                else:
+                    pollItem.append(len(Deserialize(vl)))
+
+                vote_key = concat(pollID,".")
+                vote_key = concat(vote_key,user_address)
+                vote = Get(GetContext(),vote_key)
+                if vote is None:
+                    pollItem.append("false")
+                else:
+                    pollItem.append("true")
+
+                publicPollsObj.append(pollItem)
+
+            return publicPollsObj
 
     if operation == 'GetPollById':
         #input parameters
@@ -83,7 +110,7 @@ def Main(operation, args):
             return Deserialize(pollCount)
 
     if operation == 'GetVoteListById':
-        pollID = Serialize(args[1])
+        pollID = args[1]
 
         vote_list = concat(pollID,".vote_list")
         vl = Get(GetContext(),vote_list)
@@ -94,7 +121,7 @@ def Main(operation, args):
 
     if operation == 'CheckVoteByIdAndAddress':
         #input parameters
-        pollID = Serialize(args[1])
+        pollID = args[1]
         target_address = args[2]
 
         vote_key = concat(pollID,".")
@@ -108,7 +135,7 @@ def Main(operation, args):
 
     if operation == 'RegisterVote':
         data = args[1]
-        pollID = Serialize(args[2])
+        pollID = args[2]
 
         vote_key = concat(pollID,".");
         vote_key = concat(vote_key,user_address)
@@ -205,4 +232,3 @@ def Main(operation, args):
 
 
     return False
-
