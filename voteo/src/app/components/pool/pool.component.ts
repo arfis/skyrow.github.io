@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PoolsService } from '../../shared/pools/pools.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pool',
@@ -14,7 +15,8 @@ export class PoolComponent implements OnInit {
 
   result = [];
 
-  constructor(private _poolService: PoolsService) {
+  constructor(private _poolService: PoolsService,
+              private router: Router) {
 
   }
 
@@ -30,7 +32,7 @@ export class PoolComponent implements OnInit {
 
   vote() {
     this._poolService.registerVote(this.result, this.pool.id).subscribe(
-      result => alert(result),
+      result => this.router.navigate(['/']),
       error => alert(error)
     );
   }
@@ -41,7 +43,6 @@ export class PoolComponent implements OnInit {
     if (!freeText) {
       if (question.multiple) {
         if (event.checked) {
-          alert(answer);
           this.result[questionIndex] = {...this.result[questionIndex], answers: [...this.result[questionIndex].answers, answer]};
         } else {
           this.result[questionIndex].answers.splice(answer, 1);
