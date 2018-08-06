@@ -1,6 +1,4 @@
 <div class="pool-wrapper">
-
-  {{result | json}}
   <div class="pool-title voteo-bold">{{pool.title}}</div>
     <div class="question" *ngFor="let question of pool.questions; let i = index">
       <div class="voteo-bold question-name">{{question.name}}</div>
@@ -20,7 +18,7 @@
 
 
         <ng-container *ngIf="question.openEnded">
-          <input class="freeText">
+          <input (input)="updateAnswer($event, i, $event.target.value, true)" class="freeText">
         </ng-container>
       </div>
     </div>

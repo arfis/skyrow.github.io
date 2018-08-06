@@ -10,6 +10,7 @@ import {PoolFillPageComponent} from './pages/pool-fill-page/pool-fill-page.compo
 import {PoolResolver} from './shared/pools/pool-resolver.service';
 import {ProfilePageComponent} from './pages/profile-page/profile-page.component';
 import {AboutPageComponent} from './pages/about-page/about-page.component';
+import { PollListTypes } from './shared/pools/pollListTypes';
 
 export const appRoutes: Routes = [
   {
@@ -30,7 +31,13 @@ export const appRoutes: Routes = [
       },
       {
         path: 'pools',
-        component: PoolsPageComponent
+        component: PoolsPageComponent,
+        data: { type: PollListTypes.PRIVATE_LIST }
+      },
+      {
+        path: 'ownPools',
+        component: PoolsPageComponent,
+        data: { type: PollListTypes.OWN_LIST }
       },
       {
         path: 'publicpools',

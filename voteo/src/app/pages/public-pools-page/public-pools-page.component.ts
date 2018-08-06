@@ -19,8 +19,12 @@ export class PublicPoolsPageComponent {
         this.pools = [];
         // this.result = result.stack[0];
         for (const pool of result.stack[0].value) {
-          // alert('here');
-          this.pools.push(stringFromHex(pool.value));
+          this.pools.push(
+            {
+              id: stringFromHex(pool.value[0].value),
+              voted: pool.value[1].value,
+              canVote: stringFromHex(pool.value[2].value),
+            });
         }
       },
       error => this.error = error

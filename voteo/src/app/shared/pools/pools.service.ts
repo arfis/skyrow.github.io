@@ -69,6 +69,24 @@ export class PoolsService {
     return of(publicPools);
   }
 
+  public getPrivatePolls() {
+    // TODO: CHHANGE
+    return this._nosService.testInvoke(
+      Methods.scriptHash,
+      Methods.getPublicAll,
+      [this._nosService.address]
+    );
+  }
+
+  public getOwnPolls() {
+    // TODO: CHHANGE
+    return this._nosService.testInvoke(
+      Methods.scriptHash,
+      Methods.getPublicAll,
+      [this._nosService.address]
+    );
+  }
+
   public getPool(id) {
     // return of({
     //   id: 0,

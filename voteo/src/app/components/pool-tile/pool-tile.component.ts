@@ -13,27 +13,27 @@ export class PoolTileComponent implements OnInit {
 
   poolTitle;
   numberOfQuestions = 0;
+  voted = 0;
+  hasVoted;
 
   constructor(private router: Router) {
   }
 
   ngOnInit() {
-    const parsedArray = this.pool.split('_');
+    const parsedArray = this.pool.id.split('_');
     if (parsedArray.length > 2) {
       this.poolTitle = parsedArray[1] ? parsedArray[1] : '-';
       this.numberOfQuestions = parsedArray[2] ? parsedArray[2] : '0';
     }
+
+    this.voted = this.pool.voted;
+    this.hasVoted = this.pool.canVote === 'true' ? true : false;
   }
 
   openVoting() {
     if (this.hasFreeVoting) {
-      this.router.navigate([`pool/${this.pool}`]);
+      this.router.navigate([`pool/${this.pool.id}`]);
     }
-  }
-
-
-  get voted() {
-    return (this.pool.voted) ? this.pool.voted : 0;
   }
 
   get neededVoters() {

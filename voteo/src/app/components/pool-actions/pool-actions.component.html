@@ -1,7 +1,9 @@
 <div class="actions row">
   <app-pool-action-element
     [picture]="'assets/img/pools.png'"
-    [label]="'pools.types.create'" class="col-4 action">
+    [label]="'pools.types.create'"
+    [redirectLink]="'/ownPools'"
+    class="col-4 action">
     <div class="create" (click)="createPool()">
         <span class="img-fluid">
           <img src="assets/img/create.png">
@@ -10,6 +12,7 @@
     </div>
     <div>{{'pools.or' | translate}}</div>
   </app-pool-action-element>
+
   <app-pool-action-element
     [picture]="'assets/img/vote.png'"
     [label]="'pools.types.vote'"

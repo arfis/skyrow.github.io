@@ -21,7 +21,7 @@ export class PoolComponent implements OnInit {
   ngOnInit() {
 
     this.result = new Array<any>(this.pool.questions.length);
-    this.result.fill([]);
+    this.result.fill({answers: [], freeText: ''});
     // const option = this.fb.group({
     //   'label': [label, Validators.required]
     // });
@@ -35,12 +35,26 @@ export class PoolComponent implements OnInit {
     );
   }
 
-  updateAnswer(event, questionIndex, answer) {
-    alert(event);
-    if (this.result[questionIndex].indexOf(answer) === -1) {
-      this.result[questionIndex].push(answer);
+  updateAnswer(event, questionIndex, answer, freeText = false) {
+    const question = this.pool.questions[questionIndex];
+
+    if (!freeText) {
+      if (question.multiple) {
+        if (event.checked) {
+          alert(answer);
+          this.result[questionIndex] = {...this.result[questionIndex], answers: [...this.result[questionIndex].answers, answer]};
+        } else {
+          this.result[questionIndex].answers.splice(answer, 1);
+        }
+      } else {
+        this.result[questionIndex] = {answers: [answer]};
+      }
     } else {
-      this.result[questionIndex].splice(answer, 1);
+      this.result[questionIndex] = {answers: [...this.result[questionIndex].answers], freeText: answer};
     }
+  }
+
+  isMultiple(question) {
+    return question.multiple;
   }
 }
