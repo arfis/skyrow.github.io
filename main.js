@@ -280,6 +280,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_pools_pool_resolver_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/pools/pool-resolver.service */ "./src/app/shared/pools/pool-resolver.service.ts");
 /* harmony import */ var _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/profile-page/profile-page.component */ "./src/app/pages/profile-page/profile-page.component.ts");
 /* harmony import */ var _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/about-page/about-page.component */ "./src/app/pages/about-page/about-page.component.ts");
+/* harmony import */ var _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/pools/pollListTypes */ "./src/app/shared/pools/pollListTypes.ts");
+
 
 
 
@@ -310,7 +312,13 @@ var appRoutes = [
             },
             {
                 path: 'pools',
-                component: _pages_pools_page_pools_page_component__WEBPACK_IMPORTED_MODULE_5__["PoolsPageComponent"]
+                component: _pages_pools_page_pools_page_component__WEBPACK_IMPORTED_MODULE_5__["PoolsPageComponent"],
+                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__["PollListTypes"].PRIVATE_LIST }
+            },
+            {
+                path: 'ownPools',
+                component: _pages_pools_page_pools_page_component__WEBPACK_IMPORTED_MODULE_5__["PoolsPageComponent"],
+                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__["PollListTypes"].OWN_LIST }
             },
             {
                 path: 'publicpools',
@@ -562,6 +570,7 @@ var NewQuestionPageComponent = /** @class */ (function () {
         this.afterNextQuestionPressed = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.afterPreviousQuestionPressed = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.afterClickOnRemove = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.optionIndex = 0;
         this.initForm();
     }
     NewQuestionPageComponent.prototype.ngOnChanges = function (changes) {
@@ -580,6 +589,7 @@ var NewQuestionPageComponent = /** @class */ (function () {
     };
     NewQuestionPageComponent.prototype.initForm = function () {
         var _this = this;
+        this.optionIndex = 0;
         this.createQuestionForm = this.fb.group({
             'name': [''],
             'openEnded': [false],
@@ -594,8 +604,10 @@ var NewQuestionPageComponent = /** @class */ (function () {
     NewQuestionPageComponent.prototype.addOption = function (label) {
         if (label === void 0) { label = ''; }
         var option = this.fb.group({
+            'id': [this.optionIndex],
             'label': [label, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
+        this.optionIndex++;
         this.options.push(option);
     };
     NewQuestionPageComponent.prototype.getNextQuestion = function (_a) {
@@ -779,7 +791,7 @@ var PoolActionElementComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"actions row\">\n  <app-pool-action-element\n    [picture]=\"'assets/img/pools.png'\"\n    [label]=\"'pools.types.create'\" class=\"col-4 action\">\n    <div class=\"create\" (click)=\"createPool()\">\n        <span class=\"img-fluid\">\n          <img src=\"assets/img/create.png\">\n        </span>\n      {{'pools.createNew' | translate}}\n    </div>\n    <div>{{'pools.or' | translate}}</div>\n  </app-pool-action-element>\n  <app-pool-action-element\n    [picture]=\"'assets/img/vote.png'\"\n    [label]=\"'pools.types.vote'\"\n    [redirectLink]=\"'/pools'\"\n    class=\"col-4 action\">\n    {{'pools.noPending' | translate}}\n  </app-pool-action-element>\n\n  <app-pool-action-element\n    [picture]=\"'assets/img/public_pools.png'\"\n    [label]=\"'pools.types.public'\" class=\"col-4 action\"\n    [redirectLink]=\"'/publicpools'\">\n    {{'pools.public' | translate: numberOfPools}}\n  </app-pool-action-element>\n</div>\n"
+module.exports = "<div class=\"actions row\">\n  <app-pool-action-element\n    [picture]=\"'assets/img/pools.png'\"\n    [label]=\"'pools.types.create'\"\n    [redirectLink]=\"'/ownPools'\"\n    class=\"col-4 action\">\n    <div class=\"create\" (click)=\"createPool()\">\n        <span class=\"img-fluid\">\n          <img src=\"assets/img/create.png\">\n        </span>\n      {{'pools.createNew' | translate}}\n    </div>\n    <div>{{'pools.or' | translate}}</div>\n  </app-pool-action-element>\n\n  <app-pool-action-element\n    [picture]=\"'assets/img/vote.png'\"\n    [label]=\"'pools.types.vote'\"\n    [redirectLink]=\"'/pools'\"\n    class=\"col-4 action\">\n    {{'pools.noPending' | translate}}\n  </app-pool-action-element>\n\n  <app-pool-action-element\n    [picture]=\"'assets/img/public_pools.png'\"\n    [label]=\"'pools.types.public'\" class=\"col-4 action\"\n    [redirectLink]=\"'/publicpools'\">\n    {{'pools.public' | translate: numberOfPools}}\n  </app-pool-action-element>\n</div>\n"
 
 /***/ }),
 
@@ -1103,7 +1115,7 @@ var PoolSummaryComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tile-wrapper\">\n  <div class=\"upper-part\">\n    <span class=\"title voteo-bold\">{{poolTitle}}</span>\n  </div>\n  <div class=\"bottom-part\">\n    <span class=\"question-count\">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>\n    <span class=\"voters\">{{'pools.voted' | translate}}: {{voted}}/{{neededVoters}}</span>\n    <div class=\"actions\">\n      <button [disabled]=\"!hasFreeVoting\" class=\"voteo-button\" (click)=\"openVoting()\">{{'pools.vote' | translate}}</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"tile-wrapper\">\n  <div class=\"upper-part\">\n    <span class=\"title voteo-bold\">{{poolTitle}}</span>\n  </div>\n  <div class=\"bottom-part\">\n    <span class=\"question-count\">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>\n    <span class=\"voters\">{{'pools.voted' | translate}}: {{voted}}</span>\n    <div class=\"actions\">\n      <button [disabled]=\"hasVoted\" class=\"voteo-button\" (click)=\"openVoting()\">{{'pools.vote' | translate}}</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1144,35 +1156,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PoolTileComponent = /** @class */ (function () {
     function PoolTileComponent(router) {
         this.router = router;
+        this.numberOfQuestions = 0;
+        this.voted = 0;
     }
     PoolTileComponent.prototype.ngOnInit = function () {
+        var parsedArray = this.pool.id.split('_');
+        if (parsedArray.length > 2) {
+            this.poolTitle = parsedArray[1] ? parsedArray[1] : '-';
+            this.numberOfQuestions = parsedArray[2] ? parsedArray[2] : '0';
+        }
+        this.voted = this.pool.voted;
+        this.hasVoted = this.pool.canVote === 'true' ? true : false;
     };
     PoolTileComponent.prototype.openVoting = function () {
         if (this.hasFreeVoting) {
-            this.router.navigate(["pool/" + this.pool]);
+            this.router.navigate(["pool/" + this.pool.id]);
         }
     };
-    Object.defineProperty(PoolTileComponent.prototype, "poolTitle", {
-        get: function () {
-            return (this.pool.name) ? this.pool.name : this.pool;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PoolTileComponent.prototype, "numberOfQuestions", {
-        get: function () {
-            return (this.pool.questionCount) ? this.pool.questionCount : 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(PoolTileComponent.prototype, "voted", {
-        get: function () {
-            return (this.pool.voted) ? this.pool.voted : 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(PoolTileComponent.prototype, "neededVoters", {
         get: function () {
             return (this.pool.needsVotes) ? this.pool.needsVotes : 0;
@@ -1213,7 +1213,7 @@ var PoolTileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pool-wrapper\">\n  <div class=\"pool-title voteo-bold\">{{pool.name}}</div>\n  <form (ngSubmit)=\"submitForm()\">\n    <div class=\"question\" *ngFor=\"let question of pool.questions\">\n      <div class=\"voteo-bold question-name\">{{question.name}}</div>\n      <div class=\"options\">\n\n        <ng-container *ngIf=\"question.multiple; else singleOption\">\n          <mat-checkbox *ngFor=\"let option of question.options\">{{option.label}}</mat-checkbox>\n        </ng-container>\n\n        <ng-template #singleOption>\n          <mat-radio-group>\n            <mat-radio-button *ngFor=\"let option of question.options\"\n                              class=\"example-margin\" [value]=\"option.label\">{{option.label}}\n            </mat-radio-button>\n          </mat-radio-group>\n        </ng-template>\n\n        <ng-container *ngIf=\"question.openEnded\">\n          <input class=\"freeText\">\n        </ng-container>\n      </div>\n    </div>\n    <div class=\"actions\">\n      <button class=\"voteo-button\">{{'actions.submit' | translate}}</button>\n    </div>\n  </form>\n</div>\n"
+module.exports = "<div class=\"pool-wrapper\">\n  <div class=\"pool-title voteo-bold\">{{pool.title}}</div>\n    <div class=\"question\" *ngFor=\"let question of pool.questions; let i = index\">\n      <div class=\"voteo-bold question-name\">{{question.name}}</div>\n      <div class=\"options\">\n\n        <ng-container *ngIf=\"question.multiple; else singleOption\">\n          <mat-checkbox (change)=\"updateAnswer($event, i, option)\" *ngFor=\"let option of question.options\">{{option.label}}</mat-checkbox>\n        </ng-container>\n\n        <ng-template #singleOption>\n          <mat-radio-group>\n            <mat-radio-button (change)=\"updateAnswer($event, i, option)\" *ngFor=\"let option of question.options\"\n                              class=\"example-margin\" [value]=\"option.label\">{{option.label}}\n            </mat-radio-button>\n          </mat-radio-group>\n        </ng-template>\n\n\n        <ng-container *ngIf=\"question.openEnded\">\n          <input (input)=\"updateAnswer($event, i, $event.target.value, true)\" class=\"freeText\">\n        </ng-container>\n      </div>\n    </div>\n    <div class=\"actions\">\n      <button (click)=\"vote()\" class=\"voteo-button\">{{'actions.vote' | translate}}</button>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -1239,7 +1239,16 @@ module.exports = ".options, mat-radio-group {\n  display: block;\n  width: 100%;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PoolComponent", function() { return PoolComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1251,18 +1260,47 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var PoolComponent = /** @class */ (function () {
-    function PoolComponent(fb) {
-        this.fb = fb;
+    function PoolComponent(_poolService, router) {
+        this._poolService = _poolService;
+        this.router = router;
+        this.result = [];
     }
     PoolComponent.prototype.ngOnInit = function () {
-        this.poolForm = this.fb.group({
-            'id': [this.pool.id],
-            questions: this.fb.array([]),
-        });
+        this.result = new Array(this.pool.questions.length);
+        this.result.fill({ answers: [], freeText: '' });
+        // const option = this.fb.group({
+        //   'label': [label, Validators.required]
+        // });
+        // this.options.push(option);
     };
-    PoolComponent.prototype.submitForm = function (_a) {
-        var value = _a.value;
+    PoolComponent.prototype.vote = function () {
+        var _this = this;
+        this._poolService.registerVote(this.result, this.pool.id).subscribe(function (result) { return _this.router.navigate(['/']); }, function (error) { return alert(error); });
+    };
+    PoolComponent.prototype.updateAnswer = function (event, questionIndex, answer, freeText) {
+        if (freeText === void 0) { freeText = false; }
+        var question = this.pool.questions[questionIndex];
+        if (!freeText) {
+            if (question.multiple) {
+                if (event.checked) {
+                    this.result[questionIndex] = __assign({}, this.result[questionIndex], { answers: this.result[questionIndex].answers.concat([answer]) });
+                }
+                else {
+                    this.result[questionIndex].answers.splice(answer, 1);
+                }
+            }
+            else {
+                this.result[questionIndex] = { answers: [answer] };
+            }
+        }
+        else {
+            this.result[questionIndex] = { answers: this.result[questionIndex].answers.slice(), freeText: answer };
+        }
+    };
+    PoolComponent.prototype.isMultiple = function (question) {
+        return question.multiple;
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -1274,7 +1312,8 @@ var PoolComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./pool.component.html */ "./src/app/components/pool/pool.component.html"),
             styles: [__webpack_require__(/*! ./pool.component.scss */ "./src/app/components/pool/pool.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
+        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], PoolComponent);
     return PoolComponent;
 }());
@@ -1476,7 +1515,6 @@ var NosApiService = /** @class */ (function () {
         }
     };
     NosApiService.prototype.invoke = function (scriptHash, operation, args) {
-        alert(args);
         if (this.nos) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(this.nos.invoke({ scriptHash: scriptHash, operation: operation, args: args }));
         }
@@ -1639,7 +1677,7 @@ var ContactListPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-horizontal-stepper [linear]=\"true\" #stepper>\n  <mat-step [stepControl]=\"questionsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>\n      <app-new-question-page [question]=\"currentQuestion\"\n                             [numberOfQuestions]=\"numberOfQuestions\"\n                             [currentQuestionIndex]=\"currentIndex\"\n                             (afterNextQuestionPressed)=\"setNextQuestion($event)\"\n                             (afterPreviousQuestionPressed)=\"setPreviousQuestion($event)\"\n                             (afterClickOnRemove)=\"removeCurrentQuestion($event)\"\n                             (onUpdate)=\"questionsUpdate($event)\">\n        <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n      </app-new-question-page>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <mat-step [stepControl]=\"settingsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.poolSettings' | translate}}</ng-template>\n      <app-pool-settings (onUpdate)=\"settingUpdate($event)\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n        </div>\n      </app-pool-settings>\n    </form>\n  </mat-step>\n  <mat-step>\n    <form>\n      <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>\n      <app-pool-summary [pool]=\"pool\"\n                        (onSubmitPressed)=\"createPool()\"\n                        (onBackPressed)=\"goToEdit()\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>\n        </div>\n      </app-pool-summary>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <!--<mat-step>-->\n    <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->\n    <!--{{'pools.confirmation' | translate}}-->\n    <!--<div>-->\n      <!--<button mat-button matStepperPrevious>Back</button>-->\n      <!--<button mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>-->\n      <!--<button mat-button (click)=\"stepper.reset()\">Reset</button>-->\n    <!--</div>-->\n  <!--</mat-step>-->\n</mat-horizontal-stepper>\n"
+module.exports = "<input matInput [placeholder]=\"'pools.name' | translate\" [(ngModel)]=\"poolName\">\n{{poolName}}\n<mat-horizontal-stepper [linear]=\"true\" #stepper>\n  <mat-step [stepControl]=\"questionsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>\n      <app-new-question-page [question]=\"currentQuestion\"\n                             [numberOfQuestions]=\"numberOfQuestions\"\n                             [currentQuestionIndex]=\"currentIndex\"\n                             (afterNextQuestionPressed)=\"setNextQuestion($event)\"\n                             (afterPreviousQuestionPressed)=\"setPreviousQuestion($event)\"\n                             (afterClickOnRemove)=\"removeCurrentQuestion($event)\"\n                             (onUpdate)=\"questionsUpdate($event)\">\n        <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n      </app-new-question-page>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <mat-step [stepControl]=\"settingsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.poolSettings' | translate}}</ng-template>\n      <app-pool-settings (onUpdate)=\"settingUpdate($event)\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n        </div>\n      </app-pool-settings>\n    </form>\n  </mat-step>\n  <mat-step>\n    <form>\n      <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>\n      <app-pool-summary [pool]=\"pool\"\n                        (onSubmitPressed)=\"createPool()\"\n                        (onBackPressed)=\"goToEdit()\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>\n        </div>\n      </app-pool-summary>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <!--<mat-step>-->\n    <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->\n    <!--{{'pools.confirmation' | translate}}-->\n    <!--<div>-->\n      <!--<button mat-button matStepperPrevious>Back</button>-->\n      <!--<button mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>-->\n      <!--<button mat-button (click)=\"stepper.reset()\">Reset</button>-->\n    <!--</div>-->\n  <!--</mat-step>-->\n</mat-horizontal-stepper>\n"
 
 /***/ }),
 
@@ -1666,6 +1704,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePoolProcessPageComponent", function() { return CreatePoolProcessPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1677,10 +1718,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var CreatePoolProcessPageComponent = /** @class */ (function () {
-    function CreatePoolProcessPageComponent(_poolsService) {
+    function CreatePoolProcessPageComponent(_poolsService, router) {
         this._poolsService = _poolsService;
-        this.pool = { questions: [], settings: {} };
+        this.router = router;
+        this.pool = { questions: [], settings: {}, title: '', id: '' };
         this.currentIndex = 0;
         this.currentQuestion = {};
         this.waitingValidation = false;
@@ -1736,9 +1780,11 @@ var CreatePoolProcessPageComponent = /** @class */ (function () {
     CreatePoolProcessPageComponent.prototype.createPool = function () {
         var _this = this;
         if (this.hasQuestions) {
-            console.log('create', this.pool);
-            this._poolsService.createPool(this.pool).subscribe(function (result) {
-                alert("USPECHH");
+            this.pool.title = this.poolName;
+            this.pool.id = Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])() + "_" + this.poolName + "_" + this.pool.questions.length;
+            this._poolsService.createPool(this.pool, this.pool.id).subscribe(function (result) {
+                alert('Poll was written into the blockchain');
+                _this.router.navigate['/'];
                 // this.receivedPool = result.script.replace('\'','');
             }, function (error) { alert('NEUSPECH'); _this.error = error; });
         }
@@ -1791,7 +1837,8 @@ var CreatePoolProcessPageComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./create-pool-process-page.component.scss */ "./src/app/pages/create-pool-process-page/create-pool-process-page.component.scss")],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"]])
+        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], CreatePoolProcessPageComponent);
     return CreatePoolProcessPageComponent;
 }());
@@ -2000,7 +2047,7 @@ var PageSkeletComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pool-fill-wrapper\">\n  {{pool | json}}\n  {{error | json}}\n  <app-pool [pool]=\"pool\"></app-pool>\n</div>\n"
+module.exports = "<div class=\"pool-fill-wrapper\">\n  <app-pool [pool]=\"pool\"></app-pool>\n</div>\n"
 
 /***/ }),
 
@@ -2050,8 +2097,11 @@ var PoolFillPageComponent = /** @class */ (function () {
     }
     PoolFillPageComponent.prototype.ngOnInit = function () {
         // this.pool = stringFromHex(this.route.snapshot.data.pool.stack[0].value);
-        var _this = this;
-        this._poolService.getPoolById("1").subscribe(function (result) { return _this.pool = Object(_shared_helper__WEBPACK_IMPORTED_MODULE_2__["stringFromHex"])(result.stack[0].value); }, function (error) { return _this.error = error; });
+        // this._poolService.getPoolById('Public_AGXpKUGPLpCW6CAPi69chN2hy6rye11Xao_Wed Aug 01 2018 14:19:24 GMT+0200 (CEST)').subscribe(
+        //   result => this.pool = stringFromHex(result.stack[0].value[1].value),
+        //   error => this.error = error
+        // );
+        this.pool = JSON.parse(Object(_shared_helper__WEBPACK_IMPORTED_MODULE_2__["stringFromHex"])(this.route.snapshot.data.pool.stack[0].value[1].value));
         //this.pool = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value));
     };
     PoolFillPageComponent = __decorate([
@@ -2076,7 +2126,7 @@ var PoolFillPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pools-wrapper\">\n  <span>{{'pools.active' | translate}}</span>\n  <app-pool-tile class=\"pool-item\" *ngFor=\"let pool of pools$ | async\" [pool]=\"pool\"></app-pool-tile>\n</div>\n"
+module.exports = "<div class=\"pools-wrapper\">\n  <span>{{'pools.active' | translate}}</span>\n  <app-pool-tile class=\"pool-item\" *ngFor=\"let pool of pools\" [pool]=\"pool\"></app-pool-tile>\n</div>\n"
 
 /***/ }),
 
@@ -2103,6 +2153,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PoolsPageComponent", function() { return PoolsPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/pools/pollListTypes */ "./src/app/shared/pools/pollListTypes.ts");
+/* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../shared/helper */ "./src/app/shared/helper.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2114,10 +2167,54 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var PoolsPageComponent = /** @class */ (function () {
-    function PoolsPageComponent(_poolsService) {
+    function PoolsPageComponent(_poolsService, _activatedRoute) {
+        var _this = this;
         this._poolsService = _poolsService;
-        this.pools$ = _poolsService.getUserPools();
+        this._activatedRoute = _activatedRoute;
+        _activatedRoute.data.subscribe(function (result) {
+            switch (result.type) {
+                case _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_3__["PollListTypes"].PRIVATE_LIST: {
+                    _poolsService.getPrivatePolls().subscribe(function (pools) {
+                        _this.pools = [];
+                        // this.result = result.stack[0];
+                        for (var _i = 0, _a = pools.stack[0].value; _i < _a.length; _i++) {
+                            var pool = _a[_i];
+                            alert(JSON.stringify(pool));
+                            // alert('here');
+                            _this.pools.push({
+                                id: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[0].value),
+                                voted: pool.value[1].value,
+                                canVote: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[2].value),
+                            });
+                        }
+                    });
+                    break;
+                }
+                case _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_3__["PollListTypes"].OWN_LIST: {
+                    _poolsService.getOwnPolls().subscribe(function (pools) {
+                        _this.pools = [];
+                        // this.result = result.stack[0];
+                        for (var _i = 0, _a = pools.stack[0].value; _i < _a.length; _i++) {
+                            var pool = _a[_i];
+                            alert(JSON.stringify(pool));
+                            _this.pools.push({
+                                id: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[0].value),
+                                voted: pool.value[1].value,
+                                canVote: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[2].value),
+                            });
+                        }
+                    });
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        });
     }
     PoolsPageComponent.prototype.ngOnInit = function () {
     };
@@ -2127,7 +2224,8 @@ var PoolsPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./pools-page.component.html */ "./src/app/pages/pools-page/pools-page.component.html"),
             styles: [__webpack_require__(/*! ./pools-page.component.scss */ "./src/app/pages/pools-page/pools-page.component.scss")]
         }),
-        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"]])
+        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], PoolsPageComponent);
     return PoolsPageComponent;
 }());
@@ -2239,6 +2337,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PublicPoolsPageComponent", function() { return PublicPoolsPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+/* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/helper */ "./src/app/shared/helper.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2250,6 +2349,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var PublicPoolsPageComponent = /** @class */ (function () {
     function PublicPoolsPageComponent(_poolsService) {
         var _this = this;
@@ -2259,8 +2359,11 @@ var PublicPoolsPageComponent = /** @class */ (function () {
             // this.result = result.stack[0];
             for (var _i = 0, _a = result.stack[0].value; _i < _a.length; _i++) {
                 var pool = _a[_i];
-                // alert('here');
-                _this.pools.push(pool.value);
+                _this.pools.push({
+                    id: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_2__["stringFromHex"])(pool.value[0].value),
+                    voted: pool.value[1].value,
+                    canVote: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_2__["stringFromHex"])(pool.value[2].value),
+                });
             }
         }, function (error) { return _this.error = error; });
     }
@@ -2355,12 +2458,15 @@ __webpack_require__.r(__webpack_exports__);
 var Methods = /** @class */ (function () {
     function Methods() {
     }
-    Methods.scriptHash = '8ec4dc95f3960517f808bbbd3cdb8ece4b31e16d';
+    Methods.scriptHash = 'f24b174d2d1e6551ed3274a436f731b4765ccfca';
     // OPERATIONS HERE
     Methods.getPoolOperation = 'GetPoll';
     Methods.createPoolOperation = 'RegisterPoll';
     Methods.getPublicAll = 'GetPublicAll';
+    Methods.getCreatedPolls = 'GetCreatedPolls';
+    Methods.getAssignedPolls = 'GetAssignedPolls';
     Methods.getPoolById = 'GetPollById';
+    Methods.registerVote = 'RegisterVote';
     Methods.getPools = 'ENTER_OPERATION_CODE_HERE';
     return Methods;
 }());
@@ -2484,13 +2590,14 @@ var ContactService = /** @class */ (function () {
 /*!**********************************!*\
   !*** ./src/app/shared/helper.ts ***!
   \**********************************/
-/*! exports provided: stringFromArray, stringFromHex */
+/*! exports provided: stringFromArray, stringFromHex, hexToString */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringFromArray", function() { return stringFromArray; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stringFromHex", function() { return stringFromHex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hexToString", function() { return hexToString; });
 function stringFromArray(data) {
     var count = data.length;
     var str = '';
@@ -2506,6 +2613,13 @@ function stringFromHex(str1) {
         str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
     }
     return str;
+}
+function hexToString(str) {
+    var result = '';
+    for (var i = 0; i < str.length; i++) {
+        result += str.charCodeAt(i).toString(16);
+    }
+    return result;
 }
 
 
@@ -2555,6 +2669,26 @@ var LocalizedDatePipe = /** @class */ (function () {
     return LocalizedDatePipe;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/shared/pools/pollListTypes.ts":
+/*!***********************************************!*\
+  !*** ./src/app/shared/pools/pollListTypes.ts ***!
+  \***********************************************/
+/*! exports provided: PollListTypes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PollListTypes", function() { return PollListTypes; });
+var PollListTypes;
+(function (PollListTypes) {
+    PollListTypes[PollListTypes["OWN_LIST"] = 0] = "OWN_LIST";
+    PollListTypes[PollListTypes["PRIVATE_LIST"] = 1] = "PRIVATE_LIST";
+    PollListTypes[PollListTypes["PUBLIC_LIST"] = 2] = "PUBLIC_LIST";
+})(PollListTypes || (PollListTypes = {}));
 
 
 /***/ }),
@@ -2685,6 +2819,14 @@ var PoolsService = /** @class */ (function () {
         }
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(publicPools);
     };
+    PoolsService.prototype.getPrivatePolls = function () {
+        // TODO: CHHANGE
+        return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getAssignedPolls, [this._nosService.address]);
+    };
+    PoolsService.prototype.getOwnPolls = function () {
+        // TODO: CHHANGE
+        return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getCreatedPolls, [this._nosService.address]);
+    };
     PoolsService.prototype.getPool = function (id) {
         // return of({
         //   id: 0,
@@ -2715,14 +2857,20 @@ var PoolsService = /** @class */ (function () {
         // );
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPoolOperation, ['eqweqw']);
     };
+    PoolsService.prototype.registerVote = function (results, poolId) {
+        alert(poolId);
+        alert(JSON.stringify(results));
+        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].registerVote, [this._nosService.address, JSON.stringify(results), poolId]);
+    };
     PoolsService.prototype.getAllPublic = function () {
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPublicAll, [this._nosService.address]);
     };
     PoolsService.prototype.getPoolById = function (id) {
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPoolById, [this._nosService.address, id]);
     };
-    PoolsService.prototype.createPool = function (poolParams) {
-        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, [this._nosService.address, JSON.stringify(poolParams), '']);
+    PoolsService.prototype.createPool = function (poolParams, poolName) {
+        // var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
+        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, [this._nosService.address, JSON.stringify(poolParams), poolName, '']);
     };
     PoolsService.prototype.getPoolInvoke = function (script) {
         return this._nosService.invoke(script, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, ['dsajdksajkasdjskksksajdaskjsadkdjaskLUKAS', 'LUKAS']);
@@ -2806,7 +2954,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
 
 
 /***/ })

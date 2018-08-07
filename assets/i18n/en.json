@@ -16,6 +16,7 @@
     "delete": "remove"
   },
   "pools": {
+    "name": "Enter the poll name",
     "settings": {
       "public": "Public",
       "private": "Private",
