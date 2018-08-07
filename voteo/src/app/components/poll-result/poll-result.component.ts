@@ -20,7 +20,7 @@ export class PollResultComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._pollsService.getOptionResult(this.option.id, this.poll.id).subscribe(
+    this._pollsService.getOptionResult(this.poll.id, this.option.id).subscribe(
       result => {
         const pollInformation = this._pollsService.actualPolls.find(poll => poll.id === this.poll.id );
 
