@@ -25,6 +25,7 @@ export class PoolsPageComponent implements OnInit {
                 this.pools = [];
                 // this.result = result.stack[0];
                 for (const pool of pools.stack[0].value) {
+                  alert(JSON.stringify(pool));
                   // alert('here');
                   this.pools.push(
                     {
@@ -43,7 +44,7 @@ export class PoolsPageComponent implements OnInit {
                 this.pools = [];
                 // this.result = result.stack[0];
                 for (const pool of pools.stack[0].value) {
-                  // alert('here');
+                  alert(JSON.stringify(pool));
                   this.pools.push(
                     {
                       id: stringFromHex(pool.value[0].value),

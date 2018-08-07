@@ -45,7 +45,7 @@ def Main(operation, args):
                 vote_list = concat(pollID,".vote_list")
                 vl = Get(GetContext(),vote_list)
                 if vl is None:
-                    pollItem.append('0')
+                    pollItem.append(len(vl))
                 else:
                     pollItem.append(len(Deserialize(vl)))
 
@@ -79,7 +79,32 @@ def Main(operation, args):
         if pollsAssigned is None:
             return "There are no private polls assigned to the current user"
         else:
-            return Deserialize(pollsAssigned)
+            pollsAssigned = Deserialize(pollsAssigned)
+
+            pollsObj = []
+
+            for pollID in pollsAssigned:
+                pollItem = []
+                pollItem.append(pollID)
+
+                vote_list = concat(pollID,".vote_list")
+                vl = Get(GetContext(),vote_list)
+                if vl is None:
+                    pollItem.append(len(vl))
+                else:
+                    pollItem.append(len(Deserialize(vl)))
+
+                vote_key = concat(pollID,".")
+                vote_key = concat(vote_key,user_address)
+                vote = Get(GetContext(),vote_key)
+                if vote is None:
+                    pollItem.append("false")
+                else:
+                    pollItem.append("true")
+
+                pollsObj.append(pollItem)
+
+            return pollsObj
 
     if operation == 'GetCreatedPolls':
         user_key = concat(user_address,".created")
@@ -89,7 +114,32 @@ def Main(operation, args):
         if pollsCreated is None:
             return "There are no private polls created by current user"
         else:
-            return Deserialize(pollsCreated)
+            pollsCreated = Deserialize(pollsCreated)
+
+            pollsObj = []
+
+            for pollID in pollsCreated:
+                pollItem = []
+                pollItem.append(pollID)
+
+                vote_list = concat(pollID,".vote_list")
+                vl = Get(GetContext(),vote_list)
+                if vl is None:
+                    pollItem.append(len(vl))
+                else:
+                    pollItem.append(len(Deserialize(vl)))
+
+                vote_key = concat(pollID,".")
+                vote_key = concat(vote_key,user_address)
+                vote = Get(GetContext(),vote_key)
+                if vote is None:
+                    pollItem.append("false")
+                else:
+                    pollItem.append("true")
+
+                pollsObj.append(pollItem)
+
+            return pollsObj
 
     if operation == 'GetAssignedByAddress':
         user_key = concat(args[1],".assigned")
@@ -133,6 +183,20 @@ def Main(operation, args):
         else:
             return Deserialize(vote)
 
+    if operation == 'GetOptionResults':
+        pollID = args[1]
+        optionID = args[2]
+
+        option_key = concat(pollID,".")
+        option_key = concat(option_key,optionID)
+
+        option_count = Get(GetContext(),option_key)
+        if option_count is None:
+            return len(option_count)
+        else:
+            Log(option_count)
+            return Deserialize(option_count)
+
     if operation == 'RegisterVote':
         data = args[1]
         pollID = args[2]
@@ -154,6 +218,24 @@ def Main(operation, args):
                 vl = Deserialize(vl)
                 vl.append(user_address)
                 Put(GetContext(),vote_list,Serialize(vl))
+
+        if len(args) > 2:
+            iterator = 0
+            for argument in args:
+                if iterator > 2:
+                    option_id = argument
+                    option_key = concat(pollID,".")
+                    option_key = concat(option_key,option_id)
+
+                    option_count = Get(GetContext(),option_key)
+                    if option_count is None:
+                        option_count = 1
+                        Put(GetContext(),option_key,Serialize(option_count))
+                    else:
+                        option_count = Deserialize(option_count)
+                        option_count += 1
+                        Put(GetContext(),option_key,Serialize(option_count))
+                iterator = iterator + 1
 
             return "Vote successful"
         else:
@@ -200,11 +282,11 @@ def Main(operation, args):
                     pollsAssigned = Get(GetContext(),user_key)
                     if pollsAssigned is None:
                         pollsAssigned = []
-                        pollsAssigned.append(pollIDInt)
+                        pollsAssigned.append(poll_key)
                         Put(GetContext(),user_key,Serialize(pollsAssigned))
                     else:
                         pollsAssigned = Deserialize(pollsAssigned)
-                        pollsAssigned.append(pollIDInt)
+                        pollsAssigned.append(poll_key)
                         Put(GetContext(),user_key,Serialize(pollsAssigned))
                 iterator = iterator + 1
 
@@ -213,11 +295,11 @@ def Main(operation, args):
         pollsCreated = Get(GetContext(),owner_key)
         if pollsCreated is None:
             pollsCreated = []
-            pollsCreated.append(pollIDInt)
+            pollsCreated.append(poll_key)
             Put(GetContext(),owner_key,Serialize(pollsCreated))
         else:
             pollsCreated = Deserialize(pollsCreated)
-            pollsCreated.append(pollIDInt)
+            pollsCreated.append(poll_key)
             Put(GetContext(),owner_key,Serialize(pollsCreated))
 
         Put(GetContext(),poll_key,Serialize(args))
@@ -232,3 +314,4 @@ def Main(operation, args):
 
 
     return False
+

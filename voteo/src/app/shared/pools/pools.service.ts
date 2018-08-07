@@ -73,7 +73,7 @@ export class PoolsService {
     // TODO: CHHANGE
     return this._nosService.testInvoke(
       Methods.scriptHash,
-      Methods.getPublicAll,
+      Methods.getAssignedPolls,
       [this._nosService.address]
     );
   }
@@ -82,7 +82,7 @@ export class PoolsService {
     // TODO: CHHANGE
     return this._nosService.testInvoke(
       Methods.scriptHash,
-      Methods.getPublicAll,
+      Methods.getCreatedPolls,
       [this._nosService.address]
     );
   }
@@ -123,6 +123,7 @@ export class PoolsService {
 
   public registerVote(results, poolId) {
     alert(poolId);
+    alert(JSON.stringify(results));
     return this._nosService.invoke(
       Methods.scriptHash,
       Methods.registerVote,
