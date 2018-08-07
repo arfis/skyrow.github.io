@@ -140,12 +140,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/common/locales/sk */ "./node_modules/@angular/common/locales/sk.js");
 /* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35__);
+/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
+/* harmony import */ var _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/poll-result/poll-result.component */ "./src/app/components/poll-result/poll-result.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -215,7 +219,9 @@ var AppModule = /** @class */ (function () {
                 _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_30__["AboutPageComponent"],
                 _components_language_selector_language_selector_component__WEBPACK_IMPORTED_MODULE_31__["LanguageSelectorComponent"],
                 _components_pool_settings_pool_settings_component__WEBPACK_IMPORTED_MODULE_32__["PoolSettingsComponent"],
-                _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_33__["LocalizedDatePipe"]
+                _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_33__["LocalizedDatePipe"],
+                _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_36__["PollsResultPageComponent"],
+                _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_37__["PollResultComponent"]
             ],
             imports: [
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbModule"].forRoot(),
@@ -281,6 +287,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/profile-page/profile-page.component */ "./src/app/pages/profile-page/profile-page.component.ts");
 /* harmony import */ var _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/about-page/about-page.component */ "./src/app/pages/about-page/about-page.component.ts");
 /* harmony import */ var _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/pools/pollListTypes */ "./src/app/shared/pools/pollListTypes.ts");
+/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
+
 
 
 
@@ -327,6 +335,11 @@ var appRoutes = [
             {
                 path: 'pool/:id',
                 component: _pages_pool_fill_page_pool_fill_page_component__WEBPACK_IMPORTED_MODULE_7__["PoolFillPageComponent"],
+                resolve: { pool: _shared_pools_pool_resolver_service__WEBPACK_IMPORTED_MODULE_8__["PoolResolver"] }
+            },
+            {
+                path: 'result/:id',
+                component: _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_12__["PollsResultPageComponent"],
                 resolve: { pool: _shared_pools_pool_resolver_service__WEBPACK_IMPORTED_MODULE_8__["PoolResolver"] }
             },
             {
@@ -552,6 +565,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewQuestionPageComponent", function() { return NewQuestionPageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_2__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -561,6 +576,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 var NewQuestionPageComponent = /** @class */ (function () {
@@ -604,7 +620,7 @@ var NewQuestionPageComponent = /** @class */ (function () {
     NewQuestionPageComponent.prototype.addOption = function (label) {
         if (label === void 0) { label = ''; }
         var option = this.fb.group({
-            'id': [this.optionIndex],
+            'id': [Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])()],
             'label': [label, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         this.optionIndex++;
@@ -679,6 +695,85 @@ var NewQuestionPageComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
     ], NewQuestionPageComponent);
     return NewQuestionPageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/poll-result/poll-result.component.html":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/poll-result/poll-result.component.html ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>{{option.label}} <span class=\"voted\">{{result | json}}</span></div>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/poll-result/poll-result.component.scss":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/poll-result/poll-result.component.scss ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/components/poll-result/poll-result.component.ts":
+/*!*****************************************************************!*\
+  !*** ./src/app/components/poll-result/poll-result.component.ts ***!
+  \*****************************************************************/
+/*! exports provided: PollResultComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PollResultComponent", function() { return PollResultComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PollResultComponent = /** @class */ (function () {
+    function PollResultComponent(_pollsService) {
+        this._pollsService = _pollsService;
+    }
+    PollResultComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._pollsService.getOptionResult(this.option.id, this.poll.id).subscribe(function (result) {
+            var pollInformation = _this._pollsService.actualPolls.find(function (poll) { return poll.id === _this.poll.id; });
+            _this.result = result.stack[0].value;
+        }, function (error) { return alert(error); });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], PollResultComponent.prototype, "option", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], PollResultComponent.prototype, "poll", void 0);
+    PollResultComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-poll-result',
+            template: __webpack_require__(/*! ./poll-result.component.html */ "./src/app/components/poll-result/poll-result.component.html"),
+            styles: [__webpack_require__(/*! ./poll-result.component.scss */ "./src/app/components/poll-result/poll-result.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_1__["PoolsService"]])
+    ], PollResultComponent);
+    return PollResultComponent;
 }());
 
 
@@ -867,7 +962,7 @@ var PoolActionsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <form [formGroup]=\"poolSettings\">\n    <div class=\"col-12 type\">\n      {{'pools.settings.private' | translate}}\n      <mat-slide-toggle formControlName=\"public\"></mat-slide-toggle>\n      {{'pools.settings.public' | translate}}\n    </div>\n\n    <div class=\"col-12\">\n      <mat-form-field class=\"full-width\">\n        <mat-select [placeholder]=\"'pools.settings.verification' | translate\" formControlName=\"verification\">\n          <mat-option *ngFor=\"let verification of verifications\" [value]=\"verification.value\">\n            {{verification.label}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n    </div>\n\n    <div class=\"date col-12\">\n      <mat-form-field class=\"full-width\">\n        <input matInput [matDatepicker]=\"startPicker\" [placeholder]=\"'pools.settings.startDate' | translate\"\n               formControlName=\"startDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"startPicker\"></mat-datepicker-toggle>\n        <mat-datepicker #startPicker></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div class=\"date col-12\">\n      <mat-form-field class=\"full-width\">\n        <input matInput [matDatepicker]=\"endPicker\" [placeholder]=\"'pools.settings.endDate' | translate\"\n               formControlName=\"endDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"endPicker\"></mat-datepicker-toggle>\n        <mat-datepicker #endPicker></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div class=\"col-12\">\n      <mat-checkbox class=\"example-margin\" formControlName=\"reward\">\n        {{'pools.settings.reward' | translate}}\n      </mat-checkbox>\n    </div>\n\n    <ng-container *ngIf=\"isReward\">\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.totalBudget' | translate\"\n               formControlName=\"totalBudget\">\n        <span matSuffix>GAS</span>\n      </mat-form-field>\n\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.totalReward' | translate\"\n               formControlName=\"totalReward\">\n        <span matSuffix>GAS</span>\n      </mat-form-field>\n\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.participans' | translate\"\n               formControlName=\"participans\">\n      </mat-form-field>\n    </ng-container>\n\n    <div class=\"col-12\">\n      <mat-checkbox class=\"example-margin\" formControlName=\"tokenRequirements\">\n        {{'pools.settings.tokenRequirements' | translate}}\n      </mat-checkbox>\n    </div>\n\n    <mat-form-field class=\"col-4\">\n      <mat-select [placeholder]=\"'pools.settings.tokenType' | translate\" formControlName=\"tokenType\">\n        <mat-option *ngFor=\"let tokenType of tokenTypes\" [value]=\"tokenType.value\">\n          {{tokenType.label}}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <ng-container *ngIf=\"areTokenRequirements\">\n      <mat-form-field class=\"col-4 full-width\">\n        <input type=\"number\" matInput [placeholder]=\"'pools.settings.minimumAmount' | translate\"\n               formControlName=\"minimumAmount\">\n\n      </mat-form-field>\n\n      <mat-form-field class=\"col-4 full-width\">\n        <input type=\"number\" matInput [placeholder]=\"'pools.settings.tokensPerVote' | translate\"\n               formControlName=\"tokensPerVote\">\n      </mat-form-field>\n\n      <mat-checkbox class=\"col-4 example-margin\" formControlName=\"audianceSpecification\">\n        {{'pools.settings.audianceSpecification' | translate}}\n      </mat-checkbox>\n    </ng-container>\n\n      <ng-content></ng-content>\n      <!--<button (click)=\"back()\" class=\"voteo-button\">{{'actions.back' | translate}}</button>-->\n      <!--<button (click)=\"submit()\" class=\"voteo-button\">{{'actions.submit' | translate}}</button>-->\n\n  </form>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <form [formGroup]=\"poolSettings\">\n    <div class=\"col-12 type\">\n      {{'pools.settings.private' | translate}}\n      <mat-slide-toggle formControlName=\"public\"></mat-slide-toggle>\n      {{'pools.settings.public' | translate}}\n    </div>\n\n    <fieldset class=\"col-12\" *ngIf=\"!isPublic\" formArrayName=\"privateAddresses\">\n      <button class=\"voteo-button add-option\" type=\"button\" (click)=\"addPrivateAddress()\">{{'pools.create.addPrivateOption' |\n        translate}}\n      </button>\n      <div class=\"address\" *ngFor=\"let address of addresses.controls; let j=index\"\n           [formGroupName]=\"j\">\n        <div class=\"option\">\n          <span class=\"label\">{{'pools.create.address' | translate}} {{j}}:</span>\n          <input class=\"question-name\" formControlName=\"address\">\n        </div>\n      </div>\n    </fieldset>\n\n    <div class=\"col-12\">\n      <mat-form-field class=\"full-width\">\n        <mat-select [placeholder]=\"'pools.settings.verification' | translate\" formControlName=\"verification\">\n          <mat-option *ngFor=\"let verification of verifications\" [value]=\"verification.value\">\n            {{verification.label}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n    </div>\n\n    <div class=\"date col-12\">\n      <mat-form-field class=\"full-width\">\n        <input matInput [matDatepicker]=\"startPicker\" [placeholder]=\"'pools.settings.startDate' | translate\"\n               formControlName=\"startDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"startPicker\"></mat-datepicker-toggle>\n        <mat-datepicker #startPicker></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div class=\"date col-12\">\n      <mat-form-field class=\"full-width\">\n        <input matInput [matDatepicker]=\"endPicker\" [placeholder]=\"'pools.settings.endDate' | translate\"\n               formControlName=\"endDate\">\n        <mat-datepicker-toggle matSuffix [for]=\"endPicker\"></mat-datepicker-toggle>\n        <mat-datepicker #endPicker></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div class=\"col-12\">\n      <mat-checkbox class=\"example-margin\" formControlName=\"reward\">\n        {{'pools.settings.reward' | translate}}\n      </mat-checkbox>\n    </div>\n\n    <ng-container *ngIf=\"isReward\">\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.totalBudget' | translate\"\n               formControlName=\"totalBudget\">\n        <span matSuffix>GAS</span>\n      </mat-form-field>\n\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.totalReward' | translate\"\n               formControlName=\"totalReward\">\n        <span matSuffix>GAS</span>\n      </mat-form-field>\n\n      <mat-form-field class=\"full-width col-4\">\n        <input matInput type=\"number\" [placeholder]=\"'pools.settings.participans' | translate\"\n               formControlName=\"participans\">\n      </mat-form-field>\n    </ng-container>\n\n    <div class=\"col-12\">\n      <mat-checkbox class=\"example-margin\" formControlName=\"tokenRequirements\">\n        {{'pools.settings.tokenRequirements' | translate}}\n      </mat-checkbox>\n    </div>\n\n    <mat-form-field class=\"col-4\">\n      <mat-select [placeholder]=\"'pools.settings.tokenType' | translate\" formControlName=\"tokenType\">\n        <mat-option *ngFor=\"let tokenType of tokenTypes\" [value]=\"tokenType.value\">\n          {{tokenType.label}}\n        </mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <ng-container *ngIf=\"areTokenRequirements\">\n      <mat-form-field class=\"col-4 full-width\">\n        <input type=\"number\" matInput [placeholder]=\"'pools.settings.minimumAmount' | translate\"\n               formControlName=\"minimumAmount\">\n\n      </mat-form-field>\n\n      <mat-form-field class=\"col-4 full-width\">\n        <input type=\"number\" matInput [placeholder]=\"'pools.settings.tokensPerVote' | translate\"\n               formControlName=\"tokensPerVote\">\n      </mat-form-field>\n\n      <mat-checkbox class=\"col-4 example-margin\" formControlName=\"audianceSpecification\">\n        {{'pools.settings.audianceSpecification' | translate}}\n      </mat-checkbox>\n    </ng-container>\n\n      <ng-content></ng-content>\n      <!--<button (click)=\"back()\" class=\"voteo-button\">{{'actions.back' | translate}}</button>-->\n      <!--<button (click)=\"submit()\" class=\"voteo-button\">{{'actions.submit' | translate}}</button>-->\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -878,7 +973,7 @@ module.exports = "<div class=\"wrapper\">\n  <form [formGroup]=\"poolSettings\">
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".date {\n  display: inline-block; }\n\n.full-width {\n  width: 100%; }\n"
+module.exports = ".date {\n  display: inline-block; }\n\n.full-width {\n  width: 100%; }\n\n.address {\n  margin: 5px; }\n"
 
 /***/ }),
 
@@ -928,7 +1023,7 @@ var PoolSettingsComponent = /** @class */ (function () {
         ];
         this.onUpdate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.poolSettings = fb.group({
-            public: [false],
+            public: [true],
             verification: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             startDate: [new Date()],
             endDate: [''],
@@ -941,6 +1036,7 @@ var PoolSettingsComponent = /** @class */ (function () {
             tokensPerVote: [],
             participans: [],
             tokenType: [],
+            privateAddresses: fb.array([]),
             audianceSpecification: [false]
         });
     }
@@ -950,6 +1046,26 @@ var PoolSettingsComponent = /** @class */ (function () {
             _this.onUpdate.emit(form);
         });
     };
+    PoolSettingsComponent.prototype.addPrivateAddress = function () {
+        var option = this.fb.group({
+            'address': [''],
+        });
+        this.addresses.push(option);
+    };
+    Object.defineProperty(PoolSettingsComponent.prototype, "isPublic", {
+        get: function () {
+            return this.poolSettings.get('public').value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PoolSettingsComponent.prototype, "addresses", {
+        get: function () {
+            return this.poolSettings.get('privateAddresses');
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(PoolSettingsComponent.prototype, "isReward", {
         get: function () {
             return this.poolSettings.get('reward').value;
@@ -990,7 +1106,7 @@ var PoolSettingsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <div class=\"header\">{{'pools.newPool' | translate}}</div>\n  <div class=\"title voteo-bold\">{{'pools.summary' | translate}}</div>\n  <div *ngIf=\"questions.length > 0; else noQuestions\" class=\"voteo-table\">\n    <ng-container *ngFor=\"let question of questions\">\n      <div class=\"highlight voteo-row\">\n        <span class=\"column key\">{{'pools.create.name' | translate}}</span>\n        <span class=\"column value\">{{question?.name}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.openEnded' | translate}}</span>\n        <span class=\"column value\">{{question?.openEnded}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.multiple' | translate}}</span>\n        <span class=\"column value\">{{question?.multiple}}</span>\n      </div>\n      <div *ngFor=\"let option of question?.options; let i=index\" class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.option' | translate}} {{i}}</span>\n        <span class=\"column value\">{{option.label}}</span>\n      </div>\n    </ng-container>\n  </div>\n\n  <div class=\"voteo-table\">\n    <div class=\"highlight voteo-row\">\n      {{'pools.create.settings' | translate}}\n    </div>\n    <ng-container *ngIf=\"settings\">\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.public' | translate}}</span>\n        <span class=\"column value\">{{settings?.public}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.verification' | translate}}</span>\n        <span class=\"column value\">{{settings?.verification}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.startDate' | translate}}</span>\n        <span class=\"column value\">{{settings?.startDate | localizedDate}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.endDate' | translate}}</span>\n        <span class=\"column value\">{{settings?.endDate | localizedDate}}</span>\n      </div>\n      <ng-container *ngIf=\"settings.reward\">\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.totalReward' | translate}}</span>\n          <span class=\"column value\">{{settings?.totalReward}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.totalBudget' | translate}}</span>\n          <span class=\"column value\">{{settings?.totalBudget}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.participans' | translate}}</span>\n          <span class=\"column value\">{{settings?.participans}}</span>\n        </div>\n      </ng-container>\n      <ng-container *ngIf=\"settings.tokenRequirements\">\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.tokenType' | translate}}</span>\n          <span class=\"column value\">{{settings?.tokenType}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.minimumAmount' | translate}}</span>\n          <span class=\"column value\">{{settings?.minimumAmount}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.tokensPerVote' | translate}}</span>\n          <span class=\"column value\">{{settings?.tokensPerVote}}</span>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n\n  <div class=\"button-wrapper\">\n    <ng-content></ng-content>\n    <!--<button (click)=\"back()\" class=\"voteo-button\">{{'actions.back' | translate}}</button>-->\n    <!--<button (click)=\"submit()\" class=\"voteo-button\">{{'actions.submit' | translate}}</button>-->\n  </div>\n</div>\n\n<ng-template #noQuestions>\n  <div class=\"message\">\n    {{'pools.noQuestions' | translate}}\n  </div>\n</ng-template>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"header\">{{'pools.newPool' | translate}}</div>\n  <div class=\"title voteo-bold\">{{'pools.summary' | translate}}</div>\n  <div *ngIf=\"questions.length > 0; else noQuestions\" class=\"voteo-table\">\n    <ng-container *ngFor=\"let question of questions\">\n      <div class=\"highlight voteo-row\">\n        <span class=\"column key\">{{'pools.create.name' | translate}}</span>\n        <span class=\"column value\">{{question?.name}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.openEnded' | translate}}</span>\n        <span class=\"column value\">{{question?.openEnded}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.multiple' | translate}}</span>\n        <span class=\"column value\">{{question?.multiple}}</span>\n      </div>\n      <div *ngFor=\"let option of question?.options; let i=index\" class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.create.option' | translate}} {{i}}</span>\n        <span class=\"column value\">{{option.label}}</span>\n      </div>\n    </ng-container>\n  </div>\n\n  <div class=\"voteo-table\">\n    <div class=\"highlight voteo-row\">\n      {{'pools.create.settings' | translate}}\n    </div>\n    <ng-container *ngIf=\"settings\">\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.public' | translate}}</span>\n        <span class=\"column value\">{{settings?.public}}</span>\n      </div>\n      <ng-container *ngIf=\"!settings?.public\">\n        <div *ngFor=\"let privateAddress of settings?.privateAddresses; let i=index\" class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.create.privateAddress' | translate}} {{i}}</span>\n          <span class=\"column value\">{{privateAddress}}</span>\n        </div>\n      </ng-container>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.verification' | translate}}</span>\n        <span class=\"column value\">{{settings?.verification}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.startDate' | translate}}</span>\n        <span class=\"column value\">{{settings?.startDate | localizedDate}}</span>\n      </div>\n      <div class=\"voteo-row\">\n        <span class=\"column key\">{{'pools.settings.endDate' | translate}}</span>\n        <span class=\"column value\">{{settings?.endDate | localizedDate}}</span>\n      </div>\n      <ng-container *ngIf=\"settings.reward\">\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.totalReward' | translate}}</span>\n          <span class=\"column value\">{{settings?.totalReward}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.totalBudget' | translate}}</span>\n          <span class=\"column value\">{{settings?.totalBudget}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.participans' | translate}}</span>\n          <span class=\"column value\">{{settings?.participans}}</span>\n        </div>\n      </ng-container>\n      <ng-container *ngIf=\"settings.tokenRequirements\">\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.tokenType' | translate}}</span>\n          <span class=\"column value\">{{settings?.tokenType}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.minimumAmount' | translate}}</span>\n          <span class=\"column value\">{{settings?.minimumAmount}}</span>\n        </div>\n        <div class=\"voteo-row\">\n          <span class=\"column key\">{{'pools.settings.tokensPerVote' | translate}}</span>\n          <span class=\"column value\">{{settings?.tokensPerVote}}</span>\n        </div>\n      </ng-container>\n    </ng-container>\n  </div>\n\n  <div class=\"button-wrapper\">\n    <ng-content></ng-content>\n    <!--<button (click)=\"back()\" class=\"voteo-button\">{{'actions.back' | translate}}</button>-->\n    <!--<button (click)=\"submit()\" class=\"voteo-button\">{{'actions.submit' | translate}}</button>-->\n  </div>\n</div>\n\n<ng-template #noQuestions>\n  <div class=\"message\">\n    {{'pools.noQuestions' | translate}}\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -1032,6 +1148,7 @@ var PoolSummaryComponent = /** @class */ (function () {
         this.onBackPressed = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
     PoolSummaryComponent.prototype.ngOnInit = function () {
+        this.pool.settings.privateAddresses = this.pool.settings.privateAddresses.map(function (address) { return address.address; });
     };
     PoolSummaryComponent.prototype.submit = function () {
         this.onSubmitPressed.next();
@@ -1115,7 +1232,7 @@ var PoolSummaryComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tile-wrapper\">\n  <div class=\"upper-part\">\n    <span class=\"title voteo-bold\">{{poolTitle}}</span>\n  </div>\n  <div class=\"bottom-part\">\n    <span class=\"question-count\">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>\n    <span class=\"voters\">{{'pools.voted' | translate}}: {{voted}}</span>\n    <div class=\"actions\">\n      <button [disabled]=\"hasVoted\" class=\"voteo-button\" (click)=\"openVoting()\">{{'pools.vote' | translate}}</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"tile-wrapper\">\n  <div class=\"upper-part\">\n    <span class=\"title voteo-bold\">{{poolTitle}}</span>\n  </div>\n  <div class=\"bottom-part\">\n    <span class=\"question-count\">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>\n    <span class=\"voters\">{{'pools.voted' | translate}}: {{voted}}</span>\n    <div class=\"actions\">\n      <button [disabled]=\"hasVoted\" class=\"voteo-button\" (click)=\"openVoting()\">{{'pools.vote' | translate}}</button>\n      <button *ngIf=\"isOwnPoll\" class=\"voteo-button\" (click)=\"showResults()\">{{'pools.result' | translate}}</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1126,7 +1243,7 @@ module.exports = "<div class=\"tile-wrapper\">\n  <div class=\"upper-part\">\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".tile-wrapper {\n  border: 0.5px solid #9c9da0; }\n\n.upper-part {\n  background-color: #09245d;\n  border: 0.5px solid #09245d;\n  color: #fff; }\n\n.bottom-part {\n  position: relative;\n  display: flex;\n  width: 100%; }\n\n.bottom-part .actions {\n    width: 30%;\n    display: inline-block;\n    margin: 5px;\n    height: 28px; }\n\n.question-count {\n  display: inline-block;\n  width: 35%; }\n\n.voters {\n  width: 35%; }\n\n.title {\n  color: #fff; }\n"
+module.exports = ".tile-wrapper {\n  border: 0.5px solid #9c9da0; }\n\n.upper-part {\n  background-color: #09245d;\n  border: 0.5px solid #09245d;\n  color: #fff; }\n\n.bottom-part {\n  position: relative;\n  display: flex;\n  width: 100%; }\n\n.bottom-part .actions {\n    width: 30%;\n    display: inline-block;\n    margin: 5px;\n    height: 28px; }\n\n.bottom-part .actions button:first-child {\n      margin-right: 4px; }\n\n.question-count {\n  display: inline-block;\n  width: 35%; }\n\n.voters {\n  width: 35%; }\n\n.title {\n  color: #fff; }\n"
 
 /***/ }),
 
@@ -1173,9 +1290,21 @@ var PoolTileComponent = /** @class */ (function () {
             this.router.navigate(["pool/" + this.pool.id]);
         }
     };
+    PoolTileComponent.prototype.showResults = function () {
+        if (this.isOwnPoll) {
+            this.router.navigate(["result/" + this.pool.id]);
+        }
+    };
     Object.defineProperty(PoolTileComponent.prototype, "neededVoters", {
         get: function () {
             return (this.pool.needsVotes) ? this.pool.needsVotes : 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PoolTileComponent.prototype, "isOwnPoll", {
+        get: function () {
+            return this.ownPoll;
         },
         enumerable: true,
         configurable: true
@@ -1191,6 +1320,10 @@ var PoolTileComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], PoolTileComponent.prototype, "pool", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], PoolTileComponent.prototype, "ownPoll", void 0);
     PoolTileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-pool-tile',
@@ -1266,6 +1399,7 @@ var PoolComponent = /** @class */ (function () {
         this._poolService = _poolService;
         this.router = router;
         this.result = [];
+        this.optionResult = [];
     }
     PoolComponent.prototype.ngOnInit = function () {
         this.result = new Array(this.pool.questions.length);
@@ -1277,27 +1411,32 @@ var PoolComponent = /** @class */ (function () {
     };
     PoolComponent.prototype.vote = function () {
         var _this = this;
-        this._poolService.registerVote(this.result, this.pool.id).subscribe(function (result) { return _this.router.navigate(['/']); }, function (error) { return alert(error); });
+        this._poolService.registerVote(this.optionResult, this.pool.id).subscribe(function (result) { return _this.router.navigate(['/']); }, function (error) { return alert(error); });
     };
     PoolComponent.prototype.updateAnswer = function (event, questionIndex, answer, freeText) {
+        var _this = this;
         if (freeText === void 0) { freeText = false; }
         var question = this.pool.questions[questionIndex];
         if (!freeText) {
             if (question.multiple) {
                 if (event.checked) {
-                    this.result[questionIndex] = __assign({}, this.result[questionIndex], { answers: this.result[questionIndex].answers.concat([answer]) });
+                    this.result[questionIndex] = __assign({}, this.result[questionIndex], { answers: this.result[questionIndex].answers.concat([answer.id]) });
                 }
                 else {
-                    this.result[questionIndex].answers.splice(answer, 1);
+                    this.result[questionIndex].answers.splice(answer.id, 1);
                 }
             }
             else {
-                this.result[questionIndex] = { answers: [answer] };
+                this.result[questionIndex] = { answers: [answer.id] };
             }
         }
         else {
             this.result[questionIndex] = { answers: this.result[questionIndex].answers.slice(), freeText: answer };
         }
+        this.optionResult = [];
+        this.result.map(function (optionIds) {
+            _this.optionResult = _this.optionResult.concat(optionIds.answers);
+        });
     };
     PoolComponent.prototype.isMultiple = function (question) {
         return question.multiple;
@@ -1677,7 +1816,7 @@ var ContactListPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<input matInput [placeholder]=\"'pools.name' | translate\" [(ngModel)]=\"poolName\">\n{{poolName}}\n<mat-horizontal-stepper [linear]=\"true\" #stepper>\n  <mat-step [stepControl]=\"questionsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>\n      <app-new-question-page [question]=\"currentQuestion\"\n                             [numberOfQuestions]=\"numberOfQuestions\"\n                             [currentQuestionIndex]=\"currentIndex\"\n                             (afterNextQuestionPressed)=\"setNextQuestion($event)\"\n                             (afterPreviousQuestionPressed)=\"setPreviousQuestion($event)\"\n                             (afterClickOnRemove)=\"removeCurrentQuestion($event)\"\n                             (onUpdate)=\"questionsUpdate($event)\">\n        <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n      </app-new-question-page>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <mat-step [stepControl]=\"settingsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.poolSettings' | translate}}</ng-template>\n      <app-pool-settings (onUpdate)=\"settingUpdate($event)\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n        </div>\n      </app-pool-settings>\n    </form>\n  </mat-step>\n  <mat-step>\n    <form>\n      <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>\n      <app-pool-summary [pool]=\"pool\"\n                        (onSubmitPressed)=\"createPool()\"\n                        (onBackPressed)=\"goToEdit()\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>\n        </div>\n      </app-pool-summary>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <!--<mat-step>-->\n    <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->\n    <!--{{'pools.confirmation' | translate}}-->\n    <!--<div>-->\n      <!--<button mat-button matStepperPrevious>Back</button>-->\n      <!--<button mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>-->\n      <!--<button mat-button (click)=\"stepper.reset()\">Reset</button>-->\n    <!--</div>-->\n  <!--</mat-step>-->\n</mat-horizontal-stepper>\n"
+module.exports = "<input matInput [placeholder]=\"'pools.name' | translate\" [(ngModel)]=\"poolName\">\n<mat-horizontal-stepper [linear]=\"true\" #stepper>\n  <mat-step [stepControl]=\"questionsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>\n      <app-new-question-page [question]=\"currentQuestion\"\n                             [numberOfQuestions]=\"numberOfQuestions\"\n                             [currentQuestionIndex]=\"currentIndex\"\n                             (afterNextQuestionPressed)=\"setNextQuestion($event)\"\n                             (afterPreviousQuestionPressed)=\"setPreviousQuestion($event)\"\n                             (afterClickOnRemove)=\"removeCurrentQuestion($event)\"\n                             (onUpdate)=\"questionsUpdate($event)\">\n        <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n      </app-new-question-page>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <mat-step [stepControl]=\"settingsForm\">\n    <form>\n      <ng-template matStepLabel>{{'pools.poolSettings' | translate}}</ng-template>\n      <app-pool-settings (onUpdate)=\"settingUpdate($event)\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button matStepperNext>Next</button>\n        </div>\n      </app-pool-settings>\n    </form>\n  </mat-step>\n  <mat-step>\n    <form>\n      <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>\n      <app-pool-summary [pool]=\"pool\"\n                        (onSubmitPressed)=\"createPool()\"\n                        (onBackPressed)=\"goToEdit()\">\n        <div class=\"button-wrapper\">\n          <button class=\"voteo-button\" mat-button matStepperPrevious>Back</button>\n          <button class=\"voteo-button\" mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>\n        </div>\n      </app-pool-summary>\n      <div>\n\n      </div>\n    </form>\n  </mat-step>\n  <!--<mat-step>-->\n    <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->\n    <!--{{'pools.confirmation' | translate}}-->\n    <!--<div>-->\n      <!--<button mat-button matStepperPrevious>Back</button>-->\n      <!--<button mat-button [disabled]=\"!hasQuestions\" (click)=\"createPool()\">{{'pools.create.message' | translate}}</button>-->\n      <!--<button mat-button (click)=\"stepper.reset()\">Reset</button>-->\n    <!--</div>-->\n  <!--</mat-step>-->\n</mat-horizontal-stepper>\n"
 
 /***/ }),
 
@@ -1707,6 +1846,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/index.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(uuid__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1770,12 +1917,10 @@ var CreatePoolProcessPageComponent = /** @class */ (function () {
         this.pool.questions.splice(index, 1);
     };
     CreatePoolProcessPageComponent.prototype.settingUpdate = function (settings) {
-        this.pool.settings = settings;
-        console.log(this.pool);
+        this.pool.settings = __assign({}, settings, { privateAddresses: settings.privateAddresses.map(function (address) { return address.address; }) });
     };
     CreatePoolProcessPageComponent.prototype.questionsUpdate = function (questions) {
         this.pool.questions[this.currentIndex] = questions;
-        console.log(this.pool);
     };
     CreatePoolProcessPageComponent.prototype.createPool = function () {
         var _this = this;
@@ -1783,8 +1928,8 @@ var CreatePoolProcessPageComponent = /** @class */ (function () {
             this.pool.title = this.poolName;
             this.pool.id = Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])() + "_" + this.poolName + "_" + this.pool.questions.length;
             this._poolsService.createPool(this.pool, this.pool.id).subscribe(function (result) {
-                alert('Poll was written into the blockchain');
                 _this.router.navigate['/'];
+                alert('Poll was written into the blockchain');
                 // this.receivedPool = result.script.replace('\'','');
             }, function (error) { alert('NEUSPECH'); _this.error = error; });
         }
@@ -2040,6 +2185,78 @@ var PageSkeletComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/pages/polls-result/polls-result.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/pages/polls-result/polls-result.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"pool-wrapper\">\n  <h3>{{poll.title}}</h3>\n  <div class=\"question\" *ngFor=\"let question of poll.questions\">\n    <div class=\"voteo-bold question-name\">{{question.name}}</div>\n    <div class=\"options\">\n      <app-poll-result  *ngFor=\"let option of question.options\" [poll]=\"poll\" [option]=\"option\"></app-poll-result>\n\n      <!--<ng-container *ngIf=\"question.openEnded\">-->\n      <!--<input class=\"freeText\">-->\n      <!--</ng-container>-->\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/polls-result/polls-result.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/pages/polls-result/polls-result.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/pages/polls-result/polls-result.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/pages/polls-result/polls-result.component.ts ***!
+  \**************************************************************/
+/*! exports provided: PollsResultPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PollsResultPageComponent", function() { return PollsResultPageComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/helper */ "./src/app/shared/helper.ts");
+/* harmony import */ var _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../shared/pools/pools.service */ "./src/app/shared/pools/pools.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PollsResultPageComponent = /** @class */ (function () {
+    function PollsResultPageComponent(route, _poolService) {
+        this.route = route;
+        this._poolService = _poolService;
+        this.poll = JSON.parse(Object(_shared_helper__WEBPACK_IMPORTED_MODULE_1__["stringFromHex"])(this.route.snapshot.data.pool.stack[0].value[1].value));
+    }
+    PollsResultPageComponent.prototype.ngOnInit = function () {
+    };
+    PollsResultPageComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-polls-result',
+            template: __webpack_require__(/*! ./polls-result.component.html */ "./src/app/pages/polls-result/polls-result.component.html"),
+            styles: [__webpack_require__(/*! ./polls-result.component.scss */ "./src/app/pages/polls-result/polls-result.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_2__["PoolsService"]])
+    ], PollsResultPageComponent);
+    return PollsResultPageComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/pages/pool-fill-page/pool-fill-page.component.html":
 /*!********************************************************************!*\
   !*** ./src/app/pages/pool-fill-page/pool-fill-page.component.html ***!
@@ -2110,7 +2327,8 @@ var PoolFillPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./pool-fill-page.component.html */ "./src/app/pages/pool-fill-page/pool-fill-page.component.html"),
             styles: [__webpack_require__(/*! ./pool-fill-page.component.scss */ "./src/app/pages/pool-fill-page/pool-fill-page.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_3__["PoolsService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _shared_pools_pools_service__WEBPACK_IMPORTED_MODULE_3__["PoolsService"]])
     ], PoolFillPageComponent);
     return PoolFillPageComponent;
 }());
@@ -2126,7 +2344,7 @@ var PoolFillPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"pools-wrapper\">\n  <span>{{'pools.active' | translate}}</span>\n  <app-pool-tile class=\"pool-item\" *ngFor=\"let pool of pools\" [pool]=\"pool\"></app-pool-tile>\n</div>\n"
+module.exports = "<div class=\"pools-wrapper\">\n  <span>{{'pools.active' | translate}}</span>\n  <app-pool-tile class=\"pool-item\" *ngFor=\"let pool of pools\" [ownPoll]=\"areOwnPools\" [pool]=\"pool\"></app-pool-tile>\n</div>\n"
 
 /***/ }),
 
@@ -2183,30 +2401,32 @@ var PoolsPageComponent = /** @class */ (function () {
                         // this.result = result.stack[0];
                         for (var _i = 0, _a = pools.stack[0].value; _i < _a.length; _i++) {
                             var pool = _a[_i];
-                            alert(JSON.stringify(pool));
                             // alert('here');
                             _this.pools.push({
                                 id: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[0].value),
                                 voted: pool.value[1].value,
                                 canVote: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[2].value),
                             });
+                            _this._poolsService.actualPolls = _this.pools;
                         }
+                        _this._poolsService.actualPolls = _this.pools;
                     });
                     break;
                 }
                 case _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_3__["PollListTypes"].OWN_LIST: {
                     _poolsService.getOwnPolls().subscribe(function (pools) {
+                        _this.areOwnPools = true;
                         _this.pools = [];
                         // this.result = result.stack[0];
                         for (var _i = 0, _a = pools.stack[0].value; _i < _a.length; _i++) {
                             var pool = _a[_i];
-                            alert(JSON.stringify(pool));
                             _this.pools.push({
                                 id: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[0].value),
                                 voted: pool.value[1].value,
                                 canVote: Object(_shared_helper__WEBPACK_IMPORTED_MODULE_4__["stringFromHex"])(pool.value[2].value),
                             });
                         }
+                        _this._poolsService.actualPolls = _this.pools;
                     });
                     break;
                 }
@@ -2467,6 +2687,7 @@ var Methods = /** @class */ (function () {
     Methods.getAssignedPolls = 'GetAssignedPolls';
     Methods.getPoolById = 'GetPollById';
     Methods.registerVote = 'RegisterVote';
+    Methods.getOptionResults = 'GetOptionResults';
     Methods.getPools = 'ENTER_OPERATION_CODE_HERE';
     return Methods;
 }());
@@ -2819,6 +3040,9 @@ var PoolsService = /** @class */ (function () {
         }
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(publicPools);
     };
+    PoolsService.prototype.getOptionResult = function (pollId, optionId) {
+        return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getOptionResults, [this._nosService.address, pollId, optionId]);
+    };
     PoolsService.prototype.getPrivatePolls = function () {
         // TODO: CHHANGE
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getAssignedPolls, [this._nosService.address]);
@@ -2858,9 +3082,8 @@ var PoolsService = /** @class */ (function () {
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPoolOperation, ['eqweqw']);
     };
     PoolsService.prototype.registerVote = function (results, poolId) {
-        alert(poolId);
-        alert(JSON.stringify(results));
-        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].registerVote, [this._nosService.address, JSON.stringify(results), poolId]);
+        var result = [poolId].concat(results);
+        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].registerVote, [this._nosService.address, 'fokinlukas'].concat(result));
     };
     PoolsService.prototype.getAllPublic = function () {
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPublicAll, [this._nosService.address]);
@@ -2869,8 +3092,8 @@ var PoolsService = /** @class */ (function () {
         return this._nosService.testInvoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].getPoolById, [this._nosService.address, id]);
     };
     PoolsService.prototype.createPool = function (poolParams, poolName) {
-        // var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
-        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, [this._nosService.address, JSON.stringify(poolParams), poolName, '']);
+        var addresses = (poolParams.settings.public) ? [''] : poolParams.settings.privateAddresses;
+        return this._nosService.invoke(_Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].scriptHash, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, [this._nosService.address, JSON.stringify(poolParams), poolName].concat(addresses));
     };
     PoolsService.prototype.getPoolInvoke = function (script) {
         return this._nosService.invoke(script, _Methods__WEBPACK_IMPORTED_MODULE_2__["Methods"].createPoolOperation, ['dsajdksajkasdjskksksajdaskjsadkdjaskLUKAS', 'LUKAS']);
@@ -2954,7 +3177,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -17,6 +17,7 @@
   },
   "pools": {
     "name": "Enter the poll name",
+    "result": "Results",
     "settings": {
       "public": "Public",
       "private": "Private",
@@ -61,7 +62,9 @@
       "option": "Option",
       "addOption": "Add option",
       "message": "Create",
-      "confirmation": "Click for create"
+      "confirmation": "Click for create",
+      "address": "Wallet address",
+      "addPrivateOption": "Add Wallet"
     },
     "youHaveGotAssigned": "You have got {{number}} assigned polls",
     "youHaveCreated": "You have created {{number}} of polls",
