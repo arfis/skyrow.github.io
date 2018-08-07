@@ -32,7 +32,6 @@ export class PoolComponent implements OnInit {
   }
 
   vote() {
-    alert(this.optionResult);
     this._poolService.registerVote(this.optionResult, this.pool.id).subscribe(
       result => this.router.navigate(['/']),
       error => alert(error)

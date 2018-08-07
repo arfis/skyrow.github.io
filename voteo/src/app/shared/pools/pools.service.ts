@@ -132,7 +132,6 @@ export class PoolsService {
 
   public registerVote(results, poolId) {
     const result = [poolId, ...results]
-    alert([...result]);
     return this._nosService.invoke(
       Methods.scriptHash,
       Methods.registerVote,
