@@ -17,6 +17,7 @@ export class PoolSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.pool.settings.privateAddresses = this.pool.settings.privateAddresses.map(address => address.address);
   }
 
   submit() {

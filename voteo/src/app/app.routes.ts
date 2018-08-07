@@ -11,6 +11,7 @@ import {PoolResolver} from './shared/pools/pool-resolver.service';
 import {ProfilePageComponent} from './pages/profile-page/profile-page.component';
 import {AboutPageComponent} from './pages/about-page/about-page.component';
 import { PollListTypes } from './shared/pools/pollListTypes';
+import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
 
 export const appRoutes: Routes = [
   {
@@ -46,6 +47,11 @@ export const appRoutes: Routes = [
       {
         path: 'pool/:id',
         component: PoolFillPageComponent,
+        resolve: {pool: PoolResolver}
+      },
+      {
+        path: 'result/:id',
+        component: PollsResultPageComponent,
         resolve: {pool: PoolResolver}
       },
       {

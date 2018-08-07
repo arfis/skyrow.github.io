@@ -10,5 +10,7 @@ export class Methods {
   static getAssignedPolls = 'GetAssignedPolls';
   static getPoolById = 'GetPollById';
   static registerVote = 'RegisterVote';
+  static getOptionResults = 'GetOptionResults';
+
   static getPools = 'ENTER_OPERATION_CODE_HERE';
 }

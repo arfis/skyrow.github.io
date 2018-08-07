@@ -72,13 +72,11 @@ export class CreatePoolProcessPageComponent implements OnInit {
   }
 
   settingUpdate(settings) {
-    (this.pool as any).settings = settings;
-    console.log(this.pool);
+    (this.pool as any).settings = {...settings, privateAddresses: settings.privateAddresses.map(address => address.address)};
   }
 
   questionsUpdate(questions) {
     (this.pool as any).questions[this.currentIndex] = questions;
-    console.log(this.pool);
   }
 
   createPool() {
@@ -86,10 +84,11 @@ export class CreatePoolProcessPageComponent implements OnInit {
 
       this.pool.title = this.poolName;
       this.pool.id = `${uuid()}_${this.poolName}_${this.pool.questions.length}`;
+
       this._poolsService.createPool(this.pool, this.pool.id).subscribe(
         result => {
-          alert('Poll was written into the blockchain');
           this.router.navigate['/'];
+          alert('Poll was written into the blockchain');
           // this.receivedPool = result.script.replace('\'','');
         },
         error => {alert('NEUSPECH'); this.error = error}

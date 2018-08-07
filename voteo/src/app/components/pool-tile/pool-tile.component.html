@@ -7,6 +7,7 @@
     <span class="voters">{{'pools.voted' | translate}}: {{voted}}</span>
     <div class="actions">
       <button [disabled]="hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
+      <button *ngIf="isOwnPoll" class="voteo-button" (click)="showResults()">{{'pools.result' | translate}}</button>
     </div>
   </div>
 </div>

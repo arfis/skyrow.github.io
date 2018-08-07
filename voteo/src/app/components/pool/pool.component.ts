@@ -14,6 +14,7 @@ export class PoolComponent implements OnInit {
   pool;
 
   result = [];
+  optionResult = [];
 
   constructor(private _poolService: PoolsService,
               private router: Router) {
@@ -31,7 +32,8 @@ export class PoolComponent implements OnInit {
   }
 
   vote() {
-    this._poolService.registerVote(this.result, this.pool.id).subscribe(
+    alert(this.optionResult);
+    this._poolService.registerVote(this.optionResult, this.pool.id).subscribe(
       result => this.router.navigate(['/']),
       error => alert(error)
     );
@@ -43,16 +45,24 @@ export class PoolComponent implements OnInit {
     if (!freeText) {
       if (question.multiple) {
         if (event.checked) {
-          this.result[questionIndex] = {...this.result[questionIndex], answers: [...this.result[questionIndex].answers, answer]};
+          this.result[questionIndex] = {...this.result[questionIndex], answers: [...this.result[questionIndex].answers, answer.id]};
         } else {
-          this.result[questionIndex].answers.splice(answer, 1);
+          this.result[questionIndex].answers.splice(answer.id, 1);
         }
       } else {
-        this.result[questionIndex] = {answers: [answer]};
+        this.result[questionIndex] = {answers: [answer.id]};
       }
     } else {
       this.result[questionIndex] = {answers: [...this.result[questionIndex].answers], freeText: answer};
     }
+
+   this.optionResult = [];
+
+      this.result.map(
+      optionIds => {
+        this.optionResult = [...this.optionResult, ...optionIds.answers];
+      }
+    );
   }
 
   isMultiple(question) {

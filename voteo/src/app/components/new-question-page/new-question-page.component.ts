@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PoolsService} from '../../shared/pools/pools.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-new-question-page',
@@ -68,7 +69,7 @@ export class NewQuestionPageComponent implements OnChanges {
 
   addOption(label = '') {
     const option = this.fb.group({
-      'id': [this.optionIndex],
+      'id': [uuid()],
       'label': [label, Validators.required]
     });
     this.optionIndex++;

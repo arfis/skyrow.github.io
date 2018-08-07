@@ -12,6 +12,7 @@ import { stringFromHex } from '../../shared/helper';
 export class PoolsPageComponent implements OnInit {
 
   pools;
+  areOwnPools;
 
   constructor(private _poolsService: PoolsService,
               private _activatedRoute: ActivatedRoute) {
@@ -33,7 +34,9 @@ export class PoolsPageComponent implements OnInit {
                       voted: pool.value[1].value,
                       canVote: stringFromHex(pool.value[2].value),
                     });
+                  this._poolsService.actualPolls = this.pools;
                 }
+                this._poolsService.actualPolls = this.pools;
               }
             );
             break;
@@ -41,10 +44,10 @@ export class PoolsPageComponent implements OnInit {
           case PollListTypes.OWN_LIST: {
             _poolsService.getOwnPolls().subscribe(
               pools => {
+                this.areOwnPools = true;
                 this.pools = [];
                 // this.result = result.stack[0];
                 for (const pool of pools.stack[0].value) {
-                  alert(JSON.stringify(pool));
                   this.pools.push(
                     {
                       id: stringFromHex(pool.value[0].value),
@@ -52,6 +55,7 @@ export class PoolsPageComponent implements OnInit {
                       canVote: stringFromHex(pool.value[2].value),
                     });
                 }
+                this._poolsService.actualPolls = this.pools;
               }
             );
             break;

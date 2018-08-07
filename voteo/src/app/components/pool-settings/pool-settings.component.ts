@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pool-settings',
@@ -31,7 +31,7 @@ export class PoolSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.poolSettings = fb.group({
-      public: [false],
+      public: [true],
       verification: ['', Validators.required],
       startDate: [new Date()],
       endDate: [''],
@@ -44,6 +44,7 @@ export class PoolSettingsComponent implements OnInit {
       tokensPerVote: [],
       participans: [],
       tokenType: [],
+      privateAddresses: fb.array([]),
       audianceSpecification: [false]
     });
   }
@@ -54,6 +55,21 @@ export class PoolSettingsComponent implements OnInit {
         this.onUpdate.emit(form);
       }
     );
+  }
+
+  addPrivateAddress() {
+    const option = this.fb.group({
+      'address': [''],
+    });
+    this.addresses.push(option);
+  }
+
+  get isPublic() {
+    return this.poolSettings.get('public').value;
+  }
+
+  get addresses() {
+    return this.poolSettings.get('privateAddresses') as FormArray;
   }
 
   get isReward() {

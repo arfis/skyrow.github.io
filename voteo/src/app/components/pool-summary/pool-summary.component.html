@@ -31,6 +31,12 @@
         <span class="column key">{{'pools.settings.public' | translate}}</span>
         <span class="column value">{{settings?.public}}</span>
       </div>
+      <ng-container *ngIf="!settings?.public">
+        <div *ngFor="let privateAddress of settings?.privateAddresses; let i=index" class="voteo-row">
+          <span class="column key">{{'pools.create.privateAddress' | translate}} {{i}}</span>
+          <span class="column value">{{privateAddress}}</span>
+        </div>
+      </ng-container>
       <div class="voteo-row">
         <span class="column key">{{'pools.settings.verification' | translate}}</span>
         <span class="column value">{{settings?.verification}}</span>

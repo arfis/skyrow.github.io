@@ -10,6 +10,7 @@ import {Observable, of} from 'rxjs';
 export class PoolsService {
 
   address;
+  actualPolls;
 
   constructor(private _nosService: NosApiService) {
     if (_nosService.isConnected()) {
@@ -69,6 +70,14 @@ export class PoolsService {
     return of(publicPools);
   }
 
+  getOptionResult(pollId, optionId) {
+    return this._nosService.testInvoke(
+      Methods.scriptHash,
+      Methods.getOptionResults,
+      [this._nosService.address, pollId, optionId]
+    );
+  }
+
   public getPrivatePolls() {
     // TODO: CHHANGE
     return this._nosService.testInvoke(
@@ -122,12 +131,12 @@ export class PoolsService {
   }
 
   public registerVote(results, poolId) {
-    alert(poolId);
-    alert(JSON.stringify(results));
+    const result = [poolId, ...results]
+    alert([...result]);
     return this._nosService.invoke(
       Methods.scriptHash,
       Methods.registerVote,
-      [this._nosService.address, JSON.stringify(results), poolId]
+      [this._nosService.address, 'fokinlukas', ...result]
     );
   }
   public getAllPublic() {
@@ -148,12 +157,13 @@ export class PoolsService {
   }
 
   public createPool(poolParams: any, poolName) {
-      // var poll_name = "Public_"+this._nosService.address.toString()+"_"+new Date()
-   return this._nosService.invoke(
-      Methods.scriptHash,
-      Methods.createPoolOperation,
-      [this._nosService.address, JSON.stringify(poolParams), poolName, '']
-    );
+    const addresses = (poolParams.settings.public) ? [''] : poolParams.settings.privateAddresses;
+      return this._nosService.invoke(
+        Methods.scriptHash,
+        Methods.createPoolOperation,
+        [this._nosService.address, JSON.stringify(poolParams), poolName, ...addresses]
+      );
+
   }
 
   public getPoolInvoke(script) {

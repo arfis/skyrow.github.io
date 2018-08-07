@@ -13,7 +13,8 @@ export class PoolFillPageComponent implements OnInit {
   pool = {};
   error;
 
-  constructor(private route: ActivatedRoute, private _poolService: PoolsService) {}
+  constructor(private route: ActivatedRoute,
+              private _poolService: PoolsService) {}
 
   ngOnInit() {
     // this.pool = stringFromHex(this.route.snapshot.data.pool.stack[0].value);

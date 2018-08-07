@@ -11,6 +11,9 @@ export class PoolTileComponent implements OnInit {
   @Input()
   pool;
 
+  @Input()
+    ownPoll;
+
   poolTitle;
   numberOfQuestions = 0;
   voted = 0;
@@ -36,8 +39,18 @@ export class PoolTileComponent implements OnInit {
     }
   }
 
+  showResults() {
+    if (this.isOwnPoll) {
+      this.router.navigate([`result/${this.pool.id}`]);
+    }
+  }
+
   get neededVoters() {
     return (this.pool.needsVotes) ? this.pool.needsVotes : 0;
+  }
+
+  get isOwnPoll() {
+    return this.ownPoll;
   }
 
   get hasFreeVoting() {

@@ -1,0 +1,13 @@
+<div class="pool-wrapper">
+  <h3>{{poll.title}}</h3>
+  <div class="question" *ngFor="let question of poll.questions">
+    <div class="voteo-bold question-name">{{question.name}}</div>
+    <div class="options">
+      <app-poll-result  *ngFor="let option of question.options" [poll]="poll" [option]="option"></app-poll-result>
+
+      <!--<ng-container *ngIf="question.openEnded">-->
+      <!--<input class="freeText">-->
+      <!--</ng-container>-->
+    </div>
+  </div>
+</div>

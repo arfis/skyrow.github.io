@@ -47,6 +47,8 @@ import {LocalizedDatePipe} from './shared/localizationDatePipe/localization-date
 
 import { registerLocaleData } from '@angular/common';
 import localeSk from '@angular/common/locales/sk';
+import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
+import { PollResultComponent } from './components/poll-result/poll-result.component';
 
 registerLocaleData(localeSk);
 
@@ -79,7 +81,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AboutPageComponent,
     LanguageSelectorComponent,
     PoolSettingsComponent,
-    LocalizedDatePipe
+    LocalizedDatePipe,
+    PollsResultPageComponent,
+    PollResultComponent
   ],
   imports: [
     NgbModule.forRoot(),
