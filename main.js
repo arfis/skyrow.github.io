@@ -752,7 +752,7 @@ var PollResultComponent = /** @class */ (function () {
     }
     PollResultComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._pollsService.getOptionResult(this.option.id, this.poll.id).subscribe(function (result) {
+        this._pollsService.getOptionResult(this.poll.id, this.option.id).subscribe(function (result) {
             var pollInformation = _this._pollsService.actualPolls.find(function (poll) { return poll.id === _this.poll.id; });
             _this.result = result.stack[0].value;
         }, function (error) { return alert(error); });
@@ -3177,7 +3177,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
 
 
 /***/ })
