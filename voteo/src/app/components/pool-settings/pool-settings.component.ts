@@ -55,6 +55,7 @@ export class PoolSettingsComponent implements OnInit {
         this.onUpdate.emit(form);
       }
     );
+    this.onUpdate.emit(this.poolSettings.value);
   }
 
   addPrivateAddress() {
