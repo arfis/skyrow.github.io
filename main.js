@@ -1045,6 +1045,7 @@ var PoolSettingsComponent = /** @class */ (function () {
         this.poolSettings.valueChanges.subscribe(function (form) {
             _this.onUpdate.emit(form);
         });
+        this.onUpdate.emit(this.poolSettings.value);
     };
     PoolSettingsComponent.prototype.addPrivateAddress = function () {
         var option = this.fb.group({
@@ -3177,7 +3178,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -5473,7 +5473,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
