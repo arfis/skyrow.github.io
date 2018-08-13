@@ -35,6 +35,7 @@
       "audianceSpecification": "Audience specification (age, nationality, gender, ...)"
     },
     "noQuestions": "No questions where created yet!",
+    "noTitle": "Please enter a title of the poll on the top",
     "createQuestions": "Create Questions",
     "poolSettings": "Poll Settings",
     "publicPools": "Public polls",
