@@ -10,6 +10,7 @@ import {PoolFillPageComponent} from './pages/pool-fill-page/pool-fill-page.compo
 import {PoolResolver} from './shared/pools/pool-resolver.service';
 import {ProfilePageComponent} from './pages/profile-page/profile-page.component';
 import {AboutPageComponent} from './pages/about-page/about-page.component';
+import {ChangelogPageComponent} from './pages/changelog-page/changelog-page.component';
 import { PollListTypes } from './shared/pools/pollListTypes';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
 
@@ -64,6 +65,10 @@ export const appRoutes: Routes = [
   {
     path: 'about',
     component: AboutPageComponent
+  },
+  {
+    path: 'changelog',
+    component: ChangelogPageComponent
   },
   {
     path: '**',

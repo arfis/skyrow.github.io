@@ -41,6 +41,7 @@ import { PoolFillPageComponent } from './pages/pool-fill-page/pool-fill-page.com
 import { PoolComponent } from './components/pool/pool.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { ChangelogPageComponent } from './pages/changelog-page/changelog-page.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { PoolSettingsComponent } from './components/pool-settings/pool-settings.component';
 import {LocalizedDatePipe} from './shared/localizationDatePipe/localization-date-pipe.pipe';
@@ -79,6 +80,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PoolComponent,
     ProfilePageComponent,
     AboutPageComponent,
+    ChangelogPageComponent,
     LanguageSelectorComponent,
     PoolSettingsComponent,
     LocalizedDatePipe,
