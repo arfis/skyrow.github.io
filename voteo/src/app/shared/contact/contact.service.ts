@@ -14,9 +14,9 @@ export class ContactService {
       {
         name: 'Kamil Bitcoach',
         city: 'Bratislava',
-        contacts: 12,
+        contacts: 3,
         email: 'info@bitcoach.net',
-        picture: 'https://pbs.twimg.com/profile_images/934317901745655809/giHHc1bR_400x400.jpg',
+        picture: '/assets/img/bitcoachlogo.jpg',
         validated: true
       });
   }
@@ -24,62 +24,28 @@ export class ContactService {
   getContacts(): Observable<any> {
     return of([
       {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com',
+        name: 'Lukas Cader',
+        picture: '/assets/img/bitcoachlogoblack.jpg',
+        city: 'Bratislava',
+        contacts: 4,
+        email: 'info@bitcoach.net',
+        validated: true
+      },
+      {
+        name: 'Michal Sevcik',
+        picture: '/assets/img/bitcoachlogoblack.jpg',
+        city: 'Bratislava',
+        contacts: 3,
+        email: 'info@bitcoach.net',
         validated: true
       },
       {
         name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com',
-        validated: true
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com',
-        validated: true
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com'
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com'
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 32,
-        email: 'branomo@gmail.com'
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 12,
-        email: 'branomo@gmail.com'
-      }, {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/check.png',
-        city: 'Munchen',
-        contacts: 920,
-        email: 'branomo@gmail.com'
+        picture: '/assets/img/bitcoachlogoblack.jpg',
+        city: 'Horna Dolna',
+        contacts: 150,
+        email: 'info@bitcoach.net',
+        validated: false
       }
     ]);
   }

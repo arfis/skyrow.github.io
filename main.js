@@ -134,14 +134,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pool_pool_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/pool/pool.component */ "./src/app/components/pool/pool.component.ts");
 /* harmony import */ var _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./pages/profile-page/profile-page.component */ "./src/app/pages/profile-page/profile-page.component.ts");
 /* harmony import */ var _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./pages/about-page/about-page.component */ "./src/app/pages/about-page/about-page.component.ts");
-/* harmony import */ var _components_language_selector_language_selector_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/language-selector/language-selector.component */ "./src/app/components/language-selector/language-selector.component.ts");
-/* harmony import */ var _components_pool_settings_pool_settings_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/pool-settings/pool-settings.component */ "./src/app/components/pool-settings/pool-settings.component.ts");
-/* harmony import */ var _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./shared/localizationDatePipe/localization-date-pipe.pipe */ "./src/app/shared/localizationDatePipe/localization-date-pipe.pipe.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/common/locales/sk */ "./node_modules/@angular/common/locales/sk.js");
-/* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35__);
-/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
-/* harmony import */ var _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/poll-result/poll-result.component */ "./src/app/components/poll-result/poll-result.component.ts");
+/* harmony import */ var _pages_changelog_page_changelog_page_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./pages/changelog-page/changelog-page.component */ "./src/app/pages/changelog-page/changelog-page.component.ts");
+/* harmony import */ var _components_language_selector_language_selector_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/language-selector/language-selector.component */ "./src/app/components/language-selector/language-selector.component.ts");
+/* harmony import */ var _components_pool_settings_pool_settings_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/pool-settings/pool-settings.component */ "./src/app/components/pool-settings/pool-settings.component.ts");
+/* harmony import */ var _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./shared/localizationDatePipe/localization-date-pipe.pipe */ "./src/app/shared/localizationDatePipe/localization-date-pipe.pipe.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/common/locales/sk */ "./node_modules/@angular/common/locales/sk.js");
+/* harmony import */ var _angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_36___default = /*#__PURE__*/__webpack_require__.n(_angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_36__);
+/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
+/* harmony import */ var _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/poll-result/poll-result.component */ "./src/app/components/poll-result/poll-result.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -186,7 +187,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-Object(_angular_common__WEBPACK_IMPORTED_MODULE_34__["registerLocaleData"])(_angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_35___default.a);
+
+Object(_angular_common__WEBPACK_IMPORTED_MODULE_35__["registerLocaleData"])(_angular_common_locales_sk__WEBPACK_IMPORTED_MODULE_36___default.a);
 function HttpLoaderFactory(http) {
     // return new TranslateHttpLoader(http);
     return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_6__["TranslateHttpLoader"](http, './assets/i18n/', '.json');
@@ -217,11 +219,12 @@ var AppModule = /** @class */ (function () {
                 _components_pool_pool_component__WEBPACK_IMPORTED_MODULE_28__["PoolComponent"],
                 _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_29__["ProfilePageComponent"],
                 _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_30__["AboutPageComponent"],
-                _components_language_selector_language_selector_component__WEBPACK_IMPORTED_MODULE_31__["LanguageSelectorComponent"],
-                _components_pool_settings_pool_settings_component__WEBPACK_IMPORTED_MODULE_32__["PoolSettingsComponent"],
-                _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_33__["LocalizedDatePipe"],
-                _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_36__["PollsResultPageComponent"],
-                _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_37__["PollResultComponent"]
+                _pages_changelog_page_changelog_page_component__WEBPACK_IMPORTED_MODULE_31__["ChangelogPageComponent"],
+                _components_language_selector_language_selector_component__WEBPACK_IMPORTED_MODULE_32__["LanguageSelectorComponent"],
+                _components_pool_settings_pool_settings_component__WEBPACK_IMPORTED_MODULE_33__["PoolSettingsComponent"],
+                _shared_localizationDatePipe_localization_date_pipe_pipe__WEBPACK_IMPORTED_MODULE_34__["LocalizedDatePipe"],
+                _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_37__["PollsResultPageComponent"],
+                _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_38__["PollResultComponent"]
             ],
             imports: [
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbModule"].forRoot(),
@@ -286,8 +289,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_pools_pool_resolver_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/pools/pool-resolver.service */ "./src/app/shared/pools/pool-resolver.service.ts");
 /* harmony import */ var _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/profile-page/profile-page.component */ "./src/app/pages/profile-page/profile-page.component.ts");
 /* harmony import */ var _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/about-page/about-page.component */ "./src/app/pages/about-page/about-page.component.ts");
-/* harmony import */ var _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/pools/pollListTypes */ "./src/app/shared/pools/pollListTypes.ts");
-/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
+/* harmony import */ var _pages_changelog_page_changelog_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/changelog-page/changelog-page.component */ "./src/app/pages/changelog-page/changelog-page.component.ts");
+/* harmony import */ var _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/pools/pollListTypes */ "./src/app/shared/pools/pollListTypes.ts");
+/* harmony import */ var _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/polls-result/polls-result.component */ "./src/app/pages/polls-result/polls-result.component.ts");
+
 
 
 
@@ -321,12 +326,12 @@ var appRoutes = [
             {
                 path: 'pools',
                 component: _pages_pools_page_pools_page_component__WEBPACK_IMPORTED_MODULE_5__["PoolsPageComponent"],
-                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__["PollListTypes"].PRIVATE_LIST }
+                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_12__["PollListTypes"].PRIVATE_LIST }
             },
             {
                 path: 'ownPools',
                 component: _pages_pools_page_pools_page_component__WEBPACK_IMPORTED_MODULE_5__["PoolsPageComponent"],
-                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_11__["PollListTypes"].OWN_LIST }
+                data: { type: _shared_pools_pollListTypes__WEBPACK_IMPORTED_MODULE_12__["PollListTypes"].OWN_LIST }
             },
             {
                 path: 'publicpools',
@@ -339,7 +344,7 @@ var appRoutes = [
             },
             {
                 path: 'result/:id',
-                component: _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_12__["PollsResultPageComponent"],
+                component: _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_13__["PollsResultPageComponent"],
                 resolve: { pool: _shared_pools_pool_resolver_service__WEBPACK_IMPORTED_MODULE_8__["PoolResolver"] }
             },
             {
@@ -352,6 +357,10 @@ var appRoutes = [
     {
         path: 'about',
         component: _pages_about_page_about_page_component__WEBPACK_IMPORTED_MODULE_10__["AboutPageComponent"]
+    },
+    {
+        path: 'changelog',
+        component: _pages_changelog_page_changelog_page_component__WEBPACK_IMPORTED_MODULE_11__["ChangelogPageComponent"]
     },
     {
         path: '**',
@@ -369,7 +378,7 @@ var appRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <div class=\"row\">\n    <div class=\"col-7 menu\">\n      <div class=\"logo-wrapper\">\n        <img routerLink=\"/\" class=\"logo\" src=\"assets/img/voteologobiele.png\">\n      </div>\n      <!--<span  class=\"item\">{{'header.profile' | translate}}</span>-->\n      <span routerLink=\"/contacts\" class=\"item\">{{'header.contactList' | translate}}</span>\n      <span routerLink=\"/about\" class=\"item\">{{'header.about' | translate}}<span class=\"gold\">{{'header.title' | translate}}</span></span>\n    </div>\n\n    <div class=\"col-4\">\n      <div routerLink=\"/profile\" class=\"user\">\n        <span class=\"gold\">Kamil bitcoach</span>\n        <span class=\"address\">{{address}}</span>\n      </div>\n    </div>\n    <div class=\"col-1 menu\">\n      <app-language-selector\n        [languages]=\"languages\"\n        [selectedLanguage]=\"selectedLanguage\"\n        (onSelectChange)=\"changeLanguage($event)\">\n      </app-language-selector>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <div class=\"row\">\n    <div class=\"col-7 menu\">\n      <div class=\"logo-wrapper\">\n        <img routerLink=\"/\" class=\"logo\" src=\"assets/img/voteologobiele.png\">\n      </div>\n      <!--<span  class=\"item\">{{'header.profile' | translate}}</span>-->\n      <span routerLink=\"/contacts\" class=\"item\">{{'header.contactList' | translate}}</span>\n      <span routerLink=\"/changelog\" class=\"item\">Changelog</span>\n      <span routerLink=\"/about\" class=\"item\">{{'header.about' | translate}}<span class=\"gold\">{{'header.title' | translate}}</span></span>\n    </div>\n\n    <div class=\"col-4\">\n      <div routerLink=\"/profile\" class=\"user\">\n        <span class=\"gold\">Kamil bitcoach</span>\n        <span class=\"address\">{{address}}</span>\n      </div>\n    </div>\n    <div class=\"col-1 menu\">\n      <app-language-selector\n        [languages]=\"languages\"\n        [selectedLanguage]=\"selectedLanguage\"\n        (onSelectChange)=\"changeLanguage($event)\">\n      </app-language-selector>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -708,7 +717,7 @@ var NewQuestionPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>{{option.label}} <span class=\"voted\">{{result | json}}</span></div>\n"
+module.exports = "<div>{{option.label}} - <span>{{result}}</span></div>\n"
 
 /***/ }),
 
@@ -798,7 +807,7 @@ module.exports = "<div class=\"wrapper\" [ngClass]=\"{'hovered': hovered}\">\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host:hover {\n  -webkit-transform: scale(1.2);\n          transform: scale(1.2);\n  z-index: 10;\n  background-color: white !important; }\n\n.wrapper {\n  margin: 2px;\n  border: 1px solid #e1ab05;\n  background-color: #edeef1;\n  text-align: center;\n  height: 100%; }\n\n.wrapper.hovered {\n    background-color: white; }\n\n.action-name {\n  font-size: 20px;\n  color: #09245d; }\n\n.content {\n  padding-bottom: 10px;\n  height: 100%; }\n\nimg {\n  height: 150px;\n  margin: 60px 0px; }\n\nbutton {\n  cursor: pointer;\n  border: 1px solid #09245d;\n  border-radius: 2px;\n  box-shadow: 1px rgba(0, 0, 0, 0.2);\n  color: #09245d;\n  background: linear-gradient(to right, #fff, rgba(48, 61, 144, 0.1)); }\n\nbutton:hover {\n    color: #fff;\n    background: linear-gradient(to right, #303d90, #09245d); }\n"
+module.exports = ":host:hover {\n  -webkit-transform: scale(1.1);\n          transform: scale(1.1);\n  z-index: 10;\n  background-color: white !important; }\n\n.wrapper {\n  margin: 2px;\n  border: 1px solid #e1ab05;\n  background-color: #edeef1;\n  text-align: center;\n  height: 100%; }\n\n.wrapper.hovered {\n    background-color: white; }\n\n.action-name {\n  font-size: 20px;\n  color: #09245d; }\n\n.content {\n  padding-bottom: 10px;\n  height: 100%; }\n\nimg {\n  height: 150px;\n  margin: 60px 0px; }\n\nbutton {\n  cursor: pointer;\n  border: 1px solid #09245d;\n  border-radius: 2px;\n  box-shadow: 1px rgba(0, 0, 0, 0.2);\n  color: #09245d;\n  background: linear-gradient(to right, #fff, rgba(48, 61, 144, 0.1)); }\n\nbutton:hover {\n    color: #fff;\n    background: linear-gradient(to right, #303d90, #09245d); }\n"
 
 /***/ }),
 
@@ -897,7 +906,7 @@ module.exports = "<div class=\"actions row\">\n  <app-pool-action-element\n    [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host {\n  display: block;\n  position: relative; }\n\n.action {\n  padding: 0 !important;\n  transition: all .4s; }\n\n.actions {\n  margin: 50px 0px 0px 20px; }\n\n.create {\n  display: block;\n  cursor: pointer; }\n\n.create img {\n    width: 18px;\n    height: 18px; }\n\n.create:hover {\n    color: #09245d;\n    text-decoration: underline; }\n"
+module.exports = ":host {\n  display: block;\n  position: relative; }\n\n.action {\n  padding: 0 !important;\n  transition: all .4s; }\n\n.actions {\n  margin: 0px 0px 0px 20px; }\n\n.create {\n  display: block;\n  cursor: pointer; }\n\n.create img {\n    width: 18px;\n    height: 18px; }\n\n.create:hover {\n    color: #09245d;\n    text-decoration: underline; }\n"
 
 /***/ }),
 
@@ -1687,7 +1696,7 @@ var NosApiService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  about-page works!\n</p>\n"
+module.exports = "<div class=\"about-header\">\n  About us\n</div>\n\n<div class=\"about-desc\">\n  This dApp is provided to nOS by Bitcoach development team. Bitcoach community is a group of SK-CZ crypto-enthusiasts.\n  <br>\n  You can join us on the following channels:\n  <br><br>\n  <b>Telegram:  </b>t.me/bitcoach<br>\n  <b>Twitter:  </b><a href=\"https://twitter.com/BitC0ach\">twitter.com/BitC0ach</a>\n  <br>\n  <b>Facebook:  </b><a href=\"https://www.facebook.com/bitc0ach/\">facebook.com/bitc0ach</a>\n</div>\n"
 
 /***/ }),
 
@@ -1698,7 +1707,7 @@ module.exports = "<p>\n  about-page works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".about-header {\n  margin: 20px;\n  font-size: 36px;\n  align-items: center;\n  text-align: center;\n  padding: 10px;\n  background: #edeef1; }\n\n.about-desc {\n  border: 1px;\n  border-style: solid;\n  border-color: #e1ab05;\n  margin: 20px;\n  font-size: 16px;\n  padding: 10px;\n  background: #edeef1; }\n"
 
 /***/ }),
 
@@ -1743,6 +1752,69 @@ var AboutPageComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/pages/changelog-page/changelog-page.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/pages/changelog-page/changelog-page.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"about-header\">\n  Changelog\n</div>\n\n<div class=\"about-desc\">\n  <h4>Current version (0.9.1):</h4>\n  <li>Creation of public and private polls and voting</li>\n  <li>Multiple choice questions and open-ended option working</li>\n  <li>Listing of a public, assigned and created polls</li>\n  <li>Right now only creator of the poll can see the results</li>\n</div>\n\n<div class=\"about-desc\">\n  <h4>Next version (0.9.2):</h4>\n  <li>Date constraints</li>\n  <li>Token balances constraints</li>\n  <li>Working contact list</li>\n</div>\n\n<div class=\"about-desc\">\n  <h4>Planned:</h4>\n  <li>Rewards system</li>\n  <li>KYC</li>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/changelog-page/changelog-page.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/pages/changelog-page/changelog-page.component.scss ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".about-header {\n  margin: 20px;\n  font-size: 36px;\n  align-items: center;\n  text-align: center;\n  padding: 10px;\n  background: #edeef1; }\n\n.about-desc {\n  border: 1px;\n  border-style: solid;\n  border-color: #e1ab05;\n  margin: 20px;\n  font-size: 16px;\n  padding: 10px;\n  background: #edeef1; }\n"
+
+/***/ }),
+
+/***/ "./src/app/pages/changelog-page/changelog-page.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/pages/changelog-page/changelog-page.component.ts ***!
+  \******************************************************************/
+/*! exports provided: ChangelogPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangelogPageComponent", function() { return ChangelogPageComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ChangelogPageComponent = /** @class */ (function () {
+    function ChangelogPageComponent() {
+    }
+    ChangelogPageComponent.prototype.ngOnInit = function () {
+    };
+    ChangelogPageComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-changelog-page',
+            template: __webpack_require__(/*! ./changelog-page.component.html */ "./src/app/pages/changelog-page/changelog-page.component.html"),
+            styles: [__webpack_require__(/*! ./changelog-page.component.scss */ "./src/app/pages/changelog-page/changelog-page.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ChangelogPageComponent);
+    return ChangelogPageComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/pages/contact-list-page/contact-list-page.component.html":
 /*!**************************************************************************!*\
   !*** ./src/app/pages/contact-list-page/contact-list-page.component.html ***!
@@ -1761,7 +1833,7 @@ module.exports = "<div class=\"list\">\n  <app-profile class=\"item\"\n         
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".list {\n  display: flex;\n  flex-wrap: wrap; }\n  .list .item {\n    display: block;\n    width: 180px !important;\n    padding: 10px;\n    transition: all .4s;\n    -webkit-user-select: none !important;\n       -moz-user-select: none !important;\n        -ms-user-select: none !important;\n            user-select: none !important;\n    border-radius: 10px; }\n  .list .item:hover {\n      -webkit-transform: scale(1.3);\n              transform: scale(1.3);\n      z-index: 99;\n      background-color: #edeef1; }\n"
+module.exports = ".list {\n  display: flex;\n  flex-wrap: wrap; }\n  .list .item {\n    display: block;\n    width: 180px !important;\n    padding: 0px;\n    margin: 10px;\n    margin-top: 0px;\n    transition: all .4s;\n    -webkit-user-select: none !important;\n       -moz-user-select: none !important;\n        -ms-user-select: none !important;\n            user-select: none !important;\n    border-radius: 10px; }\n  .list .item:hover {\n      -webkit-transform: scale(1.1);\n              transform: scale(1.1);\n      z-index: 99;\n      background-color: #edeef1; }\n"
 
 /***/ }),
 
@@ -2063,7 +2135,7 @@ var HomePageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  page-not-found works!\n</p>\n"
+module.exports = "<p>\n  404: This page doesn't exists. We are sorry!\n</p>\n"
 
 /***/ }),
 
@@ -2727,71 +2799,37 @@ var ContactService = /** @class */ (function () {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])({
             name: 'Kamil Bitcoach',
             city: 'Bratislava',
-            contacts: 12,
+            contacts: 3,
             email: 'info@bitcoach.net',
-            picture: 'https://pbs.twimg.com/profile_images/934317901745655809/giHHc1bR_400x400.jpg',
+            picture: '/assets/img/bitcoachlogo.jpg',
             validated: true
         });
     };
     ContactService.prototype.getContacts = function () {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])([
             {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com',
+                name: 'Lukas Cader',
+                picture: '/assets/img/bitcoachlogoblack.jpg',
+                city: 'Bratislava',
+                contacts: 4,
+                email: 'info@bitcoach.net',
+                validated: true
+            },
+            {
+                name: 'Michal Sevcik',
+                picture: '/assets/img/bitcoachlogoblack.jpg',
+                city: 'Bratislava',
+                contacts: 3,
+                email: 'info@bitcoach.net',
                 validated: true
             },
             {
                 name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com',
-                validated: true
-            },
-            {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com',
-                validated: true
-            },
-            {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com'
-            },
-            {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com'
-            },
-            {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 32,
-                email: 'branomo@gmail.com'
-            },
-            {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 12,
-                email: 'branomo@gmail.com'
-            }, {
-                name: 'Branislav Mojsej',
-                picture: '/assets/img/check.png',
-                city: 'Munchen',
-                contacts: 920,
-                email: 'branomo@gmail.com'
+                picture: '/assets/img/bitcoachlogoblack.jpg',
+                city: 'Horna Dolna',
+                contacts: 150,
+                email: 'info@bitcoach.net',
+                validated: false
             }
         ]);
     };
@@ -3178,7 +3216,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sevcik/Documents/Projects/voteo2/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/skyrow/Development/nOS/skyrow.github.io/voteo/src/main.ts */"./src/main.ts");
 
 
 /***/ })
