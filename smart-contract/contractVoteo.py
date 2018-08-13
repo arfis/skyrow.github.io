@@ -219,6 +219,9 @@ def Main(operation, args):
                 vl.append(user_address)
                 Put(GetContext(),vote_list,Serialize(vl))
 
+        else:
+            return "User has already participated in this vote"
+
         if len(args) > 2:
             iterator = 0
             for argument in args:
@@ -237,9 +240,7 @@ def Main(operation, args):
                         Put(GetContext(),option_key,Serialize(option_count))
                 iterator = iterator + 1
 
-            return "Vote successful"
-        else:
-            return "User has already participated in this vote"
+        return "Vote Successful"
 
     if operation == 'RegisterPoll':
         #input parameters
@@ -314,4 +315,3 @@ def Main(operation, args):
 
 
     return False
-
