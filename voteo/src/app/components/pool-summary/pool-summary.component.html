@@ -1,6 +1,13 @@
 <div class="wrapper">
   <div class="header">{{'pools.newPool' | translate}}</div>
   <div class="title voteo-bold">{{'pools.summary' | translate}}</div>
+
+  <ng-container *ngIf="title.length < 1">
+    <div class="message">
+      {{'pools.noTitle' | translate}}
+    </div>
+  </ng-container>
+
   <div *ngIf="questions.length > 0; else noQuestions" class="voteo-table">
     <ng-container *ngFor="let question of questions">
       <div class="highlight voteo-row">
@@ -21,6 +28,7 @@
       </div>
     </ng-container>
   </div>
+
 
   <div class="voteo-table">
     <div class="highlight voteo-row">

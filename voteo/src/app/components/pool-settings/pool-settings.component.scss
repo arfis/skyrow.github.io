@@ -9,3 +9,17 @@
 .address {
   margin: 5px;
 }
+
+.message {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 44%;
+  z-index: 2;
+  font-size: 16px;
+}
+
+.disabled {
+  background-color: #dcdcdc;
+  filter: blur(5px);
+}

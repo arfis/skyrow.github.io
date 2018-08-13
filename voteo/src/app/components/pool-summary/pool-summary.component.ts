@@ -13,6 +13,8 @@ export class PoolSummaryComponent implements OnInit {
   onBackPressed = new EventEmitter();
   @Input()
   pool;
+  @Input()
+  title;
 
   constructor() { }
 

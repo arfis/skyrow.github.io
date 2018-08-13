@@ -1,4 +1,4 @@
-<input matInput [placeholder]="'pools.name' | translate" [(ngModel)]="poolName">
+<input class="title-input" matInput [placeholder]="'pools.name' | translate" [(ngModel)]="poolName">
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="questionsForm">
     <form>
@@ -32,11 +32,12 @@
     <form>
       <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>
       <app-pool-summary [pool]="pool"
+                        [title]="poolName"
                         (onSubmitPressed)="createPool()"
                         (onBackPressed)="goToEdit()">
         <div class="button-wrapper">
           <button class="voteo-button" mat-button matStepperPrevious>Back</button>
-          <button class="voteo-button" mat-button [disabled]="!hasQuestions" (click)="createPool()">{{'pools.create.message' | translate}}</button>
+          <button class="voteo-button" mat-button [disabled]="!hasQuestions || poolName.length < 1" (click)="createPool()">{{'pools.create.message' | translate}}</button>
         </div>
       </app-pool-summary>
       <div>

@@ -20,7 +20,7 @@ export class CreatePoolProcessPageComponent implements OnInit {
   receivedPool;
   newPool;
   error;
-  poolName;
+  poolName = '';
 
   constructor(private _poolsService: PoolsService,
               private router: Router) { }
@@ -80,7 +80,7 @@ export class CreatePoolProcessPageComponent implements OnInit {
   }
 
   createPool() {
-    if (this.hasQuestions) {
+    if (this.hasQuestions && this.poolName.length > 0) {
 
       this.pool.title = this.poolName;
       this.pool.id = `${uuid()}_${this.poolName}_${this.pool.questions.length}`;
