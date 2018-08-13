@@ -3,7 +3,7 @@
     <div class="col-12 type">
       {{'pools.settings.private' | translate}}
       <mat-slide-toggle formControlName="public"></mat-slide-toggle>
-      {{'pools.settings.public' | translate}}
+      {{'pools.settings.public' | translate}}   (Functional in 0.9.1)
     </div>
 
     <fieldset class="col-12" *ngIf="!isPublic" formArrayName="privateAddresses">
@@ -24,8 +24,9 @@
       <!--{{'message.tbd' | translate}}-->
     <!--</div>-->
 
-    <div *ngIf="false" class="disabled">
+    <div *ngIf="true" class="disabled">
       <div class="col-12">
+        <br>To be added (Version 0.9.2 and higher):
         <mat-form-field class="full-width">
           <mat-select [placeholder]="'pools.settings.verification' | translate" formControlName="verification">
             <mat-option *ngFor="let verification of verifications" [value]="verification.value">

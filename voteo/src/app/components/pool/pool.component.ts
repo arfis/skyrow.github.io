@@ -33,7 +33,10 @@ export class PoolComponent implements OnInit {
 
   vote() {
     this._poolService.registerVote(this.optionResult, this.pool.id).subscribe(
-      result => this.router.navigate(['/']),
+      result => {
+        alert("Vote was registered and should be processed on blockchain within a minute. Thanks for voting!")
+        this.router.navigate(['/']);
+    },
       error => alert(error)
     );
   }

@@ -88,10 +88,10 @@ export class CreatePoolProcessPageComponent implements OnInit {
       this._poolsService.createPool(this.pool, this.pool.id).subscribe(
         result => {
           this.router.navigate['/'];
-          alert('Poll was written into the blockchain');
+          alert('Poll was written into the blockchain. Poll will be visible in the public/private views within a minute. Please be patient.');
           // this.receivedPool = result.script.replace('\'','');
         },
-        error => {alert('NEUSPECH'); this.error = error}
+        error => {alert('There was some issue with writing data into blockchain. Wait a couple of minutes and try again.'); this.error = error}
       );
     }
   }

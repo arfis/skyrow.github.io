@@ -135,7 +135,7 @@ export class PoolsService {
     return this._nosService.invoke(
       Methods.scriptHash,
       Methods.registerVote,
-      [this._nosService.address, 'fokinlukas', ...result]
+      [this._nosService.address, 'DATA', ...result]
     );
   }
   public getAllPublic() {
