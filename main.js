@@ -2759,7 +2759,7 @@ __webpack_require__.r(__webpack_exports__);
 var Methods = /** @class */ (function () {
     function Methods() {
     }
-    Methods.scriptHash = 'f24b174d2d1e6551ed3274a436f731b4765ccfca';
+    Methods.scriptHash = '7135c7bb56bf7a79162651cdafa3fd6fb11d3b5e';
     // OPERATIONS HERE
     Methods.getPoolOperation = 'GetPoll';
     Methods.createPoolOperation = 'RegisterPoll';

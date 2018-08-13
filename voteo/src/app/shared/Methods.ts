@@ -1,6 +1,6 @@
 export class Methods {
 
-  static scriptHash = 'f24b174d2d1e6551ed3274a436f731b4765ccfca';
+  static scriptHash = '7135c7bb56bf7a79162651cdafa3fd6fb11d3b5e';
 
   // OPERATIONS HERE
   static getPoolOperation = 'GetPoll';
