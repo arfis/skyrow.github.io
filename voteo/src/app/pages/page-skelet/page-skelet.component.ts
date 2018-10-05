@@ -9,6 +9,7 @@ import {ContactService} from '../../shared/contact/contact.service';
 export class PageSkeletComponent implements OnInit {
 
   contact$;
+  data;
 
   constructor(private _contactService: ContactService) {
     this.contact$ = _contactService.getOwnUserInfo();

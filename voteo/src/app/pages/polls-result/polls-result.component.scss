@@ -1,0 +1,52 @@
+@import '../../../lib/styles/colors';
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.question {
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+  border: .5px solid $color-bitcoach-border;
+  padding: 20px;
+  margin: 15px;
+  width: 100%;
+}
+
+.pool-wrapper {
+  width: 85%;
+  text-align: center;
+}
+
+.question-name {
+  font-size: 22px;
+}
+
+.back-button {
+  float: left;
+}
+
+.chart-toggle, .back-button {
+  cursor: pointer;
+  background-color: $color-bitcoach-gray;
+  border-radius: 5px;
+  width: 40px;
+  user-input: none;
+  text-align: center;
+  color: $color-bitcoach-blue;
+  margin: 2px;
+
+  &:hover {
+    color: $color-bitcoach-gold;
+  }
+}
+
+h3 {
+  .chart-actions {
+    display: inline-block;
+    float: right;
+    margin-right: 20px;
+  }
+}

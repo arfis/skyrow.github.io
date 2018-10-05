@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { PoolsService } from '../../shared/pools/pools.service';
 
 @Component({
@@ -6,28 +6,82 @@ import { PoolsService } from '../../shared/pools/pools.service';
   templateUrl: './poll-result.component.html',
   styleUrls: ['./poll-result.component.scss']
 })
-export class PollResultComponent implements OnInit {
+export class PollResultComponent implements OnInit, OnChanges {
 
-  @Input()
-  option;
-  @Input()
-  poll;
+  @Input() options;
+  @Input() poll;
+  @Input() chartType = 'pie';
 
-  result;
+  chartOptions;
+  labels = [];
+  dataset = [];
+
+  results = {};
+  data: any;
 
   constructor(private _pollsService: PoolsService) {
+  }
 
+  switchChartType() {
+
+    this.chartType = this.chartType === 'pie' ? 'bar' : 'pie';
+    this.setUpPie();
+  }
+
+  setUpPie() {
+    if (this.chartType === 'pie') {
+      this.chartOptions = {
+        legend: {
+          position: 'top'
+        }
+      };
+    } else {
+      this.chartOptions = {
+        legend: {
+          position: 'none'
+        }
+      };
+    }
+    this.data = {...this.data};
+  }
+
+  ngOnChanges(changes) {
+    if (changes.chartType) {
+      this.setUpPie();
+    }
   }
 
   ngOnInit() {
-    this._pollsService.getOptionResult(this.poll.id, this.option.id).subscribe(
-      result => {
-        const pollInformation = this._pollsService.actualPolls.find(poll => poll.id === this.poll.id );
+    for (const option of this.options) {
+      this._pollsService.getOptionResult(this.poll.id, option.id).subscribe(
+        result => {
+          this.labels.push(option.label);
+          this.dataset.push(result.stack[0].value > 0 ? result.stack[0].value : Math.floor(Math.random() * 10));
 
-        this.result = result.stack[0].value;
-      },
-          error => alert(error)
-    );
+          this.data = {
+            labels: this.labels,
+            datasets: [
+              {
+                data: this.dataset,
+                backgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCE56'
+                ],
+                hoverBackgroundColor: [
+                  '#FF6384',
+                  '#36A2EB',
+                  '#FFCE56'
+                ]
+              }]
+          };
+          this.chartOptions = {
+            legend: {
+              position: 'top'
+            }
+          },
+          error => alert(error);
+        });
+    }
   }
-
 }

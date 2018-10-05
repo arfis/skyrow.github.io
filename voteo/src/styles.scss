@@ -12,7 +12,9 @@ body {
   font-family: BrochaLight !important;
 
   * {
-    font-family: BrochaLight !important;
+    &:not(mat-icon) {
+      font-family: BrochaLight !important;
+    }
   }
 }
 

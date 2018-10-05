@@ -1,13 +1,17 @@
 <div class="pool-wrapper">
-  <h3>{{poll.title}}</h3>
-  <div class="question" *ngFor="let question of poll.questions">
-    <div class="voteo-bold question-name">{{question.name}}</div>
-    <div class="options">
-      <app-poll-result  *ngFor="let option of question.options" [poll]="poll" [option]="option"></app-poll-result>
-
-      <!--<ng-container *ngIf="question.openEnded">-->
-      <!--<input class="freeText">-->
-      <!--</ng-container>-->
+  <h3>
+    <mat-icon class="back-button" (click)="goBack()">arrow_back</mat-icon>
+    {{poll.title}}
+    <div class="chart-actions">
+      <mat-icon class="chart-toggle" (click)="switchChartType()">{{chartTypeIcon}}</mat-icon>
+      <mat-icon class="chart-toggle" (click)="print()">print</mat-icon>
+    </div>
+  </h3>
+  <div class="results">
+    <div class="question" *ngFor="let question of poll.questions; let i=index">
+      <div class="voteo-bold question-name">{{i+1}}. {{question.name}}</div>
+      <app-poll-result class="result" [poll]="poll" [chartType]="chartType"
+                       [options]="question.options"></app-poll-result>
     </div>
   </div>
 </div>

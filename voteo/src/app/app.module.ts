@@ -51,6 +51,8 @@ import localeSk from '@angular/common/locales/sk';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
 import { PollResultComponent } from './components/poll-result/poll-result.component';
 
+import {ChartModule} from 'primeng/chart';
+
 registerLocaleData(localeSk);
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -89,6 +91,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     NgbModule.forRoot(),
+    ChartModule,
     MatSlideToggleModule,
     MatInputModule,
     MatNativeDateModule,
