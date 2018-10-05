@@ -28,7 +28,17 @@
   float: left;
 }
 
-.chart-toggle, .back-button {
+.back-button {
+  cursor: pointer;
+  color: $color-bitcoach-blue;
+  user-input: none;
+
+  &:hover {
+    color: $color-bitcoach-gold;
+  }
+}
+
+.chart-toggle {
   cursor: pointer;
   background-color: $color-bitcoach-gray;
   border-radius: 5px;

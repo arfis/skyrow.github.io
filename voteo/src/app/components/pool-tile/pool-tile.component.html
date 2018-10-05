@@ -3,8 +3,16 @@
     <span class="title voteo-bold">{{poolTitle}}</span>
   </div>
   <div class="bottom-part">
-    <span class="question-count">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>
-    <span class="voters">{{'pools.voted' | translate}}: {{voted}}</span>
+    <div class="attributes">
+      <div class="attribute">
+        <mat-icon>help</mat-icon>
+        <span class="value">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>
+      </div>
+      <div class="attribute">
+        <mat-icon>people</mat-icon>
+        <span class="value">{{'pools.voted' | translate}}:{{voted}}</span>
+      </div>
+    </div>
     <div class="actions">
       <button [disabled]="hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
       <button *ngIf="isOwnPoll" class="voteo-button" (click)="showResults()">{{'pools.result' | translate}}</button>

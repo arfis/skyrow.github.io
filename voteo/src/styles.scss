@@ -74,6 +74,7 @@ em {
   box-shadow: 1px $color-shadow;
   color: $color-white;
   background: linear-gradient(to right, $color-bitcoach-lightBlue, $color-bitcoach-blue);
+  transition: all 400ms;
 
   &:hover {
     color: $color-bitcoach-blue;

@@ -7,6 +7,7 @@
 .upper-part {
   background-color: $color-bitcoach-blue;
   border: .5px solid $color-bitcoach-blue;
+  padding-left: 15px;
   color: $color-white;
 }
 
@@ -14,6 +15,8 @@
   position: relative;
   display: flex;
   width: 100%;
+  margin: 5px 0px;
+  align-items: center;
 
   .actions {
     width: 30%;
@@ -28,13 +31,27 @@
 
 }
 
-.question-count {
+.attributes {
   display: inline-block;
-  width: 35%;
-}
+  width: 70%;
 
-.voters {
-  width: 35%;
+  .attribute {
+    display: flex;
+    padding-left: 5px;
+
+    mat-icon {
+      color: $color-bitcoach-blue;
+      cursor: default;
+      margin-right: 5px;
+    }
+
+    .value {
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 .title {

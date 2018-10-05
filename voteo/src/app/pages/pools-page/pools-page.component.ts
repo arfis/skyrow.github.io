@@ -14,6 +14,12 @@ export class PoolsPageComponent implements OnInit {
   pools;
   areOwnPools;
 
+  // testPool = {
+  //   id: 'nameOfThePool_The titleeee_4',
+  //   voted: 12,
+  //   canVote: true,
+  // };
+
   constructor(private _poolsService: PoolsService,
               private _activatedRoute: ActivatedRoute) {
 
