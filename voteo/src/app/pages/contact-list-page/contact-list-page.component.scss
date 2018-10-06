@@ -20,5 +20,19 @@
       background-color: $color-bitcoach-gray;
     }
   }
+}
 
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  mat-icon {
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

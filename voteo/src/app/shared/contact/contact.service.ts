@@ -6,6 +6,33 @@ import {Observable, of} from 'rxjs';
 })
 export class ContactService {
 
+  private contacts = [
+    {
+      name: 'Lukas Cader',
+      picture: '/assets/img/bitcoachlogoblack.jpg',
+      city: 'Bratislava',
+      contacts: 4,
+      email: 'info@bitcoach.net',
+      validated: true
+    },
+    {
+      name: 'Michal Sevcik',
+      picture: '/assets/img/bitcoachlogoblack.jpg',
+      city: 'Bratislava',
+      contacts: 3,
+      email: 'info@bitcoach.net',
+      validated: true
+    },
+    {
+      name: 'Branislav Mojsej',
+      picture: '/assets/img/bitcoachlogoblack.jpg',
+      city: 'Horna Dolna',
+      contacts: 150,
+      email: 'info@bitcoach.net',
+      validated: false
+    }
+  ];
+
   constructor() {
   }
 
@@ -22,31 +49,13 @@ export class ContactService {
   }
 
   getContacts(): Observable<any> {
-    return of([
-      {
-        name: 'Lukas Cader',
-        picture: '/assets/img/bitcoachlogoblack.jpg',
-        city: 'Bratislava',
-        contacts: 4,
-        email: 'info@bitcoach.net',
-        validated: true
-      },
-      {
-        name: 'Michal Sevcik',
-        picture: '/assets/img/bitcoachlogoblack.jpg',
-        city: 'Bratislava',
-        contacts: 3,
-        email: 'info@bitcoach.net',
-        validated: true
-      },
-      {
-        name: 'Branislav Mojsej',
-        picture: '/assets/img/bitcoachlogoblack.jpg',
-        city: 'Horna Dolna',
-        contacts: 150,
-        email: 'info@bitcoach.net',
-        validated: false
-      }
-    ]);
+    return of(this.contacts);
+  }
+
+  addContact(contact) {
+    // this part should be added through the smart contract?
+    contact.contacts = 12;
+    contact.picture = '/assets/img/bitcoachlogo.jpg';
+    this.contacts.push(contact);
   }
 }

@@ -93,6 +93,21 @@ em {
   }
 }
 
+.action-button {
+  cursor: pointer;
+  background-color: $color-bitcoach-gray;
+  border-radius: 5px;
+  width: 40px;
+  user-input: none;
+  text-align: center;
+  color: $color-bitcoach-blue;
+  margin: 2px;
+
+  &:hover {
+    color: $color-bitcoach-gold;
+  }
+}
+
 strong em {
   font-weight: bold;
   font-style: italic;

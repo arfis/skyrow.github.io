@@ -14,7 +14,8 @@
     "continue": "Continue",
     "back": "Back",
     "delete": "Remove",
-    "addQuestion": "Add question"
+    "addQuestion": "Add question",
+    "createContact": "Add a new contact"
   },
   "pools": {
     "name": "Poll name",

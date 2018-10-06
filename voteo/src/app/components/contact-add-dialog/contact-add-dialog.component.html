@@ -1,0 +1,18 @@
+<div>
+  <h3>{{'actions.createContact' | translate}}</h3>
+  <form class="add-wrapper" [formGroup]="contactForm" (submit)="saveContact()">
+    <mat-form-field class="question-name">
+      <input matInput [placeholder]="'profile.name' | translate" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="question-name">
+      <input matInput [placeholder]="'profile.location' | translate" formControlName="city">
+    </mat-form-field>
+    <mat-form-field class="question-name">
+      <input matInput [placeholder]="'profile.address' | translate" formControlName="address">
+    </mat-form-field>
+    <mat-form-field class="question-name">
+      <input type="email" matInput [placeholder]="'profile.email' | translate" formControlName="email">
+    </mat-form-field>
+    <button [disabled]="contactForm.invalid" class="voteo-button" type="submit">{{'actions.save' | translate}}</button>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 <div class="row content">
     <div class="col-4 profile">
-      <app-profile [profile]="contact$ | async"></app-profile>
+      <app-profile [profile]="contact$ | async" [isOwn]="true"></app-profile>
     </div>
     <div class="col-8">
       <router-outlet></router-outlet>

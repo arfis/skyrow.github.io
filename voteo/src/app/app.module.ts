@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {appRoutes} from './app.routes';
-import {RouterModule} from '@angular/router';
-import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
-import {TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { appRoutes } from './app.routes';
+import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { PageSkeletComponent } from './pages/page-skelet/page-skelet.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PoolActionsComponent } from './components/pool-actions/pool-actions.component';
 import { PoolActionElementComponent } from './components/pool-action-element/pool-action-element.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewQuestionPageComponent } from './components/new-question-page/new-question-page.component';
 import {
   MatButtonModule,
@@ -29,7 +29,7 @@ import {
   DateAdapter,
   MatNativeDateModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PoolSummaryComponent } from './components/pool-summary/pool-summary.component';
 import { CreatePoolProcessPageComponent } from './pages/create-pool-process-page/create-pool-process-page.component';
 import { SplashScreenPageComponent } from './pages/splash-screen-page/splash-screen-page.component';
@@ -44,15 +44,16 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ChangelogPageComponent } from './pages/changelog-page/changelog-page.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { PoolSettingsComponent } from './components/pool-settings/pool-settings.component';
-import {LocalizedDatePipe} from './shared/localizationDatePipe/localization-date-pipe.pipe';
+import { LocalizedDatePipe } from './shared/localizationDatePipe/localization-date-pipe.pipe';
 
 import { registerLocaleData } from '@angular/common';
 import localeSk from '@angular/common/locales/sk';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
 import { PollResultComponent } from './components/poll-result/poll-result.component';
 
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
+import { ContactAddDialogComponent } from './components/contact-add-dialog/contact-add-dialog.component';
 
 registerLocaleData(localeSk);
 
@@ -89,7 +90,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LocalizedDatePipe,
     PollsResultPageComponent,
     PollResultComponent,
-    CreateQuestionComponent
+    CreateQuestionComponent,
+    ContactAddDialogComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -108,7 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDatepickerModule,
     ReactiveFormsModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { useHash: true }),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpClientModule,
     FormsModule,
     TranslateModule.forRoot({
@@ -124,6 +126,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: DateAdapter, useClass: NativeDateAdapter
     },
   ],
+  entryComponents: [ContactAddDialogComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
