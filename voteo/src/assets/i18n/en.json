@@ -13,10 +13,11 @@
     "submit": "Submit",
     "continue": "Continue",
     "back": "Back",
-    "delete": "Remove"
+    "delete": "Remove",
+    "addQuestion": "Add question"
   },
   "pools": {
-    "name": "Enter the poll name",
+    "name": "Poll name",
     "result": "Results",
     "settings": {
       "public": "Public",

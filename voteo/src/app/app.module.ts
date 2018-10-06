@@ -52,6 +52,7 @@ import { PollsResultPageComponent } from './pages/polls-result/polls-result.comp
 import { PollResultComponent } from './components/poll-result/poll-result.component';
 
 import {ChartModule} from 'primeng/chart';
+import { CreateQuestionComponent } from './components/create-question/create-question.component';
 
 registerLocaleData(localeSk);
 
@@ -87,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PoolSettingsComponent,
     LocalizedDatePipe,
     PollsResultPageComponent,
-    PollResultComponent
+    PollResultComponent,
+    CreateQuestionComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,18 +1,33 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {PoolsService} from '../../shared/pools/pools.service';
-import {stringFromArray, stringFromHex} from '../../shared/helper';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { PoolsService } from '../../shared/pools/pools.service';
+import { stringFromArray, stringFromHex } from '../../shared/helper';
 
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-pool-process-page',
   templateUrl: './create-pool-process-page.component.html',
   styleUrls: ['./create-pool-process-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class CreatePoolProcessPageComponent implements OnInit {
 
-  pool = {questions: [], settings: {}, title: '', id: ''};
+  @ViewChild('newQuestion') newQuestion: ElementRef;
+
+  pool = {
+    questions: [
+      {
+        'name': '',
+        'openEnded': false,
+        'multiple': false,
+        'options': []
+      }],
+    settings: {},
+    title: '',
+    id: ''
+  };
   currentIndex = 0;
   currentQuestion = {};
   waitingValidation = false;
@@ -21,12 +36,14 @@ export class CreatePoolProcessPageComponent implements OnInit {
   newPool;
   error;
   poolName = '';
+  updatedQuestions = [];
+  questions = [{}];
 
   constructor(private _poolsService: PoolsService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
-    this.currentIndex = 0;
     this.currentQuestion = this.pool[this.currentIndex];
   }
 
@@ -40,34 +57,15 @@ export class CreatePoolProcessPageComponent implements OnInit {
     this.waitingValidation = false;
   }
 
-  setNextQuestion(question) {
-    this.pool[this.currentIndex] = question;
-    this.currentIndex++;
-
-    if (this.pool[this.currentIndex]) {
-      this.currentQuestion = this.pool.questions[this.currentIndex];
-    } else {
-      this.pool.questions[this.currentIndex] = {};
-      this.currentQuestion = {
-        'name': '',
-        'openEnded': false,
-        'multiple': false,
-        'options': []
-      };
-    }
-  }
-
-  setPreviousQuestion(question) {
-    this.pool[this.currentIndex] = question;
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-      this.currentQuestion = this.pool[this.currentIndex];
-    }
+  addNew() {
+    this.questions.push({});
+    window.scrollBy(200, 200);
   }
 
   removeCurrentQuestion(index) {
-    this.currentIndex--;
     // this.currentQuestion = this.pool[this.currentIndex];
+    console.log('removing index');
+    this.questions.splice(index, 1);
     this.pool.questions.splice(index, 1);
   }
 
@@ -75,8 +73,10 @@ export class CreatePoolProcessPageComponent implements OnInit {
     (this.pool as any).settings = {...settings, privateAddresses: settings.privateAddresses.map(address => address.address)};
   }
 
-  questionsUpdate(questions) {
-    (this.pool as any).questions[this.currentIndex] = questions;
+  questionsUpdate(question, index) {
+    console.log('update ', index, question);
+    this.pool.questions[index] = question;
+    console.log(this.pool);
   }
 
   createPool() {
@@ -91,31 +91,15 @@ export class CreatePoolProcessPageComponent implements OnInit {
           alert('Poll was written into the blockchain. Poll will be visible in the public/private views within a minute. Please be patient.');
           // this.receivedPool = result.script.replace('\'','');
         },
-        error => {alert('There was some issue with writing data into blockchain. Wait a couple of minutes and try again.'); this.error = error}
+        error => {
+          alert('There was some issue with writing data into blockchain. Wait a couple of minutes and try again.');
+          this.error = error;
+        }
       );
     }
   }
 
-  getPool() {
-    this._poolsService.getPool(1).subscribe(
-      result => {
-        alert('got pool');
-        this.newPool = result;
-        //this.newPool = stringFromHex(result.stack[0].value);
-      },
-          error => this.error = error
-    );
-  }
 
-  testStorage() {
-    this._poolsService.testStorage().subscribe(
-      result => {
-        this.testResult = result;
-        console.log('rest ', result);
-      },
-      error => console.log('ON ERROR =', error)
-    );
-  }
   testInvoke() {
     this._poolsService.testInvoke().subscribe(
       result => {
@@ -127,9 +111,10 @@ export class CreatePoolProcessPageComponent implements OnInit {
         }
         // this.testResult = stringFromArray(result.stack[0].value);
       },
-          error => console.log('ON ERROR =', error)
+      error => console.log('ON ERROR =', error)
     );
   }
+
   get hasQuestions() {
     return this.pool.questions.length > 0;
   }
