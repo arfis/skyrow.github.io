@@ -11,6 +11,7 @@ export class PoolActionElementComponent implements OnInit {
   @Input() label;
   @Input() picture;
   @Input() redirectLink;
+  @Input() defaultHovered;
 
   hovered;
 

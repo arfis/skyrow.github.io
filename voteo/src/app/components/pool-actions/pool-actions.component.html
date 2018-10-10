@@ -5,10 +5,11 @@
     [redirectLink]="'/ownPools'"
     class="col-4 action">
     <div class="create" (click)="createPool()">
-        <span class="img-fluid">
-          <img src="assets/img/create.png">
-        </span>
-      {{'pools.createNew' | translate}}
+        <!--<span class="img-fluid">-->
+          <!--<img src="assets/img/create.png">-->
+        <!--</span>-->
+      <mat-icon>add_box</mat-icon>
+      <span class="text">{{'pools.createNew' | translate}}</span>
     </div>
     <div>{{'pools.or' | translate}}</div>
   </app-pool-action-element>
@@ -17,14 +18,15 @@
     [picture]="'assets/img/vote.png'"
     [label]="'pools.types.vote'"
     [redirectLink]="'/pools'"
+    [defaultHovered] = true
     class="col-4 action">
-    {{'pools.noPending' | translate}}
+    {{'pools.noPending' | translate: numberOfPrivatePollsCount}}
   </app-pool-action-element>
 
   <app-pool-action-element
     [picture]="'assets/img/public_pools.png'"
     [label]="'pools.types.public'" class="col-4 action"
     [redirectLink]="'/publicpools'">
-    {{'pools.public' | translate: numberOfPools}}
+    {{'pools.public' | translate: numberOfPublicPools}}
   </app-pool-action-element>
 </div>

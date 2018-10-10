@@ -64,7 +64,7 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
   }
 
   removeOption(index) {
-    this.options = this.options.removeAt(index);
+    this.options.removeAt(index);
   }
 
   initForm() {

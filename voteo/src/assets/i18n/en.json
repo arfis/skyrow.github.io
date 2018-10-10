@@ -45,12 +45,12 @@
     "active": "Active polls",
     "createNew": "Create a new poll",
     "or": "",
-    "noPending": "There are no pending polls",
-    "public": "There are {{numberOfPools}} live public polls",
+    "noPending": "You have got {{numberOfPools}} private polls",
+    "public": "You have got {{numberOfPools}} public polls",
     "question": "Question",
     "questions": "Questions",
     "types" : {
-      "create" : "Create poll",
+      "create" : "Your polls",
       "vote": "Vote",
       "public": "Public polls"
     },

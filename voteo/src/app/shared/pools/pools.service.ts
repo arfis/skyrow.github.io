@@ -4,9 +4,7 @@ import {Methods} from '../Methods';
 import {Observable, of} from 'rxjs';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PoolsService {
 
   address;
@@ -15,59 +13,11 @@ export class PoolsService {
   constructor(private _nosService: NosApiService) {
     if (_nosService.isConnected()) {
       _nosService.getAddress().subscribe(
-        address => this.address = address
+        address => {
+          this.address = address;
+        }
       );
     }
-  }
-
-  public getUserPools() {
-    return of([
-      {
-        name: 'What do you like?',
-        questionCount: 14,
-        voted: 12,
-        needsVotes: 100
-      },
-      {
-        name: 'What do you want for christmas?',
-        questionCount: 14,
-        voted: 80,
-        needsVotes: 100
-      },
-      {
-        name: 'What kind of person are you',
-        questionCount: 20,
-        voted: 120,
-        needsVotes: 120
-      },
-    ]);
-  }
-
-  public getPublicPools() {
-    const publicPools = [];
-
-    for (let i = 0; i < 100; i++) {
-      publicPools.push({
-        name: 'What do you like?',
-        questionCount: 14,
-        voted: 12,
-        needsVotes: 100
-      });
-      publicPools.push({
-        name: 'What do you want for christmas?',
-        questionCount: 14,
-        voted: 80,
-        needsVotes: 100
-      });
-      publicPools.push({
-        name: 'What kind of person are you',
-        questionCount: 20,
-        voted: 120,
-        needsVotes: 120
-      });
-    }
-
-    return of(publicPools);
   }
 
   getOptionResult(pollId, optionId) {
@@ -78,12 +28,12 @@ export class PoolsService {
     );
   }
 
-  public getPrivatePolls() {
+  public getPrivatePolls(address = this._nosService.address) {
     // TODO: CHHANGE
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getAssignedPolls,
-      [this._nosService.address]
+      [address]
     );
   }
 
@@ -94,6 +44,10 @@ export class PoolsService {
       Methods.getCreatedPolls,
       [this._nosService.address]
     );
+  }
+
+  public getAddress() {
+    return this._nosService.getAddress();
   }
 
   public getPool(id) {
@@ -138,11 +92,11 @@ export class PoolsService {
       [this._nosService.address, 'DATA', ...result]
     );
   }
-  public getAllPublic() {
+  public getAllPublic(address = this._nosService.address) {
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getPublicAll,
-      [this._nosService.address]
+      [address]
     );
   }
 

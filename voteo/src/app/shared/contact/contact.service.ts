@@ -9,7 +9,7 @@ export class ContactService {
   private contacts = [
     {
       name: 'Lukas Cader',
-      picture: '/assets/img/bitcoachlogoblack.jpg',
+      picture: '/assets/img/siluette.png',
       city: 'Bratislava',
       contacts: 4,
       email: 'info@bitcoach.net',
@@ -17,7 +17,7 @@ export class ContactService {
     },
     {
       name: 'Michal Sevcik',
-      picture: '/assets/img/bitcoachlogoblack.jpg',
+      picture: '/assets/img/siluette.png',
       city: 'Bratislava',
       contacts: 3,
       email: 'info@bitcoach.net',
@@ -25,7 +25,7 @@ export class ContactService {
     },
     {
       name: 'Branislav Mojsej',
-      picture: '/assets/img/bitcoachlogoblack.jpg',
+      picture: '/assets/img/siluette.png',
       city: 'Horna Dolna',
       contacts: 150,
       email: 'info@bitcoach.net',
@@ -43,7 +43,7 @@ export class ContactService {
         city: 'Bratislava',
         contacts: 3,
         email: 'info@bitcoach.net',
-        picture: '/assets/img/bitcoachlogo.jpg',
+        picture: '/assets/img/siluette.png',
         validated: true
       });
   }
@@ -55,7 +55,7 @@ export class ContactService {
   addContact(contact) {
     // this part should be added through the smart contract?
     contact.contacts = 12;
-    contact.picture = '/assets/img/bitcoachlogo.jpg';
+    contact.picture = '/assets/img/siluette.png';
     this.contacts.push(contact);
   }
 }

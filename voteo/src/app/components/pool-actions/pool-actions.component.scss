@@ -15,15 +15,18 @@
 }
 
 .create {
-  display: block;
+  display: flex;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
 
-  img {
-    width: 18px;
-    height: 18px;
+  mat-icon {
+   font-size: 22px;
+    color: $color-bitcoach-blue;
   }
 
-  &:hover {
+
+  .text:hover {
     color: $color-bitcoach-blue;
     text-decoration: underline;
   }

@@ -54,6 +54,8 @@ import { PollResultComponent } from './components/poll-result/poll-result.compon
 import { ChartModule } from 'primeng/chart';
 import { CreateQuestionComponent } from './components/create-question/create-question.component';
 import { ContactAddDialogComponent } from './components/contact-add-dialog/contact-add-dialog.component';
+import { PoolsService } from './shared/pools/pools.service';
+import { NosApiService } from './nos-wrapper/services/nos-api.service';
 
 registerLocaleData(localeSk);
 
@@ -122,9 +124,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   providers: [
+    NosApiService,
+    PoolsService,
     {
       provide: DateAdapter, useClass: NativeDateAdapter
-    },
+    }
   ],
   entryComponents: [ContactAddDialogComponent],
   bootstrap: [AppComponent]
