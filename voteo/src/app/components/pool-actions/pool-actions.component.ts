@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PoolsService } from '../../shared/pools/pools.service';
 
@@ -11,6 +11,17 @@ export class PoolActionsComponent implements OnInit {
 
   publicPollsCount;
   privatePollsCount;
+  isMouseOutside = true;
+
+  @HostListener('mouseout', ['$event'])
+  onMouseOut() {
+    this.isMouseOutside = true;
+  }
+
+  @HostListener('mouseover', ['$event'])
+  onMouseOver() {
+    this.isMouseOutside = false;
+  }
 
   constructor(private router: Router,
               private _pollService: PoolsService) {

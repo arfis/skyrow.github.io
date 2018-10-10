@@ -15,10 +15,10 @@
   </app-pool-action-element>
 
   <app-pool-action-element
+    [defaultHovered]="isMouseOutside"
     [picture]="'assets/img/vote.png'"
     [label]="'pools.types.vote'"
     [redirectLink]="'/pools'"
-    [defaultHovered] = true
     class="col-4 action">
     {{'pools.noPending' | translate: numberOfPrivatePollsCount}}
   </app-pool-action-element>
