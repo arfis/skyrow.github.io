@@ -2,7 +2,7 @@
 
 .logo-wrapper {
   float: left;
-  margin: 5px 35px 5px 15px;
+  margin: 5px 35px 5px 0;
   cursor: pointer;
 
   .name {
@@ -13,6 +13,10 @@
 
 .gold {
   color: $color-bitcoach-gold;
+
+  &:hover {
+    color: $color-bitcoach-azure;
+  }
 }
 
 .menu {
@@ -53,7 +57,7 @@
 
 .wrapper {
   color: $color-white;
-  width: 100%;
+  padding: 0 30px;
   height: 60px;
   background: linear-gradient(to right, $color-bitcoach-lightBlue , $color-bitcoach-blue);
 }
@@ -85,4 +89,9 @@ mat-form-field {
 
 .logo {
   height: 50px;
+}
+
+
+@media (max-width: 900px) {
+
 }
