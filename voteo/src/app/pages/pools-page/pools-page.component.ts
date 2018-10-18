@@ -5,21 +5,23 @@ import { PollListTypes } from '../../shared/pools/pollListTypes';
 import { stringFromHex } from '../../shared/helper';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { SetOwnPolls } from '../../shared/pools/polls.actions';
+import { SetOwnPolls, SetPrivatePolls } from '../../shared/pools/polls.actions';
 import { PollModel } from '../../shared/pools/poll.model';
+import { parsePolls } from '../../shared/pools/polls.helper';
 
 @Component({
   selector: 'app-pools-page',
   templateUrl: './pools-page.component.html',
   styleUrls: ['./pools-page.component.scss']
 })
-export class PoolsPageComponent implements OnInit {
+export class PoolsPageComponent {
 
   @Select(state => state.polls) polls$: Observable<any>;
   pools = [{id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
     {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
     {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}];
   areOwnPools;
+  polls;
 
   // testPool = {
   //   id: 'nameOfThePool_The titleeee_4',
@@ -36,75 +38,33 @@ export class PoolsPageComponent implements OnInit {
           case PollListTypes.PRIVATE_LIST : {
             _poolsService.getPrivatePolls().subscribe(
               pools => {
-                this.pools = [];
-                // this.result = result.stack[0];
-                for (const pool of pools.stack[0].value) {
-                  // alert('here');
-                  this.pools.push(
-                    {
-                      id: stringFromHex(pool.value[0].value),
-                      voted: pool.value[1].value,
-                      canVote: stringFromHex(pool.value[2].value),
-                    });
-                  this._poolsService.actualPolls = this.pools;
-                }
-                this._poolsService.actualPolls = this.pools;
+                const parsedPolls = parsePolls(pools);
+                this.store.dispatch(new SetPrivatePolls(parsedPolls));
               }
             );
+
+            this.polls$.subscribe(polls => {
+              console.log(JSON.stringify(polls));
+              this.polls = polls.privatePolls;
+            })
             break;
           }
           case PollListTypes.OWN_LIST: {
-            // _poolsService.getOwnPolls().subscribe(
-            //   pools => {
-            //     this.areOwnPools = true;
-            //     this.pools = [];
-            //     // this.result = result.stack[0];
-            //     for (const pool of pools.stack[0].value) {
-            //       this.pools.push(
-            //         {
-            //           id: stringFromHex(pool.value[0].value),
-            //           voted: pool.value[1].value,
-            //           canVote: stringFromHex(pool.value[2].value),
-            //         });
-            //     }
-            //     this._poolsService.actualPolls = this.pools;
-            //   }
-            // );
-            // break;
-          }
-          default: {
-            break;
+            this._poolsService.getOwnPolls().subscribe(
+              pools => {
+
+                const parsedPolls = parsePolls(pools);
+                this.store.dispatch(new SetOwnPolls(parsedPolls));
+              }
+            );
+            this.polls$.subscribe(polls => {
+              console.log(JSON.stringify(polls));
+              this.polls = polls.ownPolls;
+            });
           }
         }
       }
     );
-  }
-
-  ngOnInit() {
-    this._poolsService.getAddress().subscribe(address => {
-      this._poolsService.getOwnPolls(address).subscribe(
-        pools => {
-
-          const parsedPolls = Array<PollModel>();
-          // this.result = result.stack[0];
-          for (const pool of pools.stack[0].value) {
-            const id = stringFromHex(pool.value[0].value);
-            const parsedArray = id.split('_');
-            const poolTitle = parsedArray[1] ? parsedArray[1] : '-';
-            const numberOfQuestions = parsedArray[2] ? parsedArray[2] : '0';
-            parsedPolls.push(
-              {
-                id,
-                poolTitle,
-                numberOfQuestions,
-                voted: pool.value[1].value,
-                canVote: stringFromHex(pool.value[2].value),
-              });
-          }
-          this.store.dispatch(new SetOwnPolls(parsedPolls));
-        }
-      );
-    })
   }
 
 }

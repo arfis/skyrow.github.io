@@ -1,34 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {PoolsService} from '../../shared/pools/pools.service';
-import {stringFromHex} from '../../shared/helper';
+import { Component, OnInit } from '@angular/core';
+import { PoolsService } from '../../shared/pools/pools.service';
+import { stringFromHex } from '../../shared/helper';
+import { parsePolls } from '../../shared/pools/polls.helper';
+import { SetOwnPolls, SetPublicPolls } from '../../shared/pools/polls.actions';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-public-pools-page',
   templateUrl: './public-pools-page.component.html',
   styleUrls: ['./public-pools-page.component.scss']
 })
-export class PublicPoolsPageComponent {
+export class PublicPoolsPageComponent implements OnInit {
 
   pools$;
   error;
-  pools;
+  polls = [];
 
-  constructor(private _poolsService: PoolsService) {
-   _poolsService.getAllPublic().subscribe(
-      result => {
-        this.pools = [];
-        // this.result = result.stack[0];
-        for (const pool of result.stack[0].value) {
-          this.pools.push(
-            {
-              id: stringFromHex(pool.value[0].value),
-              voted: pool.value[1].value,
-              canVote: stringFromHex(pool.value[2].value),
-            });
-        }
-      },
-      error => this.error = error
-    )
+  @Select(state => state.polls) polls$: Observable<any>;
+
+  constructor(private _poolsService: PoolsService,
+              private store: Store) {
+    this.polls$.subscribe(polls => {
+        this.polls = polls.publicPolls;
+    });
   }
 
+  ngOnInit() {
+    this._poolsService.getAllPublic().subscribe(
+      pools => {
+        const parsedPolls = parsePolls(pools);
+        this.store.dispatch(new SetPublicPolls(parsedPolls));
+      }
+    );
+  }
 }
