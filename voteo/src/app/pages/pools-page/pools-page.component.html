@@ -1,4 +1,3 @@
 <div class="pools-wrapper">
-  <span>{{'pools.active' | translate}}</span>
-  <app-pool-tile class="pool-item" *ngFor="let pool of pools" [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
+  <app-pool-tile class="pool-item col-md-6 col-ms-12" *ngFor="let pool of pools" [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
 </div>

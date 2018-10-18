@@ -11,7 +11,9 @@ import { stringFromHex } from '../../shared/helper';
 })
 export class PoolsPageComponent implements OnInit {
 
-  pools;
+  pools = [{id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
+    {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
+    {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}];
   areOwnPools;
 
   // testPool = {

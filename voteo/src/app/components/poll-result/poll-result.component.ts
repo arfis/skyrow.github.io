@@ -56,7 +56,7 @@ export class PollResultComponent implements OnInit, OnChanges {
       this._pollsService.getOptionResult(this.poll.id, option.id).subscribe(
         result => {
           this.labels.push(option.label);
-          this.dataset.push(result.stack[0].value > 0 ? result.stack[0].value : Math.floor(Math.random() * 10));
+          this.dataset.push(result.stack[0].value);
 
           this.data = {
             labels: this.labels,
