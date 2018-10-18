@@ -1,37 +1,23 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { PollModel } from '../../shared/pools/poll.model';
 
 @Component({
   selector: 'app-pool-tile',
   templateUrl: './pool-tile.component.html',
   styleUrls: ['./pool-tile.component.scss']
 })
-export class PoolTileComponent implements OnInit {
+export class PoolTileComponent {
 
   @Input()
-  pool;
+  pool: PollModel;
 
   @Input()
-    ownPoll;
-
-  poolTitle;
-  numberOfQuestions = 0;
-  voted = 0;
-  hasVoted;
+  ownPoll;
 
   constructor(private router: Router) {
   }
 
-  ngOnInit() {
-    const parsedArray = this.pool.id.split('_');
-    if (parsedArray.length > 2) {
-      this.poolTitle = parsedArray[1] ? parsedArray[1] : '-';
-      this.numberOfQuestions = parsedArray[2] ? parsedArray[2] : '0';
-    }
-
-    this.voted = this.pool.voted;
-    this.hasVoted = this.pool.canVote === 'true' ? true : false;
-  }
 
   openVoting() {
     if (this.hasFreeVoting) {
@@ -45,8 +31,20 @@ export class PoolTileComponent implements OnInit {
     }
   }
 
-  get neededVoters() {
-    return (this.pool.needsVotes) ? this.pool.needsVotes : 0;
+  get poolTitle() {
+    return this.pool.poolTitle;
+  }
+
+  get numberOfQuestions() {
+    return this.pool.numberOfQuestions;
+  }
+
+  get voted() {
+    return this.pool.voted;
+  }
+
+  get hasVoted() {
+    return this.pool.canVote === 'true' ? true : false;
   }
 
   get isOwnPoll() {

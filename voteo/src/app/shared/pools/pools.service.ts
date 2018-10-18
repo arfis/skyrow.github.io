@@ -37,12 +37,13 @@ export class PoolsService {
     );
   }
 
-  public getOwnPolls() {
+  public getOwnPolls(address = this._nosService.address) {
     // TODO: CHHANGE
+    console.log('get own polls = ', address, ' and ', this._nosService.address);
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getCreatedPolls,
-      [this._nosService.address]
+      [address]
     );
   }
 

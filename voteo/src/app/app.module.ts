@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
 
 import { appRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
@@ -56,6 +57,7 @@ import { CreateQuestionComponent } from './components/create-question/create-que
 import { ContactAddDialogComponent } from './components/contact-add-dialog/contact-add-dialog.component';
 import { PoolsService } from './shared/pools/pools.service';
 import { NosApiService } from './nos-wrapper/services/nos-api.service';
+import { PollsState } from './shared/pools/polls.state';
 
 registerLocaleData(localeSk);
 
@@ -115,6 +117,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpClientModule,
     FormsModule,
+    NgxsModule.forRoot([
+      PollsState
+    ]),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
