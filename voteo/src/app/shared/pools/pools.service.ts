@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {NosApiService} from '../../nos-wrapper/services/nos-api.service';
 import {Methods} from '../Methods';
 import {Observable, of} from 'rxjs';
+import { parsePolls } from './polls.helper';
+import { SetOwnPolls, SetPrivatePolls, SetPublicPolls } from './polls.actions';
+import { Store } from '@ngxs/store';
 
 
 @Injectable()
@@ -10,7 +13,8 @@ export class PoolsService {
   address;
   actualPolls;
 
-  constructor(private _nosService: NosApiService) {
+  constructor(private _nosService: NosApiService,
+              private store: Store) {
     if (_nosService.isConnected()) {
       _nosService.getAddress().subscribe(
         address => {
@@ -39,7 +43,6 @@ export class PoolsService {
 
   public getOwnPolls(address = this._nosService.address) {
     // TODO: CHHANGE
-    console.log('get own polls = ', address, ' and ', this._nosService.address);
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getCreatedPolls,
@@ -49,6 +52,33 @@ export class PoolsService {
 
   public getAddress() {
     return this._nosService.getAddress();
+  }
+
+  public loadPublicPolls() {
+    this.getAllPublic().subscribe(
+      pools => {
+        const parsedPolls = parsePolls(pools);
+        this.store.dispatch(new SetPublicPolls(parsedPolls));
+      }
+    );
+  }
+
+  public loadOwnPolls() {
+    this.getOwnPolls().subscribe(
+      pools => {
+        const parsedPolls = parsePolls(pools);
+        this.store.dispatch(new SetOwnPolls(parsedPolls));
+      }
+    );
+  }
+
+  public loadPrivatePolls() {
+    this.getPrivatePolls().subscribe(
+      pools => {
+        const parsedPolls = parsePolls(pools);
+        this.store.dispatch(new SetPrivatePolls(parsedPolls));
+      }
+    );
   }
 
   public getPool(id) {

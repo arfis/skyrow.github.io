@@ -36,29 +36,17 @@ export class PoolsPageComponent {
       result => {
         switch (result.type) {
           case PollListTypes.PRIVATE_LIST : {
-            _poolsService.getPrivatePolls().subscribe(
-              pools => {
-                const parsedPolls = parsePolls(pools);
-                this.store.dispatch(new SetPrivatePolls(parsedPolls));
-              }
-            );
+            _poolsService.loadPrivatePolls();
 
             this.polls$.subscribe(polls => {
-              console.log(JSON.stringify(polls));
               this.polls = polls.privatePolls;
             })
             break;
           }
           case PollListTypes.OWN_LIST: {
-            this._poolsService.getOwnPolls().subscribe(
-              pools => {
-
-                const parsedPolls = parsePolls(pools);
-                this.store.dispatch(new SetOwnPolls(parsedPolls));
-              }
-            );
+            this._poolsService.loadOwnPolls();
+            this.areOwnPools = true;
             this.polls$.subscribe(polls => {
-              console.log(JSON.stringify(polls));
               this.polls = polls.ownPolls;
             });
           }

@@ -41,7 +41,6 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('after view init');
     this._el.nativeElement.scrollIntoView({
       behavior: 'smooth'
     });
@@ -79,7 +78,6 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
 
     this.createQuestionForm.valueChanges.subscribe(
       questions => {
-        console.log('questions change', questions);
         this.onUpdate.emit(questions);
       }
     );

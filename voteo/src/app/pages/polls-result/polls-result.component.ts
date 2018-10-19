@@ -18,6 +18,7 @@ export class PollsResultPageComponent {
 
   constructor(private route: ActivatedRoute, private _poolService: PoolsService) {
     this.poll = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value[1].value));
+    console.log(JSON.stringify(this.poll));
   }
 
   print() {

@@ -7,7 +7,11 @@ import { PollsModel } from './pools.model';
 ​
 @State<PollsModel>({
   name: 'polls',
-  defaults: []
+  defaults: {
+    ownPolls: [],
+    privatePolls: [],
+    publicPolls: []
+  }
 })
 export class PollsState {
 
@@ -15,43 +19,53 @@ export class PollsState {
   }
 
   @Action(AddPoll)
-  AddPoll(ctx: StateContext<PollModel[]>, action: AddPoll) {
+  AddPoll(ctx: StateContext<PollsModel>, action: AddPoll) {
     const state = ctx.getState();
     console.log(action);
 
     ctx.setState(
-      [...state,
-        action.poll]
+      {
+        ...state,
+        ownPolls: [action.poll, ...state.ownPolls]
+      }
     );
   }
 
   @Action(SetOwnPolls)
-  SetOwnPolls(ctx: StateContext<PollModel[]>, action: SetOwnPolls) {
+  SetOwnPolls(ctx: StateContext<PollsModel>, action: SetOwnPolls) {
+    const state = ctx.getState();
+    const pendingPolls = state.ownPolls.filter(poll => {
+      if (poll.pending && !action.polls.some(actualPoll => poll.id ===  actualPoll.id)) {
+        console.log(poll.poolTitle);
+        return poll;
+      }
+    } );
+
+    ctx.setState({
+      ...state,
+      ownPolls: [...pendingPolls, ...action.polls.reverse()]
+    });
+  }
+
+  @Action(SetPrivatePolls)
+  SetPrivatePolls(ctx: StateContext<PollsModel>, action: SetPrivatePolls) {
     const state = ctx.getState();
 
     ctx.setState({
         ...state,
-        ownPolls: action.polls
-      });
-  }
-
-  @Action(SetPrivatePolls)
-  SetPrivatePolls(ctx: StateContext<PollModel[]>, action: SetPrivatePolls) {
-    const state = ctx.getState();
-
-    ctx.setState({
-      ...state,
-      privatePolls: action.polls}
+        privatePolls: action.polls
+      }
     );
   }
 
   @Action(SetPublicPolls)
-  SetPublicPolls(ctx: StateContext<PollModel[]>, action: SetPublicPolls) {
+  SetPublicPolls(ctx: StateContext<PollsModel>, action: SetPublicPolls) {
     const state = ctx.getState();
     console.log(action.polls);
     ctx.setState({
-      ...state,
-      publicPolls: action.polls}
+        ...state,
+        publicPolls: [...action.polls]
+      }
     );
   }
 }

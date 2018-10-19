@@ -13,9 +13,13 @@
         <span class="value">{{'pools.voted' | translate}}:{{voted}}</span>
       </div>
     </div>
-    <div class="actions">
+    <div *ngIf="!isPending; else pendingMessage" class="actions">
       <button [disabled]="hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
       <button *ngIf="isOwnPoll" class="voteo-button" (click)="showResults()">{{'pools.result' | translate}}</button>
     </div>
   </div>
 </div>
+
+<ng-template #pendingMessage>
+  IS PENDING...
+</ng-template>

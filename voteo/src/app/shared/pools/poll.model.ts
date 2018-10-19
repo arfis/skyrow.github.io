@@ -4,4 +4,8 @@ export interface PollModel {
   poolTitle: string;
   voted: any;
   canVote: any;
+  pending: boolean;
+  questions?: any[];
+  settings?: any;
+  created?: Date;
 }

@@ -51,6 +51,10 @@ export class PoolTileComponent {
     return this.ownPoll;
   }
 
+  get isPending() {
+    return this.pool.pending;
+  }
+
   get hasFreeVoting() {
     return true; //this.voted < this.neededVoters;
   }

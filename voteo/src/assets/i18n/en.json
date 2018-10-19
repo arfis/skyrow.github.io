@@ -44,7 +44,7 @@
     "done": "Done",
     "active": "Active polls",
     "createNew": "Create a new poll",
-    "or": "",
+    "your": "You have got {{numberOfPools}} polls",
     "noPending": "You have got {{numberOfPools}} private polls",
     "public": "You have got {{numberOfPools}} public polls",
     "question": "Question",

@@ -16,6 +16,7 @@ export function parsePolls(polls): PollModel[] {
         numberOfQuestions,
         voted: pool.value[1].value,
         canVote: stringFromHex(pool.value[2].value),
+        pending: false,
       });
   }
 

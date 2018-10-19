@@ -58,6 +58,7 @@ import { ContactAddDialogComponent } from './components/contact-add-dialog/conta
 import { PoolsService } from './shared/pools/pools.service';
 import { NosApiService } from './nos-wrapper/services/nos-api.service';
 import { PollsState } from './shared/pools/polls.state';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 registerLocaleData(localeSk);
 
@@ -120,6 +121,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxsModule.forRoot([
       PollsState
     ]),
+    NgxsStoragePluginModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -133,7 +135,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PoolsService,
     {
       provide: DateAdapter, useClass: NativeDateAdapter
-    }
+    },
   ],
   entryComponents: [ContactAddDialogComponent],
   bootstrap: [AppComponent]

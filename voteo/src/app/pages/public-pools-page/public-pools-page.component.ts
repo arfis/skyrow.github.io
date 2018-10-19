@@ -27,11 +27,6 @@ export class PublicPoolsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._poolsService.getAllPublic().subscribe(
-      pools => {
-        const parsedPolls = parsePolls(pools);
-        this.store.dispatch(new SetPublicPolls(parsedPolls));
-      }
-    );
+    this._poolsService.loadPublicPolls();
   }
 }
