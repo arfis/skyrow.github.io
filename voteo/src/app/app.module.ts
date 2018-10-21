@@ -54,6 +54,7 @@ import { PoolActionsComponent } from './components/pool-actions/pool-actions.com
 import { PoolActionElementComponent } from './components/pool-action-element/pool-action-element.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewQuestionPageComponent } from './components/new-question-page/new-question-page.component';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 
 registerLocaleData(localeSk);
 
@@ -93,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     NgbModule.forRoot(),
+    ScrollDispatchModule,
     ChartModule,
     MatSlideToggleModule,
     MatInputModule,
