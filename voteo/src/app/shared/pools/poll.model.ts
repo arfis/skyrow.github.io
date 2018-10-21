@@ -10,7 +10,3 @@ export interface PollModel {
   created?: Date;
   votePending: boolean;
 }
-
-export enum PollType {
-  PRIVATE, PUBLIC, OWN
-}

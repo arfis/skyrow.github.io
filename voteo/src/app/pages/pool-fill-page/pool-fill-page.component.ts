@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {stringFromHex} from '../../shared/helper';
+import {stringFromHex} from '../../shared/core/helper';
 import {PoolsService} from '../../shared/pools/pools.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PoolsService } from '../../shared/pools/pools.service';
 import { ActivatedRoute } from '@angular/router';
-import { PollListTypes } from '../../shared/pools/pollListTypes';
+import { PollListType } from '../../shared/pools/pollListType';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SetType } from '../../shared/pools/polls.actions';
@@ -32,7 +32,7 @@ export class PoolsPageComponent {
         this.store.dispatch(new SetType(this.type));
 
         switch (this.type) {
-          case PollListTypes.PRIVATE_LIST : {
+          case PollListType.PRIVATE_LIST : {
             _poolsService.loadPrivatePolls();
 
             this.polls$.subscribe(polls => {
@@ -40,7 +40,7 @@ export class PoolsPageComponent {
             });
             break;
           }
-          case PollListTypes.OWN_LIST: {
+          case PollListType.OWN_LIST: {
             this._poolsService.loadOwnPolls();
             this.areOwnPools = true;
             this.polls$.subscribe(polls => {
@@ -48,7 +48,7 @@ export class PoolsPageComponent {
             });
             break;
           }
-          case PollListTypes.PUBLIC_LIST: {
+          case PollListType.PUBLIC_LIST: {
             this._poolsService.loadPublicPolls();
 
             this.polls$.subscribe(polls => {

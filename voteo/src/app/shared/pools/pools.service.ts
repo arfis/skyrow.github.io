@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {NosApiService} from '../../nos-wrapper/services/nos-api.service';
-import {Methods} from '../Methods';
+import {Methods} from '../core/Methods';
 import {Observable, of} from 'rxjs';
 import { parsePolls } from './polls.helper';
 import { SetOwnPolls, SetPrivatePolls, SetPublicPolls } from './polls.actions';

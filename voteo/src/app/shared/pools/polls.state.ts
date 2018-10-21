@@ -9,7 +9,7 @@ import {
 
 import { PoolsService } from './pools.service';
 import { PollsModel } from './pools.model';
-import { PollListTypes } from './pollListTypes';
+import { PollListType } from './pollListType';
 
 ​
 @State<PollsModel>({
@@ -110,7 +110,7 @@ export class PollsState {
     const state = ctx.getState();
 
     switch (state.poolListType) {
-      case PollListTypes.OWN_LIST: {
+      case PollListType.OWN_LIST: {
         ctx.setState({
             ...state,
             ownPolls: [...state.ownPolls.filter(poll => poll.id !== action.poll.id), action.poll]
@@ -119,7 +119,7 @@ export class PollsState {
         break;
       }
 
-      case PollListTypes.PUBLIC_LIST: {
+      case PollListType.PUBLIC_LIST: {
         ctx.setState({
             ...state,
             publicPolls: [...state.publicPolls.filter(poll => poll.id !== action.poll.id), action.poll]
@@ -128,7 +128,7 @@ export class PollsState {
         break;
       }
 
-      case PollListTypes.PRIVATE_LIST: {
+      case PollListType.PRIVATE_LIST: {
 
         ctx.setState({
             ...state,

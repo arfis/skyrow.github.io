@@ -1,9 +1,9 @@
 import { PollModel } from './poll.model';
-import { PollListTypes } from './pollListTypes';
+import { PollListType } from './pollListType';
 
 export interface PollsModel {
   privatePolls: PollModel[];
   publicPolls: PollModel[];
   ownPolls: PollModel[];
-  poolListType: PollListTypes;
+  poolListType: PollListType;
 }

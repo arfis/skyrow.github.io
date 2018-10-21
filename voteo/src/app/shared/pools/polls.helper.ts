@@ -1,4 +1,4 @@
-import { stringFromHex } from '../helper';
+import { stringFromHex } from '../core/helper';
 import { PollModel } from './poll.model';
 
 export function parsePolls(polls): PollModel[] {
