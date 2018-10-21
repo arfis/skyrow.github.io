@@ -1,4 +1,5 @@
 import { PollModel } from './poll.model';
+import { PollListTypes } from './pollListTypes';
 
 export class AddPoll {
   static readonly type = '[Pools] Add Poll';
@@ -18,4 +19,14 @@ export class SetPrivatePolls {
 export class SetPublicPolls {
   static readonly type = '[Pools] Setting public Polls';
   constructor(public polls: PollModel[]) {}
+}
+
+export class SetType {
+  static readonly type = '[Pools] Setting type of current Polls';
+  constructor(public pollType: PollListTypes) {}
+}
+
+export class VoteOnPoll {
+  static readonly type = '[Pools] Vote on private Poll';
+  constructor(public poll: PollModel) {}
 }

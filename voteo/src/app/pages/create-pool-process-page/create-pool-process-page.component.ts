@@ -32,7 +32,8 @@ export class CreatePoolProcessPageComponent implements OnInit {
     numberOfQuestions: '',
     voted: 0,
     canVote: true,
-    created: null
+    created: null,
+    votePending: false,
   };
 
   currentIndex = 0;

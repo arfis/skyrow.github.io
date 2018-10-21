@@ -16,13 +16,12 @@ export class PollsResultPageComponent {
 
   @ViewChild('chart') chart: ElementRef;
 
-  constructor(private route: ActivatedRoute, private _poolService: PoolsService) {
+  constructor(private route: ActivatedRoute) {
     this.poll = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value[1].value));
     console.log(JSON.stringify(this.poll));
   }
 
   print() {
-    alert('cart');
     const openWindow = window.open("", "title", "attributes");
     openWindow.document.write(this.chart.nativeElement.innerHTML);
     openWindow.document.close();

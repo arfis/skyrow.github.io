@@ -42,8 +42,9 @@ export const appRoutes: Routes = [
         data: { type: PollListTypes.OWN_LIST }
       },
       {
-        path: 'publicpools',
-        component: PublicPoolsPageComponent
+        path: 'publicPools',
+        component: PoolsPageComponent,
+        data: { type: PollListTypes.PUBLIC_LIST }
       },
       {
         path: 'pool/:id',

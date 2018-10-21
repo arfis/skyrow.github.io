@@ -8,4 +8,9 @@ export interface PollModel {
   questions?: any[];
   settings?: any;
   created?: Date;
+  votePending: boolean;
+}
+
+export enum PollType {
+  PRIVATE, PUBLIC, OWN
 }

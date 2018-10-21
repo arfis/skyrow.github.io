@@ -1,8 +1,15 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { AddPoll, SetOwnPolls, SetPrivatePolls, SetPublicPolls } from './polls.actions';
-import { PollModel } from './poll.model';
+import {
+  AddPoll,
+  SetOwnPolls,
+  SetPrivatePolls,
+  SetPublicPolls, SetType,
+  VoteOnPoll,
+} from './polls.actions';
+
 import { PoolsService } from './pools.service';
 import { PollsModel } from './pools.model';
+import { PollListTypes } from './pollListTypes';
 
 ​
 @State<PollsModel>({
@@ -10,7 +17,8 @@ import { PollsModel } from './pools.model';
   defaults: {
     ownPolls: [],
     privatePolls: [],
-    publicPolls: []
+    publicPolls: [],
+    poolListType: null
   }
 })
 export class PollsState {
@@ -35,36 +43,111 @@ export class PollsState {
   SetOwnPolls(ctx: StateContext<PollsModel>, action: SetOwnPolls) {
     const state = ctx.getState();
     const pendingPolls = state.ownPolls.filter(poll => {
-      if (poll.pending && !action.polls.some(actualPoll => poll.id ===  actualPoll.id)) {
-        console.log(poll.poolTitle);
+      if ((poll.pending && !action.polls.some(actualPoll => poll.id ===  actualPoll.id))) {
         return poll;
       }
     } );
 
+    const pendingVotes = state.ownPolls.filter(poll => poll.votePending);
+    const polls = action.polls.map(poll => {
+      const pendingPoll = pendingVotes.find(actualPendingPoll => actualPendingPoll.id === poll.id && poll.canVote === 'false');
+
+      if (pendingPoll) {
+        return pendingPoll;
+      } else {
+        return poll;
+      }
+    }).reverse();
+
     ctx.setState({
       ...state,
-      ownPolls: [...pendingPolls, ...action.polls.reverse()]
+      ownPolls: [...pendingPolls, ...polls]
     });
   }
 
   @Action(SetPrivatePolls)
   SetPrivatePolls(ctx: StateContext<PollsModel>, action: SetPrivatePolls) {
     const state = ctx.getState();
+    const pendingVotes = state.privatePolls.filter(poll => poll.votePending);
+    const polls = action.polls.map(poll => {
+      const pendingPoll = pendingVotes.find(actualPendingPoll => actualPendingPoll.id === poll.id && poll.canVote === 'false');
+
+      if (pendingPoll) {
+        return pendingPoll;
+      } else {
+        return poll;
+      }
+    }).reverse();
 
     ctx.setState({
-        ...state,
-        privatePolls: action.polls
-      }
-    );
+      ...state,
+      privatePolls: [ ...polls]
+    });
   }
 
   @Action(SetPublicPolls)
   SetPublicPolls(ctx: StateContext<PollsModel>, action: SetPublicPolls) {
     const state = ctx.getState();
-    console.log(action.polls);
+    const pendingVotes = state.publicPolls.filter(poll => poll.votePending);
+    const polls = action.polls.map(poll => {
+      const pendingPoll = pendingVotes.find(actualPendingPoll => actualPendingPoll.id === poll.id && poll.canVote === 'false');
+
+      if (pendingPoll) {
+        return pendingPoll;
+      } else {
+        return poll;
+      }
+    }).reverse();
+
+    ctx.setState({
+      ...state,
+      publicPolls: [ ...polls]
+    });
+  }
+
+  @Action(VoteOnPoll)
+  VoteOnPoll(ctx: StateContext<PollsModel>, action: VoteOnPoll) {
+    const state = ctx.getState();
+
+    switch (state.poolListType) {
+      case PollListTypes.OWN_LIST: {
+        ctx.setState({
+            ...state,
+            ownPolls: [...state.ownPolls.filter(poll => poll.id !== action.poll.id), action.poll]
+          }
+        );
+        break;
+      }
+
+      case PollListTypes.PUBLIC_LIST: {
+        ctx.setState({
+            ...state,
+            publicPolls: [...state.publicPolls.filter(poll => poll.id !== action.poll.id), action.poll]
+          }
+        );
+        break;
+      }
+
+      case PollListTypes.PRIVATE_LIST: {
+
+        ctx.setState({
+            ...state,
+            privatePolls: [...state.privatePolls.filter(poll => poll.id !== action.poll.id), action.poll]
+          }
+        );
+        break;
+      }
+    }
+
+  }
+
+  @Action(SetType)
+  SetType(ctx: StateContext<PollsModel>, action: SetType) {
+    const state = ctx.getState();
+
     ctx.setState({
         ...state,
-        publicPolls: [...action.polls]
+        poolListType: action.pollType
       }
     );
   }

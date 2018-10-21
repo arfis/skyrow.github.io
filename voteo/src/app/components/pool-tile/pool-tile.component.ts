@@ -9,11 +9,8 @@ import { PollModel } from '../../shared/pools/poll.model';
 })
 export class PoolTileComponent {
 
-  @Input()
-  pool: PollModel;
-
-  @Input()
-  ownPoll;
+  @Input() pool: PollModel;
+  @Input() ownPoll;
 
   constructor(private router: Router) {
   }

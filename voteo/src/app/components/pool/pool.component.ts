@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PoolsService } from '../../shared/pools/pools.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { VoteOnPoll } from '../../shared/pools/polls.actions';
+import { PollModel } from '../../shared/pools/poll.model';
 
 @Component({
   selector: 'app-pool',
@@ -11,13 +14,17 @@ import { Router } from '@angular/router';
 export class PoolComponent implements OnInit {
 
   @Input()
-  pool;
+  pool: PollModel;
+
+  @Input()
+  type;
 
   result = [];
   optionResult = [];
 
   constructor(private _poolService: PoolsService,
-              private router: Router) {
+              private router: Router,
+              private store: Store) {
 
   }
 
@@ -33,8 +40,9 @@ export class PoolComponent implements OnInit {
 
   vote() {
     this._poolService.registerVote(this.optionResult, this.pool.id).subscribe(
-      result => {
-        alert("Vote was registered and should be processed on blockchain within a minute. Thanks for voting!")
+      () => {
+        this.pool.votePending = true;
+        this.store.dispatch(new VoteOnPoll(this.pool));
         this.router.navigate(['/']);
     },
       error => alert(error)
