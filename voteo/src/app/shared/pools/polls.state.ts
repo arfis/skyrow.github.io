@@ -7,7 +7,6 @@ import {
   VoteOnPoll,
 } from './polls.actions';
 
-import { PoolsService } from './pools.service';
 import { PollsModel } from './pools.model';
 import { PollListType } from './pollListType';
 
@@ -23,8 +22,7 @@ import { PollListType } from './pollListType';
 })
 export class PollsState {
 
-  constructor(private _poolsService: PoolsService) {
-  }
+  constructor() {}
 
   @Action(AddPoll)
   AddPoll(ctx: StateContext<PollsModel>, action: AddPoll) {

@@ -15,21 +15,69 @@ export class PoolActionsComponent implements OnInit {
   privatePollsCount;
   ownPollsCount;
   isMouseOutside = true;
+  hoveredItem = 2;
+  items = [
+    {
+      picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZlggA4RAvHkDD1nPAUczniJr_ts8zpECLEFWayyzxaPwIhPPXQ',
+      label: 'pools.types.add',
+      redirectionLink: '/create'
+    },
+    {
+      picture: 'assets/img/pools.png',
+      label: 'pools.types.create',
+      redirectionLink: '/ownPools'
+    },
+    {
+      picture: 'assets/img/vote.png',
+      label: 'pools.types.vote',
+      redirectionLink: '/pools'
+    },
+    {
+      picture: 'assets/img/public_pools.png',
+      label: 'pools.types.create',
+      redirectionLink: '/ownPools'
+    }
+  ];
+  @Select(state => state.polls) polls$: Observable<any>;
 
   @HostListener('mouseout', ['$event'])
   onMouseOut() {
-    this.isMouseOutside = true;
+    console.log('heree');
+    this.hoveredItem = 2;
   }
 
-  @HostListener('mouseover', ['$event'])
-  onMouseOver() {
-    this.isMouseOutside = false;
-  }
+  @HostListener('window:keyup', ['$event'])
+  onKeyUp(event) {
+    console.log('keyup', event);
+    const {keyCode} = event;
+    if (event.key === 'Enter') {
+      console.log(this.items[this.hoveredItem].redirectionLink);
+      this.router.navigate([this.items[this.hoveredItem].redirectionLink]);
+      return;
+    }
 
-  @Select(state => state.polls) polls$: Observable<any>;
+    console.log(keyCode);
+    switch (keyCode) {
+      case 39: {
+        if (this.hoveredItem < this.items.length - 1) {
+          this.hoveredItem++;
+        }
+        break;
+      }
+      case 37: {
+        if (this.hoveredItem > 0) {
+          this.hoveredItem--;
+        }
+      }
+    }
+  }
 
   constructor(private router: Router,
               private _pollService: PoolsService) {
+  }
+
+  onMouseOverItem(itemNumber) {
+    this.hoveredItem = itemNumber;
   }
 
   ngOnInit() {
@@ -40,7 +88,7 @@ export class PoolActionsComponent implements OnInit {
         this.publicPollsCount = polls.publicPolls.filter(poll => poll.canVote === 'false').length;
         this.ownPollsCount = polls.ownPolls.length;
       }
-    )
+    );
     this._pollService.getAddress().subscribe(address => {
       this._pollService.loadPrivatePolls();
       this._pollService.loadPublicPolls();

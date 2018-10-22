@@ -100,6 +100,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatInputModule,
     MatNativeDateModule,
     MatFormFieldModule,
+    BrowserModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatButtonModule,

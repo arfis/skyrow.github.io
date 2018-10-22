@@ -1,3 +1,5 @@
+@import '../../../lib/styles/colors';
+
 .pool-item {
   display: block;
   padding: 5px 10px;
@@ -6,4 +8,18 @@
 .pools-wrapper {
   display: flex;
   flex-wrap: wrap;
+}
+
+.back-button {
+  position: fixed;
+  left: 20px;
+  font-size: 50px;
+  top: 50%;
+  cursor: pointer;
+  color: $color-bitcoach-blue;
+  user-input: none;
+
+  &:hover {
+    color: $color-bitcoach-gold;
+  }
 }

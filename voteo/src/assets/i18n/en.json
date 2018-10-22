@@ -18,8 +18,14 @@
     "createContact": "Add a new contact"
   },
   "pools": {
+    "clickAdd": "Add a new poll",
     "name": "Poll name",
     "result": "Results",
+    "title": {
+      "public": "Public polls",
+      "private": "Private polls",
+      "own": "Own polls"
+    },
     "settings": {
       "public": "Public",
       "private": "Private",
@@ -52,7 +58,8 @@
     "types" : {
       "create" : "Your polls",
       "vote": "Vote",
-      "public": "Public polls"
+      "public": "Public polls",
+      "add": "Create new"
     },
     "newPool": "Create new poll",
     "newQuestion": "New question",

@@ -33,17 +33,17 @@ export const appRoutes: Routes = [
       {
         path: 'pools',
         component: PoolsPageComponent,
-        data: {type: PollListType.PRIVATE_LIST}
+        data: {type: PollListType.PRIVATE_LIST, animation: 'PollPage'}
       },
       {
         path: 'ownPools',
         component: PoolsPageComponent,
-        data: {type: PollListType.OWN_LIST}
+        data: {type: PollListType.OWN_LIST, animation: 'PollPage'}
       },
       {
         path: 'publicPools',
         component: PoolsPageComponent,
-        data: {type: PollListType.PUBLIC_LIST}
+        data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
       },
       {
         path: 'pool/:id',

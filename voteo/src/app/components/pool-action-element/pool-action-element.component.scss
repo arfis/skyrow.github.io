@@ -8,7 +8,7 @@
   background-color: $color-bitcoach-gray;
   text-align: center;
   height: 100%;
-  transition: all .3s;
+  transition: transform .3s;
 
   &.hovered {
     transform: scale(1.1);

@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { PollModel } from '../../shared/pools/poll.model';
 
 @Component({
   selector: 'app-pool-tile',
   templateUrl: './pool-tile.component.html',
-  styleUrls: ['./pool-tile.component.scss']
+  styleUrls: ['./pool-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PoolTileComponent {
 

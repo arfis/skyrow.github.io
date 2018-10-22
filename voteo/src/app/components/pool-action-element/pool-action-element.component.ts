@@ -20,13 +20,11 @@ export class PoolActionElementComponent implements OnChanges {
 
   @HostListener('mouseover', ['$event'])
   onMouseOver() {
-    this.hovered = true;
     this.index = 100000;
   }
 
   @HostListener('mouseout', ['$event'])
   onMouseOut() {
-    this.hovered = false;
     this.index = 10;
   }
 
