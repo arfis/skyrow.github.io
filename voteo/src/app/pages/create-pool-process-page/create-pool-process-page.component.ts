@@ -47,6 +47,9 @@ export class CreatePoolProcessPageComponent implements OnInit {
   updatedQuestions = [];
   questions = [{}];
 
+  questionsForm;
+  settingsForm;
+
   constructor(private _poolsService: PoolsService,
               private router: Router,
               private store: Store) {
@@ -68,7 +71,6 @@ export class CreatePoolProcessPageComponent implements OnInit {
 
   addNew() {
     this.questions.push({});
-    window.scrollBy(200, 200);
   }
 
   removeCurrentQuestion(index) {
@@ -77,12 +79,17 @@ export class CreatePoolProcessPageComponent implements OnInit {
     this.pool.questions.splice(index, 1);
   }
 
-  settingUpdate(settings) {
+  settingUpdate(data) {
+    const {settings, form} = data;
+    this.settingsForm = form;
+    console.log(settings, form);
     (this.pool as any).settings = {...settings, privateAddresses: settings.privateAddresses.map(address => address.address)};
   }
 
-  questionsUpdate(question, index) {
-    this.pool.questions[index] = question;
+  questionsUpdate(data, index) {
+    const {questions, form} = data;
+    this.pool.questions[index] = questions;
+    this.questionsForm = form;
   }
 
   createPool() {

@@ -33,8 +33,8 @@ export class PoolSettingsComponent implements OnInit {
     this.poolSettings = fb.group({
       public: [true],
       verification: ['', Validators.required],
-      startDate: [new Date()],
-      endDate: [''],
+      startDate: [new Date(), Validators.required],
+      endDate: ['', Validators.required],
       totalReward: [0],
       totalBudget: [0],
       reward: [false],
@@ -43,6 +43,7 @@ export class PoolSettingsComponent implements OnInit {
       minimumAmount: [],
       tokensPerVote: [],
       participans: [],
+      tokenSnapshot: [new Date()],
       tokenType: [],
       privateAddresses: fb.array([]),
       audianceSpecification: [false]
@@ -51,11 +52,11 @@ export class PoolSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.poolSettings.valueChanges.subscribe(
-      form => {
-        this.onUpdate.emit(form);
+      settings => {
+        this.onUpdate.emit({settings, form: this.poolSettings});
       }
     );
-    this.onUpdate.emit(this.poolSettings.value);
+    this.onUpdate.emit({settings: this.poolSettings.value, form: this.poolSettings});
   }
 
   addPrivateAddress() {

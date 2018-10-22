@@ -10,14 +10,27 @@
   flex-wrap: wrap;
 }
 
+.floating {
+  top: 0px;
+  padding: 20px 0px;
+  margin: auto;
+  align-items: center;
+  position: sticky;
+  display: flex;
+  background-color: white;
+  z-index: 2;
+  width: 100%;
+}
+
 .back-button {
-  position: fixed;
-  left: 20px;
-  font-size: 50px;
-  top: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
   cursor: pointer;
   color: $color-bitcoach-blue;
   user-input: none;
+  position: absolute;
+  left: -40px;
 
   &:hover {
     color: $color-bitcoach-gold;

@@ -1,6 +1,6 @@
 {
   "name": "voteo",
-  "version": "0.0.0",
+  "version": "0.9.2",
   "homepage": "www.handsomeio.com/voteo/",
   "scripts": {
     "ng": "ng",

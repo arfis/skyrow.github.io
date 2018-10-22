@@ -13,11 +13,19 @@
     "submit": "Submit",
     "continue": "Continue",
     "back": "Back",
-    "delete": "Remove"
+    "delete": "Remove",
+    "addQuestion": "Add question",
+    "createContact": "Add a new contact"
   },
   "pools": {
-    "name": "Enter the poll name",
+    "clickAdd": "Add a new poll",
+    "name": "Poll name",
     "result": "Results",
+    "title": {
+      "public": "Public polls",
+      "private": "Private polls",
+      "own": "Own polls"
+    },
     "settings": {
       "public": "Public",
       "private": "Private",
@@ -32,6 +40,7 @@
       "minimumAmount": "Minimum amount",
       "tokensPerVote": "Token per vote",
       "tokenType": "Token type",
+      "tokenSnapshot": "Token snapshot date",
       "audianceSpecification": "Audience specification (age, nationality, gender, ...)"
     },
     "noQuestions": "No questions where created yet!",
@@ -42,15 +51,16 @@
     "done": "Done",
     "active": "Active polls",
     "createNew": "Create a new poll",
-    "or": "",
-    "noPending": "There are no pending polls",
-    "public": "There are {{numberOfPools}} live public polls",
+    "your": "You have got {{numberOfPools}} polls",
+    "noPending": "You have got {{numberOfPools}} private polls",
+    "public": "You have got {{numberOfPools}} public polls",
     "question": "Question",
     "questions": "Questions",
     "types" : {
-      "create" : "Create poll",
+      "create" : "Your polls",
       "vote": "Vote",
-      "public": "Public polls"
+      "public": "Public polls",
+      "add": "Create new"
     },
     "newPool": "Create new poll",
     "newQuestion": "New question",

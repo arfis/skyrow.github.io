@@ -1,6 +1,10 @@
-<h4>{{title | translate}}</h4>
-<div class="pools-wrapper">
-  <mat-icon class="back-button" (click)="goBack()">arrow_back</mat-icon>
-  <app-pool-tile class="pool-item col-md-6 col-ms-12" *ngFor="let pool of polls; trackBy: pollTracker"
-                 [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
+<div class="content-wrapper">
+  <h4 class="floating">
+    <mat-icon class="back-button" (click)="goBack()">arrow_back</mat-icon>
+    {{title | translate}}
+  </h4>
+  <div class="pools-wrapper">
+    <app-pool-tile class="pool-item col-md-6 col-ms-12" *ngFor="let pool of polls; trackBy: pollTracker"
+                   [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
+  </div>
 </div>

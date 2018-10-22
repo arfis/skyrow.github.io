@@ -40,6 +40,7 @@
       "minimumAmount": "Minimum amount",
       "tokensPerVote": "Token per vote",
       "tokenType": "Token type",
+      "tokenSnapshot": "Token snapshot date",
       "audianceSpecification": "Audience specification (age, nationality, gender, ...)"
     },
     "noQuestions": "No questions where created yet!",

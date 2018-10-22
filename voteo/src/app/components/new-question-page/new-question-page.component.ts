@@ -70,7 +70,7 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
     this.optionIndex = 0;
 
     this.createQuestionForm = this.fb.group({
-      'name': [''],
+      'name': ['', Validators.required],
       'openEnded': [false],
       'multiple': [false],
       'options': this.fb.array([])
@@ -78,7 +78,7 @@ export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
 
     this.createQuestionForm.valueChanges.subscribe(
       questions => {
-        this.onUpdate.emit(questions);
+        this.onUpdate.emit({form: this.createQuestionForm, questions});
       }
     );
   }

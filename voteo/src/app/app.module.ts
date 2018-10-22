@@ -55,6 +55,7 @@ import { PoolActionElementComponent } from './components/pool-action-element/poo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewQuestionPageComponent } from './components/new-question-page/new-question-page.component';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { NosWrapperModule } from './nos-wrapper/nos-wrapper.module';
 
 registerLocaleData(localeSk);
 
@@ -93,8 +94,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContactAddDialogComponent
   ],
   imports: [
-    NgbModule.forRoot(),
-    ScrollDispatchModule,
     ChartModule,
     MatSlideToggleModule,
     MatInputModule,
@@ -111,6 +110,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDatepickerModule,
     ReactiveFormsModule,
     BrowserModule,
+    NosWrapperModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpClientModule,
     FormsModule,
