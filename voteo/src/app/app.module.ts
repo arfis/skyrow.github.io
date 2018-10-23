@@ -56,6 +56,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewQuestionPageComponent } from './components/new-question-page/new-question-page.component';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NosWrapperModule } from './nos-wrapper/nos-wrapper.module';
+import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 
 registerLocaleData(localeSk);
 
@@ -91,7 +92,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PollsResultPageComponent,
     PollResultComponent,
     CreateQuestionComponent,
-    ContactAddDialogComponent
+    ContactAddDialogComponent,
+    ProfileDetailComponent
   ],
   imports: [
     ChartModule,

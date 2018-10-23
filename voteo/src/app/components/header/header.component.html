@@ -8,17 +8,24 @@
     <span routerLink="/changelog" class="item">Changelog</span>
     <span routerLink="/about" class="item">{{'header.about' | translate}}<span class="gold">{{'header.title' | translate}}</span></span>
   </div>
-  <div class="d-flex align-items-center">
-    <div routerLink="/profile" class="user">
-      <span class="gold">Kamil bitcoach</span>
-      <span class="address">{{address}}</span>
+  <app-profile-detail>
+    <div class="align-items-center">
+      <div routerLink="/profile" class="user">
+        <div class="img-wrapper">
+          <img class="rounded-circle" src="/assets/img/siluette.png">
+        </div>
+        <div class="details">
+          <!--<span class="gold">Kamil bitcoach</span>-->
+          <span class="gold">{{address}}</span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="d-flex align-items-center">
-    <app-language-selector
-      [languages]="languages"
-      [selectedLanguage]="selectedLanguage"
-      (onSelectChange)="changeLanguage($event)">
-    </app-language-selector>
-  </div>
+    <div class="language-selector align-items-center">
+      <app-language-selector
+        [languages]="languages"
+        [selectedLanguage]="selectedLanguage"
+        (onSelectChange)="changeLanguage($event)">
+      </app-language-selector>
+    </div>
+  </app-profile-detail>
 </header>

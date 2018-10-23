@@ -13,16 +13,16 @@
 
 .gold {
   color: $color-bitcoach-gold;
-
-  &:hover {
-    color: $color-bitcoach-azure;
-  }
 }
 
 .menu {
   display: flex;
   align-items: center;
   color: white;
+}
+
+.address {
+  color: black;
 }
 
 .item {
@@ -37,7 +37,6 @@
 
 .user {
   display: flex;
-  flex-direction: column;
   float: right;
   padding-right: 10px;
   height: 100%;
@@ -91,7 +90,34 @@ mat-form-field {
   height: 50px;
 }
 
+app-profile-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-@media (max-width: 900px) {
+  .details {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+  }
+}
 
+.language-selector {
+  float: right;
+  padding: 10px;
+}
+
+.img-wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    background-color: white;
+    width: 45px;
+    height: 45px;
+    padding: 2px;
+  }
 }

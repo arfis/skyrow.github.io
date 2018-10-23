@@ -1,7 +1,6 @@
 @import '../../../lib/styles/colors';
 
 .selected {
-  color: $color-white;
   cursor: pointer;
   user-select: none;
 
@@ -16,6 +15,7 @@
   z-index: 99;
   transition: all 1s;
   overflow: hidden;
+  right: 0;
 
   &.closed {
     max-height: 0px;

@@ -1,0 +1,33 @@
+@import '../../../lib/styles/colors';
+
+.img-wrapper {
+  cursor: pointer;
+  display: flex;
+  height: 45px;
+  user-select: none;
+  width: 45px;
+  justify-content: center;
+
+  img {
+    padding: 2px;
+    width: 45px;
+    height: 45px;
+    background-color: white;
+
+    &:hover {
+      background: $color-bitcoach-gray
+    }
+  }
+
+}
+
+.detail-wrapper {
+  margin-top: 7px;
+  background: $color-bitcoach-gray;
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  opacity: 1;
+  padding: 3px;
+  color: $color-bitcoach-blue;
+}

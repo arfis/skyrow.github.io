@@ -88,7 +88,7 @@
       "address": "Wallet address",
       "addPrivateOption": "Add Wallet"
     },
-    "youHaveGotAssigned": "You have got {{number}} assigned polls",
+    "youHaveGotAssigned": "There are {{number}} assigned polls for you",
     "youHaveCreated": "You have created {{number}} of polls",
     "voted": "Participants",
     "vote": "Vote",
