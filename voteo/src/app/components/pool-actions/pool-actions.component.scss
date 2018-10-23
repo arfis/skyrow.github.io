@@ -7,11 +7,17 @@
 
 .action {
   padding: 0 !important;
-  transition: all .4s;
+  transition: all .3s;
 }
 
 .actions {
   margin: 0px 0px 0px 20px;
+}
+
+.title {
+  padding: 40px;
+  margin: auto;
+  text-align: center;
 }
 
 .create {

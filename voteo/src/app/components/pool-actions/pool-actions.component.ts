@@ -42,21 +42,17 @@ export class PoolActionsComponent implements OnInit {
 
   @HostListener('mouseout', ['$event'])
   onMouseOut() {
-    console.log('heree');
-    this.hoveredItem = 2;
+    this.hoveredItem = -1;
   }
 
   @HostListener('window:keyup', ['$event'])
   onKeyUp(event) {
-    console.log('keyup', event);
     const {keyCode} = event;
     if (event.key === 'Enter') {
-      console.log(this.items[this.hoveredItem].redirectionLink);
       this.router.navigate([this.items[this.hoveredItem].redirectionLink]);
       return;
     }
 
-    console.log(keyCode);
     switch (keyCode) {
       case 39: {
         if (this.hoveredItem < this.items.length - 1) {

@@ -1,4 +1,7 @@
 {
+  "voteo": {
+    "title": "Get the info you need now!"
+  },
   "header": {
     "title": ".voteo",
     "profile": "my profile",
@@ -15,7 +18,8 @@
     "back": "Back",
     "delete": "Remove",
     "addQuestion": "Add question",
-    "createContact": "Add a new contact"
+    "createContact": "Add a new contact",
+    "vote": "Vote"
   },
   "pools": {
     "clickAdd": "Add a new poll",

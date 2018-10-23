@@ -32,21 +32,21 @@ export class PoolSettingsComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.poolSettings = fb.group({
       public: [true],
-      verification: ['', Validators.required],
-      startDate: [new Date(), Validators.required],
-      endDate: ['', Validators.required],
-      totalReward: [0],
-      totalBudget: [0],
-      reward: [false],
+      verification: [{value: '', disabled: true}],
+      startDate: [new Date()],
+      endDate: [''],
+      totalReward: [{value: 0, disabled: true}],
+      totalBudget: [{value: 0, disabled: true}],
+      reward: [{value: '', disabled: true}],
       maxParticipants: [''],
       tokenRequirements: [false],
       minimumAmount: [],
-      tokensPerVote: [],
+      tokensPerVote: [{value: '', disabled: true}],
       participans: [],
       tokenSnapshot: [new Date()],
       tokenType: [],
       privateAddresses: fb.array([]),
-      audianceSpecification: [false]
+      audianceSpecification: [{value: false, disabled: true}]
     });
   }
 
