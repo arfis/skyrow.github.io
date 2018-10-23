@@ -1,4 +1,7 @@
 {
+  "voteo": {
+    "title": "The universal voting system"
+  },
   "header": {
     "title": ".voteo",
     "profile": "my profile",
@@ -15,9 +18,17 @@
     "back": "Back",
     "delete": "Remove",
     "addQuestion": "Add question",
-    "createContact": "Add a new contact"
+    "createContact": "Add a new contact",
+    "vote": "Vote"
   },
   "pools": {
+    "list" : {
+      "all": "All",
+      "voted": "Voted",
+      "notVoted": "Not voted",
+      "settings": "View",
+      "columns": "Columns"
+    },
     "clickAdd": "Add a new poll",
     "name": "Poll name",
     "result": "Results",
