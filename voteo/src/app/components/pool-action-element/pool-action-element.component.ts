@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,29 +11,16 @@ export class PoolActionElementComponent implements OnChanges {
   @Input() label;
   @Input() picture;
   @Input() redirectLink;
-  @Input() defaultHovered;
+  @Input() isHovered;
 
-  hovered;
-
-  @HostBinding('style.zIndex')
-  index;
-
-  @HostListener('mouseover', ['$event'])
-  onMouseOver() {
-    this.index = 100000;
-  }
-
-  @HostListener('mouseout', ['$event'])
-  onMouseOut() {
-    this.index = 10;
-  }
+  @HostBinding('style.zIndex') index;
 
   constructor(private router: Router) { }
 
   ngOnChanges(changes) {
-    if (changes.defaultHovered && !this.hovered) {
-      if (this.defaultHovered) {
-        this.index = 1000;
+    if (changes.isHovered) {
+      if (this.isHovered) {
+        this.index = 100000;
       } else {
         this.index = 10;
       }

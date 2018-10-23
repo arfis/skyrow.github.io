@@ -1,7 +1,7 @@
 <div class="actions row">
   <app-pool-action-element
     (mouseover)="onMouseOverItem(0)"
-    [defaultHovered]="hoveredItem === 0"
+    [isHovered]="hoveredItem === 0"
     [picture]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZlggA4RAvHkDD1nPAUczniJr_ts8zpECLEFWayyzxaPwIhPPXQ'"
     [label]="'pools.types.add'"
     [redirectLink]="'/create'"
@@ -11,7 +11,7 @@
 
   <app-pool-action-element
     (mouseover)="onMouseOverItem(1)"
-    [defaultHovered]="hoveredItem === 1"
+    [isHovered]="hoveredItem === 1"
     [picture]="'assets/img/pools.png'"
     [label]="'pools.types.create'"
     [redirectLink]="'/ownPools'"
@@ -22,7 +22,7 @@
 
   <app-pool-action-element
     (mouseover)="onMouseOverItem(2)"
-    [defaultHovered]="hoveredItem === 2"
+    [isHovered]="hoveredItem === 2"
     [picture]="'assets/img/vote.png'"
     [label]="'pools.types.vote'"
     [redirectLink]="'/pools'"
@@ -32,7 +32,7 @@
 
   <app-pool-action-element
     (mouseover)="onMouseOverItem(3)"
-    [defaultHovered]="hoveredItem === 3"
+    [isHovered]="hoveredItem === 3"
     [picture]="'assets/img/public_pools.png'"
     [label]="'pools.types.public'" class="col-md-3 action"
     [redirectLink]="'/publicPools'">

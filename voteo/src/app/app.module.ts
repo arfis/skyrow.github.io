@@ -15,7 +15,7 @@ import {
   MatStepperModule,
   NativeDateAdapter,
   DateAdapter,
-  MatNativeDateModule, MatFormFieldModule, MatInputModule
+  MatNativeDateModule, MatFormFieldModule, MatInputModule, MatCardModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'primeng/chart';
@@ -97,6 +97,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChartModule,
     MatSlideToggleModule,
     MatInputModule,
+    MatCardModule,
     MatNativeDateModule,
     MatFormFieldModule,
     BrowserModule,

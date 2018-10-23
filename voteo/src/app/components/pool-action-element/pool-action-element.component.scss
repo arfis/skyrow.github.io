@@ -4,7 +4,8 @@
   display: block;
   margin: 2px;
   cursor: pointer;
-  border: 1px solid $color-bitcoach-gold;
+  //border: 1px solid $color-bitcoach-gold;
+
   background-color: $color-bitcoach-gray;
   text-align: center;
   height: 100%;
@@ -12,6 +13,7 @@
 
   &.hovered {
     transform: scale(1.1);
+    border: 1px solid $color-bitcoach-gold;
     z-index: 9999999999;
     background-color: white !important;
   }
