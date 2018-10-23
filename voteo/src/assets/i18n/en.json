@@ -22,6 +22,13 @@
     "vote": "Vote"
   },
   "pools": {
+    "list" : {
+      "all": "All",
+      "voted": "Voted",
+      "notVoted": "Not voted",
+      "settings": "View",
+      "columns": "Columns"
+    },
     "clickAdd": "Add a new poll",
     "name": "Poll name",
     "result": "Results",

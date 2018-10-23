@@ -6,6 +6,7 @@ import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SetType } from '../../shared/pools/polls.actions';
 import { slideInAnimation } from '../../shared/animations';
+import { PollModel } from '../../shared/pools/poll.model';
 
 @Component({
   selector: 'app-pools-page',
@@ -16,13 +17,12 @@ export class PoolsPageComponent {
 
   @Select(state => state.polls) polls$: Observable<any>;
 
-  pools = [{id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
-    {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'},
-    {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}, {id: 'name_tileee'}];
   areOwnPools;
-  polls;
+  polls: PollModel[];;
   type;
   title;
+  allPolls: PollModel[];
+  itemSize = 6;
 
   constructor(private _poolsService: PoolsService,
               private _activatedRoute: ActivatedRoute,
@@ -63,8 +63,35 @@ export class PoolsPageComponent {
             });
           }
         }
+        this.allPolls = this.polls;
       }
     );
+  }
+
+  changeColumns(data) {
+    const {value} = data;
+
+    this.itemSize = 12 / value;
+  }
+
+  changeView(data) {
+    const {value} = data;
+
+    switch (value) {
+      case 'all': {
+        this.polls = this.allPolls;
+        break;
+      }
+      case 'notVoted': {
+        this.polls = this.allPolls.filter(poll => poll.canVote === 'false');
+        break;
+      }
+      case 'voted': {
+        console.log('here');
+        this.polls = this.allPolls.filter(poll => poll.canVote === 'true');
+        break;
+      }
+    }
   }
 
   goBack() {

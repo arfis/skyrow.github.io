@@ -3,6 +3,7 @@
 .pool-item {
   display: block;
   padding: 5px 10px;
+  transition: all .2s;
 }
 
 .pools-wrapper {
@@ -12,14 +13,20 @@
 
 .floating {
   top: 0px;
-  padding: 20px 0px;
+  padding: 10px 0px;
   margin: auto;
-  align-items: center;
   position: sticky;
   display: flex;
   background-color: white;
   z-index: 2;
   width: 100%;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  width: 180px;
+  margin: 0;
 }
 
 .back-button {
@@ -34,5 +41,29 @@
 
   &:hover {
     color: $color-bitcoach-gold;
+  }
+}
+
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: stretch;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  mat-button-toggle-group {
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+  }
+
+  &.columns {
+    position: absolute;
+    right: 0;
   }
 }
