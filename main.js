@@ -150,12 +150,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _components_new_question_page_new_question_page_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/new-question-page/new-question-page.component */ "./src/app/components/new-question-page/new-question-page.component.ts");
 /* harmony import */ var _nos_wrapper_nos_wrapper_module__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./nos-wrapper/nos-wrapper.module */ "./src/app/nos-wrapper/nos-wrapper.module.ts");
+/* harmony import */ var _components_profile_detail_profile_detail_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/profile-detail/profile-detail.component */ "./src/app/components/profile-detail/profile-detail.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -237,7 +239,8 @@ var AppModule = /** @class */ (function () {
                 _pages_polls_result_polls_result_component__WEBPACK_IMPORTED_MODULE_29__["PollsResultPageComponent"],
                 _components_poll_result_poll_result_component__WEBPACK_IMPORTED_MODULE_30__["PollResultComponent"],
                 _components_create_question_create_question_component__WEBPACK_IMPORTED_MODULE_31__["CreateQuestionComponent"],
-                _components_contact_add_dialog_contact_add_dialog_component__WEBPACK_IMPORTED_MODULE_32__["ContactAddDialogComponent"]
+                _components_contact_add_dialog_contact_add_dialog_component__WEBPACK_IMPORTED_MODULE_32__["ContactAddDialogComponent"],
+                _components_profile_detail_profile_detail_component__WEBPACK_IMPORTED_MODULE_45__["ProfileDetailComponent"]
             ],
             imports: [
                 primeng_chart__WEBPACK_IMPORTED_MODULE_10__["ChartModule"],
@@ -547,7 +550,7 @@ var CreateQuestionComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header class=\"wrapper d-flex flex-row justify-content-between\">\n  <div class=\"d-flex align-items-center\">\n    <div class=\"logo-wrapper\">\n      <img routerLink=\"/\" class=\"logo\" src=\"assets/img/voteologobiele.png\">\n    </div>\n    <!--<span  class=\"item\">{{'header.profile' | translate}}</span>-->\n    <span routerLink=\"/contacts\" class=\"item\">{{'header.contactList' | translate}}</span>\n    <span routerLink=\"/changelog\" class=\"item\">Changelog</span>\n    <span routerLink=\"/about\" class=\"item\">{{'header.about' | translate}}<span class=\"gold\">{{'header.title' | translate}}</span></span>\n  </div>\n  <div class=\"d-flex align-items-center\">\n    <div routerLink=\"/profile\" class=\"user\">\n      <span class=\"gold\">Kamil bitcoach</span>\n      <span class=\"address\">{{address}}</span>\n    </div>\n  </div>\n  <div class=\"d-flex align-items-center\">\n    <app-language-selector\n      [languages]=\"languages\"\n      [selectedLanguage]=\"selectedLanguage\"\n      (onSelectChange)=\"changeLanguage($event)\">\n    </app-language-selector>\n  </div>\n</header>\n"
+module.exports = "<header class=\"wrapper d-flex flex-row justify-content-between\">\n  <div class=\"d-flex align-items-center\">\n    <div class=\"logo-wrapper\">\n      <img routerLink=\"/\" class=\"logo\" src=\"assets/img/voteologobiele.png\">\n    </div>\n    <!--<span  class=\"item\">{{'header.profile' | translate}}</span>-->\n    <span routerLink=\"/contacts\" class=\"item\">{{'header.contactList' | translate}}</span>\n    <span routerLink=\"/changelog\" class=\"item\">Changelog</span>\n    <span routerLink=\"/about\" class=\"item\">{{'header.about' | translate}}<span class=\"gold\">{{'header.title' | translate}}</span></span>\n  </div>\n  <app-profile-detail>\n    <div class=\"align-items-center\">\n      <div routerLink=\"/profile\" class=\"user\">\n        <div class=\"img-wrapper\">\n          <img class=\"rounded-circle\" src=\"/assets/img/siluette.png\">\n        </div>\n        <div class=\"details\">\n          <!--<span class=\"gold\">Kamil bitcoach</span>-->\n          <span class=\"gold\">{{address}}</span>\n        </div>\n      </div>\n    </div>\n    <div class=\"language-selector align-items-center\">\n      <app-language-selector\n        [languages]=\"languages\"\n        [selectedLanguage]=\"selectedLanguage\"\n        (onSelectChange)=\"changeLanguage($event)\">\n      </app-language-selector>\n    </div>\n  </app-profile-detail>\n</header>\n"
 
 /***/ }),
 
@@ -558,7 +561,7 @@ module.exports = "<header class=\"wrapper d-flex flex-row justify-content-betwee
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".logo-wrapper {\n  float: left;\n  margin: 5px 35px 5px 0;\n  cursor: pointer; }\n  .logo-wrapper .name {\n    font-size: 32px;\n    color: #e1ab05; }\n  .gold {\n  color: #e1ab05; }\n  .gold:hover {\n    color: #a1d0c5; }\n  .menu {\n  display: flex;\n  align-items: center;\n  color: white; }\n  .item {\n  cursor: pointer;\n  font-size: 18px;\n  padding: 10px 25px; }\n  .item:hover {\n    color: #a1d0c5; }\n  .user {\n  display: flex;\n  flex-direction: column;\n  float: right;\n  padding-right: 10px;\n  height: 100%;\n  position: relative;\n  justify-content: center;\n  cursor: pointer; }\n  .user span {\n    text-align: left; }\n  .bitcoach-menu {\n  display: flex;\n  align-items: center; }\n  .wrapper {\n  color: #fff;\n  padding: 0 30px;\n  height: 60px;\n  background: #2575fc; }\n  .col-4, span {\n  outline: none !important; }\n  mat-select {\n  border: 0px; }\n  mat-form-field {\n  display: block; }\n  mat-form-field .mat-select-value-text {\n    color: #fff !important; }\n  .language {\n  margin: auto; }\n  .language-wrapper {\n  margin: auto;\n  display: inline-block; }\n  .logo {\n  height: 50px; }\n"
+module.exports = ".logo-wrapper {\n  float: left;\n  margin: 5px 35px 5px 0;\n  cursor: pointer; }\n  .logo-wrapper .name {\n    font-size: 32px;\n    color: #e1ab05; }\n  .gold {\n  color: #e1ab05; }\n  .menu {\n  display: flex;\n  align-items: center;\n  color: white; }\n  .address {\n  color: black; }\n  .item {\n  cursor: pointer;\n  font-size: 18px;\n  padding: 10px 25px; }\n  .item:hover {\n    color: #a1d0c5; }\n  .user {\n  display: flex;\n  float: right;\n  padding-right: 10px;\n  height: 100%;\n  position: relative;\n  justify-content: center;\n  cursor: pointer; }\n  .user span {\n    text-align: left; }\n  .bitcoach-menu {\n  display: flex;\n  align-items: center; }\n  .wrapper {\n  color: #fff;\n  padding: 0 30px;\n  height: 60px;\n  background: #2575fc; }\n  .col-4, span {\n  outline: none !important; }\n  mat-select {\n  border: 0px; }\n  mat-form-field {\n  display: block; }\n  mat-form-field .mat-select-value-text {\n    color: #fff !important; }\n  .language {\n  margin: auto; }\n  .language-wrapper {\n  margin: auto;\n  display: inline-block; }\n  .logo {\n  height: 50px; }\n  app-profile-detail {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n  app-profile-detail .details {\n    margin: 3px;\n    display: flex;\n    flex-direction: column; }\n  .language-selector {\n  float: right;\n  padding: 10px; }\n  .img-wrapper {\n  width: 50px;\n  height: 50px;\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n  .img-wrapper img {\n    background-color: white;\n    width: 45px;\n    height: 45px;\n    padding: 2px; }\n"
 
 /***/ }),
 
@@ -643,7 +646,7 @@ module.exports = "<div (click)=\"togglePanel()\" class=\"selected\">{{'language.
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".selected {\n  color: #fff;\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  .selected:hover {\n    color: #a1d0c5; }\n  .panel {\n  display: block;\n  position: absolute;\n  z-index: 99;\n  transition: all 1s;\n  overflow: hidden; }\n  .panel.closed {\n    max-height: 0px; }\n  .language-panel {\n  display: block;\n  cursor: pointer;\n  background-color: #fff;\n  padding: 10px; }\n  .language-panel .item {\n    cursor: pointer;\n    color: #09245d;\n    padding: 5px; }\n  .language-panel .item:hover {\n      color: #a1d0c5; }\n"
+module.exports = ".selected {\n  cursor: pointer;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none; }\n  .selected:hover {\n    color: #a1d0c5; }\n  .panel {\n  display: block;\n  position: absolute;\n  z-index: 99;\n  transition: all 1s;\n  overflow: hidden;\n  right: 0; }\n  .panel.closed {\n    max-height: 0px; }\n  .language-panel {\n  display: block;\n  cursor: pointer;\n  background-color: #fff;\n  padding: 10px; }\n  .language-panel .item {\n    cursor: pointer;\n    color: #09245d;\n    padding: 5px; }\n  .language-panel .item:hover {\n      color: #a1d0c5; }\n"
 
 /***/ }),
 
@@ -1847,6 +1850,71 @@ var PoolComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/profile-detail/profile-detail.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/components/profile-detail/profile-detail.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"profile-wrapper\">\n  <div (click)=\"toggleShowDetail()\" class=\"img-wrapper\">\n    <img class=\"rounded-circle\" src=\"/assets/img/siluette.png\">\n  </div>\n  <ng-container *ngIf=\"showDetail\">\n    <div class=\"detail-wrapper\">\n      <ng-content></ng-content>\n    </div>\n  </ng-container>\n</div>\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/components/profile-detail/profile-detail.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/components/profile-detail/profile-detail.component.scss ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".img-wrapper {\n  cursor: pointer;\n  display: flex;\n  height: 45px;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  width: 45px;\n  justify-content: center; }\n  .img-wrapper img {\n    padding: 2px;\n    width: 45px;\n    height: 45px;\n    background-color: white; }\n  .img-wrapper img:hover {\n      background: #edeef1; }\n  .detail-wrapper {\n  margin-top: 7px;\n  background: #edeef1;\n  position: absolute;\n  z-index: 3;\n  right: 0;\n  opacity: 1;\n  padding: 3px;\n  color: #09245d; }\n"
+
+/***/ }),
+
+/***/ "./src/app/components/profile-detail/profile-detail.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/profile-detail/profile-detail.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: ProfileDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileDetailComponent", function() { return ProfileDetailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ProfileDetailComponent = /** @class */ (function () {
+    function ProfileDetailComponent() {
+        this.showDetail = false;
+    }
+    ProfileDetailComponent.prototype.toggleShowDetail = function () {
+        this.showDetail = !this.showDetail;
+    };
+    ProfileDetailComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-profile-detail',
+            template: __webpack_require__(/*! ./profile-detail.component.html */ "./src/app/components/profile-detail/profile-detail.component.html"),
+            styles: [__webpack_require__(/*! ./profile-detail.component.scss */ "./src/app/components/profile-detail/profile-detail.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ProfileDetailComponent);
+    return ProfileDetailComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/profile/profile.component.html":
 /*!***********************************************************!*\
   !*** ./src/app/components/profile/profile.component.html ***!
@@ -2969,7 +3037,7 @@ var PoolsPageComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"profile-wrapper\">\n  <div class=\"info\">\n    <div class=\"assigned\">{{'pools.youHaveGotAssigned' | translate : numberOfAssignedPools}}</div>\n    <div class=\"created\">{{'pools.youHaveCreated' | translate : numberOfCreatedPools}}</div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"profile-wrapper\">\n  <div class=\"info\">\n    <div routerLink=\"/pools\" class=\"assigned\">{{'pools.youHaveGotAssigned' | translate : numberOfAssignedPools}}</div>\n    <div routerLink=\"/ownPools\" class=\"created\">{{'pools.youHaveCreated' | translate : numberOfCreatedPools}}</div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -2995,6 +3063,8 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfilePageComponent", function() { return ProfilePageComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngxs/store */ "./node_modules/@ngxs/store/fesm5/ngxs-store.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3005,24 +3075,54 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ProfilePageComponent = /** @class */ (function () {
     function ProfilePageComponent() {
-        this.numberOfCreatedPools = {
-            number: 20
-        };
-        this.numberOfAssignedPools = {
-            number: 40
-        };
+        this.subscriptions = [];
     }
-    ProfilePageComponent.prototype.ngOnInit = function () {
+    ProfilePageComponent.prototype.ngOnDestroy = function () {
+        for (var _i = 0, _a = this.subscriptions; _i < _a.length; _i++) {
+            var subscription = _a[_i];
+            subscription.unsubscribe();
+        }
     };
+    ProfilePageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscriptions.push(this.polls$.subscribe(function (polls) {
+            var ownPolls = polls.ownPolls, privatePolls = polls.privatePolls;
+            _this.createdPollsLength = ownPolls.length;
+            _this.assignmedPollsLength = privatePolls.filter(function (poll) { return poll.canVote === 'false'; }).length;
+        }));
+    };
+    Object.defineProperty(ProfilePageComponent.prototype, "numberOfCreatedPools", {
+        get: function () {
+            return {
+                number: this.createdPollsLength
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ProfilePageComponent.prototype, "numberOfAssignedPools", {
+        get: function () {
+            return {
+                number: this.assignmedPollsLength
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_2__["Select"])(function (state) { return state.polls; }),
+        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"])
+    ], ProfilePageComponent.prototype, "polls$", void 0);
     ProfilePageComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-profile-page',
             template: __webpack_require__(/*! ./profile-page.component.html */ "./src/app/pages/profile-page/profile-page.component.html"),
             styles: [__webpack_require__(/*! ./profile-page.component.scss */ "./src/app/pages/profile-page/profile-page.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
+        })
     ], ProfilePageComponent);
     return ProfilePageComponent;
 }());
