@@ -27,12 +27,17 @@
 
 .item {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px 25px;
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
 
-  &:hover {
-    color: $color-bitcoach-azure;
-  }
+.active-link {
+  font-weight: bold;
+  color: $color-bitcoach-azure;
+  border-bottom: 3px solid $color-bitcoach-azure;
 }
 
 .user {
@@ -120,4 +125,10 @@ app-profile-detail {
     height: 45px;
     padding: 2px;
   }
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

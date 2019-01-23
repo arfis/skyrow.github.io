@@ -1,12 +1,13 @@
 <header class="wrapper d-flex flex-row justify-content-between">
-  <div class="d-flex align-items-center">
-    <div class="logo-wrapper">
-      <img routerLink="/" class="logo" src="assets/img/voteologobiele.png">
-    </div>
+  <div class="logo-wrapper">
+    <img routerLink="/" class="logo" src="assets/img/voteologobiele.png">
+  </div>
+  <div class="align-center">
     <!--<span  class="item">{{'header.profile' | translate}}</span>-->
-    <span routerLink="/contacts" class="item">{{'header.contactList' | translate}}</span>
-    <span routerLink="/changelog" class="item">Changelog</span>
-    <span routerLink="/about" class="item">{{'header.about' | translate}}<span class="gold">{{'header.title' | translate}}</span></span>
+    <span routerLink="/home" routerLinkActive="active-link" class="item">{{'header.home' | translate}}</span>
+    <span routerLink="/contacts" routerLinkActive="active-link" class="item">{{'header.contactList' | translate}}</span>
+    <span routerLink="/changelog" routerLinkActive="active-link" class="item">Changelog</span>
+    <span routerLink="/about" routerLinkActive="active-link" class="item">{{'header.about' | translate}}</span>
   </div>
   <app-profile-detail>
     <div class="align-items-center">
