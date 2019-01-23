@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
         children: [
           {
             path: '',
-            redirectTo: 'privatePolls',
+            redirectTo: 'ownPolls',
             pathMatch: 'full'
           },
           {
