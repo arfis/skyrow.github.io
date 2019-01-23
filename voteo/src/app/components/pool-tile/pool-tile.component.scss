@@ -1,7 +1,11 @@
 @import '../../../lib/styles/colors';
 
 .tile-wrapper {
-  border: .5px solid $color-bitcoach-border;
+  border: .5px solid $color-light-gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 5px;
 }
 
 .upper-part {
@@ -11,23 +15,15 @@
   color: $color-white;
 }
 
-.bottom-part {
-  position: relative;
-  display: flex;
-  width: 100%;
-  margin: 5px 0px;
-  align-items: center;
+.actions {
+  width: 40%;
+  display: inline-block;
+  margin: 5px;
+  height: 28px;
+  float: right;
 
-  .actions {
-    width: 40%;
-    display: inline-block;
-    margin: 5px;
-    height: 28px;
-    float: right;
-
-    button:first-child {
-      margin-right: 4px;
-    }
+  button:first-child {
+    margin-right: 4px;
   }
 }
 
@@ -55,5 +51,9 @@
 }
 
 .title {
-  color: $color-white;
+  color: black;
+}
+
+.subtitle {
+  color: $color-light-gray;
 }

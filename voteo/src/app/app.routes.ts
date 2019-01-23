@@ -26,6 +26,28 @@ export const appRoutes: Routes = [
       {
         path: 'home',
         component: PoolActionsComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'privatePolls',
+            pathMatch: 'full'
+          },
+          {
+            path: 'privatePolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.PRIVATE_LIST, animation: 'PollPage'}
+          },
+          {
+            path: 'ownPolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.OWN_LIST, animation: 'PollPage'}
+          },
+          {
+            path: 'publicPolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
+          },
+        ]
       },
       {
         path: 'create',
@@ -34,21 +56,6 @@ export const appRoutes: Routes = [
       {
         path: 'contacts',
         component: ContactListPageComponent
-      },
-      {
-        path: 'pools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.PRIVATE_LIST, animation: 'PollPage'}
-      },
-      {
-        path: 'ownPools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.OWN_LIST, animation: 'PollPage'}
-      },
-      {
-        path: 'publicPools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
       },
       {
         path: 'pool/:id',

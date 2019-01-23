@@ -9,7 +9,6 @@ import {
 
 import { PollsModel } from './pools.model';
 import { PollListType } from './pollListType';
-
 ​
 @State<PollsModel>({
   name: 'polls',
@@ -20,9 +19,12 @@ import { PollListType } from './pollListType';
     poolListType: null
   }
 })
+
 export class PollsState {
 
-  constructor() {}
+  constructor() {
+
+  }
 
   @Action(AddPoll)
   AddPoll(ctx: StateContext<PollsModel>, action: AddPoll) {
@@ -41,10 +43,10 @@ export class PollsState {
   SetOwnPolls(ctx: StateContext<PollsModel>, action: SetOwnPolls) {
     const state = ctx.getState();
     const pendingPolls = state.ownPolls.filter(poll => {
-      if ((poll.pending && !action.polls.some(actualPoll => poll.id ===  actualPoll.id))) {
+      if ((poll.pending && !action.polls.some(actualPoll => poll.id === actualPoll.id))) {
         return poll;
       }
-    } );
+    });
 
     const pendingVotes = state.ownPolls.filter(poll => poll.votePending);
     const polls = action.polls.map(poll => {
@@ -79,7 +81,7 @@ export class PollsState {
 
     ctx.setState({
       ...state,
-      privatePolls: [ ...polls]
+      privatePolls: [...polls]
     });
   }
 
@@ -99,7 +101,7 @@ export class PollsState {
 
     ctx.setState({
       ...state,
-      publicPolls: [ ...polls]
+      publicPolls: [...polls]
     });
   }
 

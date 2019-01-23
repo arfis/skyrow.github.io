@@ -132,7 +132,8 @@ export class PoolsService {
   }
 
   public getPoolById(id): Observable<any> {
-
+    alert(id);
+    alert(Methods.getPoolById);
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getPoolById,

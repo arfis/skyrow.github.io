@@ -57,6 +57,7 @@ import { NewQuestionPageComponent } from './components/new-question-page/new-que
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NosWrapperModule } from './nos-wrapper/nos-wrapper.module';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import { TabLayoutComponent } from './components/tab-layout/tab-layout.component';
 
 registerLocaleData(localeSk);
 
@@ -93,7 +94,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     PollResultComponent,
     CreateQuestionComponent,
     ContactAddDialogComponent,
-    ProfileDetailComponent
+    ProfileDetailComponent,
+    TabLayoutComponent
   ],
   imports: [
     ChartModule,

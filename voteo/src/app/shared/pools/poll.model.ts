@@ -1,4 +1,4 @@
-export interface PollModel {
+export class PollModel {
   id: any;
   numberOfQuestions: string;
   poolTitle: string;

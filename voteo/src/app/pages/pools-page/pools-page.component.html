@@ -1,9 +1,5 @@
 <div class="content-wrapper">
   <div class="floating">
-    <h4 class="center">
-      <mat-icon class="back-button" (click)="goBack()">arrow_back</mat-icon>
-      {{title | translate}}
-    </h4>
     <div class="settings-wrapper">
       <div class="settings">
         <span>{{'pools.list.settings' | translate}}</span>
@@ -14,20 +10,12 @@
           <mat-button-toggle value="voted">{{'pools.list.voted' | translate}}</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
-      <div class="settings columns">
-        <span>{{'pools.list.columns' | translate}}</span>
 
-        <mat-button-toggle-group [value]="12 / itemSize" (change)="changeColumns($event)">
-          <mat-button-toggle [value]="1">1</mat-button-toggle>
-          <mat-button-toggle [value]="2">2</mat-button-toggle>
-          <mat-button-toggle [value]="3">3</mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
     </div>
 
   </div>
   <div class="pools-wrapper">
-    <app-pool-tile [class]="'pool-item col-ms-12 col-md-' + itemSize" *ngFor="let pool of polls; trackBy: pollTracker"
+    <app-pool-tile [class]="'pool-item col-ms-12 col-md-12'" *ngFor="let pool of polls; trackBy: pollTracker"
                    [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
   </div>
 </div>

@@ -11,8 +11,8 @@ export class PoolResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const id = route.paramMap.get('id').toString();
+    alert(id);
 
     return this._poolsService.getPoolById(id);
-   // return this._poolsService.getPool(route.paramMap.get('id'));
   }
 }

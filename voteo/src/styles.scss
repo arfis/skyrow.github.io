@@ -69,27 +69,22 @@ em {
 
 .voteo-button {
   cursor: pointer;
-  border: 1px solid $color-bitcoach-blue;
-  border-radius: 2px;
+  border: none;
   box-shadow: 1px $color-shadow;
   color: $color-white;
-  background: linear-gradient(to right, $color-bitcoach-lightBlue, $color-bitcoach-blue);
+  background: $color-bitcoach-blue;
   transition: all 400ms;
 
   &:hover {
     color: $color-bitcoach-blue;
-    background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
+    background: $color-bitcoach-extralightblue;
   }
 
   &[disabled] {
     cursor: not-allowed;
-    color: $color-bitcoach-blue;
-    background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
+    color: black;
+    background: transparent;
 
-    &:hover {
-      color: $color-bitcoach-blue;
-      background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
-    }
   }
 }
 

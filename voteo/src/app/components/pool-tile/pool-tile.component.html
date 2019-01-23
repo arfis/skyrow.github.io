@@ -1,8 +1,9 @@
 <div class="tile-wrapper">
-  <div class="upper-part">
-    <span class="title voteo-bold">{{poolTitle}}</span>
+  <div class="col-lg-5 col-md-5">
+    <span class="subtitle">Created by: Coca cola</span>
+    <h4 class="title">{{poolTitle}}</h4>
   </div>
-  <div class="bottom-part">
+  <div class="col-lg-4 col-md-4">
     <div class="attributes">
       <div class="attribute">
         <mat-icon>help</mat-icon>
@@ -13,11 +14,13 @@
         <span class="value">{{'pools.voted' | translate}}:{{voted}}</span>
       </div>
     </div>
-    <div *ngIf="!isPending; else pendingMessage" class="actions">
+  </div>
+
+    <div *ngIf="!isPending; else pendingMessage" class="col-lg-3 col-md-3 actions">
       <button [disabled]="hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
       <button *ngIf="isOwnPoll" class="voteo-button" (click)="showResults()">{{'pools.result' | translate}}</button>
     </div>
-  </div>
+
 </div>
 
 <ng-template #pendingMessage>
