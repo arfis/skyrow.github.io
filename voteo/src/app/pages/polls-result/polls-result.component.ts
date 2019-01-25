@@ -10,7 +10,7 @@ declare let jsPDF;
   templateUrl: './polls-result.component.html',
   styleUrls: ['./polls-result.component.scss']
 })
-export class PollsResultPageComponent {
+export class PollsResultPageComponent implements OnInit {
 
   poll;
   chartType = 'pie';
@@ -21,6 +21,10 @@ export class PollsResultPageComponent {
   constructor(private route: ActivatedRoute,
               private elementRef: ElementRef) {
     this.poll = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value[1].value));
+  }
+
+  ngOnInit() {
+    alert(this.poll);
   }
 
   print() {

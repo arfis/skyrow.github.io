@@ -19,13 +19,13 @@ export class PoolTileComponent {
 
   openVoting() {
     if (this.hasFreeVoting) {
-      this.router.navigate([`pool/${this.pool.id}`]);
+      this.router.navigate([`/pool/${this.pool.id}`]);
     }
   }
 
   showResults() {
     if (this.isOwnPoll) {
-      this.router.navigate([`result/${this.pool.id}`]);
+      this.router.navigate([`/result/${this.pool.id}`]);
     }
   }
 

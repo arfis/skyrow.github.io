@@ -17,6 +17,7 @@ export class PoolFillPageComponent implements OnInit {
 
   ngOnInit() {
     this.pool = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value[1].value));
+    alert(this.pool);
   }
 
 

@@ -1,23 +1,24 @@
-<div class="tile-wrapper">
-  <div class="col-lg-5 col-md-5">
+<div [ngClass]="{'voted': hasVoted}" class="tile-wrapper row">
+  <div class="title-part col-lg-5 col-md-5">
+    <div *ngIf="hasVoted" class="ribbon">{{'pools.alreadyVoted' | translate}}</div>
     <span class="subtitle">Created by: Coca cola</span>
-    <h4 class="title">{{poolTitle}}</h4>
+    <h5 class="title">{{poolTitle}}</h5>
   </div>
   <div class="col-lg-4 col-md-4">
     <div class="attributes">
       <div class="attribute">
         <mat-icon>help</mat-icon>
-        <span class="value">{{'pools.questions' | translate}}:{{numberOfQuestions}}</span>
+        <span class="value">{{'pools.questions' | translate}}: {{numberOfQuestions}}</span>
       </div>
       <div class="attribute">
         <mat-icon>people</mat-icon>
-        <span class="value">{{'pools.voted' | translate}}:{{voted}}</span>
+        <span class="value">{{'pools.voted' | translate}}: {{voted}}</span>
       </div>
     </div>
   </div>
 
     <div *ngIf="!isPending; else pendingMessage" class="col-lg-3 col-md-3 actions">
-      <button [disabled]="hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
+      <button *ngIf="!hasVoted" class="voteo-button" (click)="openVoting()">{{'pools.vote' | translate}}</button>
       <button *ngIf="isOwnPoll" class="voteo-button" (click)="showResults()">{{'pools.result' | translate}}</button>
     </div>
 

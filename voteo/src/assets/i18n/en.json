@@ -23,6 +23,7 @@
     "vote": "Vote"
   },
   "pools": {
+    "alreadyVoted": "voted",
     "list" : {
       "all": "All",
       "voted": "Voted",

@@ -85,11 +85,13 @@ export class PoolActionsComponent implements OnInit {
         this.ownPollsCount = polls.ownPolls.length;
       }
     );
-    this._pollService.getAddress().subscribe(address => {
-      this._pollService.loadPrivatePolls();
-      this._pollService.loadPublicPolls();
-      this._pollService.loadOwnPolls();
-    });
+    if (this._pollService.getAddress()) {
+      this._pollService.getAddress().subscribe(address => {
+        this._pollService.loadPrivatePolls();
+        this._pollService.loadPublicPolls();
+        this._pollService.loadOwnPolls();
+      });
+    }
   }
 
   createPool() {

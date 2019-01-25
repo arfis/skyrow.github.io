@@ -10,8 +10,7 @@ import { AddPoll } from '../../shared/pools/polls.actions';
   selector: 'app-create-pool-process-page',
   templateUrl: './create-pool-process-page.component.html',
   styleUrls: ['./create-pool-process-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreatePoolProcessPageComponent implements OnInit {
 

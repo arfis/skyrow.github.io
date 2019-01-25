@@ -31,7 +31,7 @@ em {
   font-family: BrochaRegular !important;
   font-size: 72px;
   margin: auto;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
 }
 
 .splash-wrapper {
@@ -72,19 +72,18 @@ em {
   border: none;
   box-shadow: 1px $color-shadow;
   color: $color-white;
-  background: $color-bitcoach-blue;
+  background: $color-voteo-secondary;
   transition: all 400ms;
 
   &:hover {
-    color: $color-bitcoach-blue;
+    color: $color-voteo-primary;
     background: $color-bitcoach-extralightblue;
   }
 
   &[disabled] {
     cursor: not-allowed;
-    color: black;
-    background: transparent;
-
+    color: $color-darker-gray;
+    background: $color-light-gray;
   }
 }
 
@@ -95,7 +94,7 @@ em {
   width: 40px;
   user-input: none;
   text-align: center;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
   margin: 2px;
 
   &:hover {
@@ -165,4 +164,10 @@ strong em {
     max-width: 100% !important;
     flex: 0 0 100% !important;
   }
+}
+
+mat-button-toggle,
+mat-button-toggle-group,
+.mat-button-toggle-button {
+  outline: none !important;
 }

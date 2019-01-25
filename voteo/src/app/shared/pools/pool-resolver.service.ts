@@ -11,7 +11,10 @@ export class PoolResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     const id = route.paramMap.get('id').toString();
-    alert(id);
+
+    this._poolsService.getPoolById(id).subscribe(
+      res => alert(JSON.stringify(res))
+    );
 
     return this._poolsService.getPoolById(id);
   }

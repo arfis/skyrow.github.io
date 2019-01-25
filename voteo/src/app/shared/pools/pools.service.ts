@@ -55,60 +55,39 @@ export class PoolsService {
   }
 
   public loadPublicPolls() {
-    this.getAllPublic().subscribe(
-      pools => {
-        const parsedPolls = parsePolls(pools);
-        this.store.dispatch(new SetPublicPolls(parsedPolls));
-      }
-    );
+    if (this.getAllPublic()) {
+      this.getAllPublic().subscribe(
+        pools => {
+          const parsedPolls = parsePolls(pools);
+          this.store.dispatch(new SetPublicPolls(parsedPolls));
+        }
+      );
+    }
   }
 
   public loadOwnPolls() {
-    this.getOwnPolls().subscribe(
-      pools => {
-        const parsedPolls = parsePolls(pools);
-        this.store.dispatch(new SetOwnPolls(parsedPolls));
-      }
-    );
+    if (this.getOwnPolls()) {
+      this.getOwnPolls().subscribe(
+        pools => {
+          const parsedPolls = parsePolls(pools);
+          this.store.dispatch(new SetOwnPolls(parsedPolls));
+        }
+      );
+    }
   }
 
   public loadPrivatePolls() {
-    this.getPrivatePolls().subscribe(
-      pools => {
-        const parsedPolls = parsePolls(pools);
-        this.store.dispatch(new SetPrivatePolls(parsedPolls));
-      }
-    );
+    if (this.getPrivatePolls()) {
+      this.getPrivatePolls().subscribe(
+        pools => {
+          const parsedPolls = parsePolls(pools);
+          this.store.dispatch(new SetPrivatePolls(parsedPolls));
+        }
+      );
+    }
   }
 
   public getPool(id) {
-    // return of({
-    //   id: 0,
-    //   name: 'What do you think about yourself',
-    //   questions: [{
-    //     name: 'kto si',
-    //     'openEnded': false,
-    //     'multiple': false,
-    //     'options': [
-    //       {'label': 'ja'},
-    //       {'label': 'ty'},
-    //       {'label': 'on'},
-    //     ]
-    //   },{
-    //       name: 'where have you been',
-    //       'openEnded': true,
-    //       'multiple': true,
-    //       'options': [
-    //         {'label': 'ja'},
-    //         {'label': 'ty'},
-    //         {'label': 'on'},
-    //       ]
-    //     }]
-    // });
-    // return this._nosService.getStorage(
-    //   Methods.scriptHash,
-    //   'poll'
-    // );
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getPoolOperation,
@@ -132,8 +111,6 @@ export class PoolsService {
   }
 
   public getPoolById(id): Observable<any> {
-    alert(id);
-    alert(Methods.getPoolById);
     return this._nosService.testInvoke(
       Methods.scriptHash,
       Methods.getPoolById,

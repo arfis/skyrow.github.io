@@ -28,12 +28,12 @@
 
   mat-icon {
    font-size: 22px;
-    color: $color-bitcoach-blue;
+    color: $color-voteo-gradient;
   }
 
 
   .text:hover {
-    color: $color-bitcoach-blue;
+    color: $color-voteo-gradient;
     text-decoration: underline;
   }
 }
@@ -53,6 +53,19 @@
     align-items: center;
     cursor: pointer;
     outline: none !important;
+
+    &.create {
+      color: $color-darker-gray;
+      font-weight: bold;
+
+      &:hover {
+        color: $color-bitcoach-gold;
+      }
+    }
+
+    &:hover {
+      color: $color-darker-gray;
+    }
   }
 }
 

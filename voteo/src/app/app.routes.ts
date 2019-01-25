@@ -47,11 +47,11 @@ export const appRoutes: Routes = [
             component: PoolsPageComponent,
             data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
           },
+          {
+            path: 'create',
+            component: CreatePoolProcessPageComponent,
+          }
         ]
-      },
-      {
-        path: 'create',
-        component: CreatePoolProcessPageComponent,
       },
       {
         path: 'contacts',
