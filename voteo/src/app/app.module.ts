@@ -58,6 +58,7 @@ import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { NosWrapperModule } from './nos-wrapper/nos-wrapper.module';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 import { TabLayoutComponent } from './components/tab-layout/tab-layout.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 registerLocaleData(localeSk);
 
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateQuestionComponent,
     ContactAddDialogComponent,
     ProfileDetailComponent,
-    TabLayoutComponent
+    TabLayoutComponent,
+    LoginPageComponent
   ],
   imports: [
     ChartModule,

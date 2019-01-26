@@ -12,6 +12,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ChangelogPageComponent } from './pages/changelog-page/changelog-page.component';
 import { PollListType } from './shared/pools/pollListType';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 export const appRoutes: Routes = [
   {
@@ -80,6 +81,10 @@ export const appRoutes: Routes = [
   {
     path: 'changelog',
     component: ChangelogPageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
   },
   {
     path: '**',
