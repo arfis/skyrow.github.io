@@ -109,7 +109,6 @@ export class PoolsPageComponent {
         break;
       }
       case 'voted': {
-        console.log('here');
         this.polls = this.allPolls.filter(poll => poll.canVote === 'true');
         break;
       }

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {NosApiService} from '../../nos-wrapper/services/nos-api.service';
 import {Methods} from '../core/Methods';
 import {Observable, of} from 'rxjs';
 import { parsePolls } from './polls.helper';
 import { SetOwnPolls, SetPrivatePolls, SetPublicPolls } from './polls.actions';
 import { Store } from '@ngxs/store';
+import { BlockchainWrapperService } from '../blockchain/blockchain-wrapper.service';
 
 
 @Injectable()
@@ -13,37 +13,33 @@ export class PoolsService {
   address;
   actualPolls;
 
-  constructor(private _nosService: NosApiService,
+  constructor(private _blockchainService: BlockchainWrapperService,
               private store: Store) {
-    if (_nosService.isConnected()) {
-      _nosService.getAddress().subscribe(
-        address => {
-          this.address = address;
-        }
-      );
-    }
+    this._blockchainService.afterLoginChange.subscribe(
+      result => this.address = result
+    )
   }
 
   getOptionResult(pollId, optionId) {
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getOptionResults,
-      [this._nosService.address, pollId, optionId]
+      [this._blockchainService.address, pollId, optionId]
     );
   }
 
-  public getPrivatePolls(address = this._nosService.address) {
+  public getPrivatePolls(address = this._blockchainService.address) {
     // TODO: CHHANGE
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getAssignedPolls,
       [address]
     );
   }
 
-  public getOwnPolls(address = this._nosService.address) {
+  public getOwnPolls(address = this._blockchainService.address) {
     // TODO: CHHANGE
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getCreatedPolls,
       [address]
@@ -51,7 +47,7 @@ export class PoolsService {
   }
 
   public getAddress() {
-    return this._nosService.getAddress();
+    return this._blockchainService.getAddress();
   }
 
   public loadPublicPolls() {
@@ -88,7 +84,7 @@ export class PoolsService {
   }
 
   public getPool(id) {
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getPoolOperation,
       ['eqweqw']);
@@ -96,14 +92,14 @@ export class PoolsService {
 
   public registerVote(results, poolId) {
     const result = [poolId, ...results]
-    return this._nosService.invoke(
+    return this._blockchainService.invoke(
       Methods.scriptHash,
       Methods.registerVote,
-      [this._nosService.address, 'DATA', ...result]
+      [this._blockchainService.address, 'DATA', ...result]
     );
   }
-  public getAllPublic(address = this._nosService.address) {
-    return this._nosService.testInvoke(
+  public getAllPublic(address = this._blockchainService.address) {
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getPublicAll,
       [address]
@@ -111,25 +107,25 @@ export class PoolsService {
   }
 
   public getPoolById(id): Observable<any> {
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       Methods.scriptHash,
       Methods.getPoolById,
-      [this._nosService.address, id]
+      [this._blockchainService.address, id]
     );
   }
 
   public createPool(poolParams: any, poolName) {
     const addresses = (poolParams.settings.public) ? [''] : poolParams.settings.privateAddresses;
-      return this._nosService.invoke(
+      return this._blockchainService.invoke(
         Methods.scriptHash,
         Methods.createPoolOperation,
-        [this._nosService.address, JSON.stringify(poolParams), poolName, ...addresses]
+        [this._blockchainService.address, JSON.stringify(poolParams), poolName, ...addresses]
       );
 
   }
 
   public getPoolInvoke(script) {
-    return this._nosService.invoke(
+    return this._blockchainService.invoke(
       script,
       Methods.createPoolOperation,
       ['dsajdksajkasdjskksksajdaskjsadkdjaskLUKAS', 'LUKAS']
@@ -137,14 +133,14 @@ export class PoolsService {
   }
 
   public testStorage() {
-    return this._nosService.getStorage(
+    return this._blockchainService.getStorage(
       '9a309cfe03cead5b653bbb11f68ff6beced8f031',
       'bucket.neo.target'
     );
   }
 
   public testInvoke() {
-    return this._nosService.testInvoke(
+    return this._blockchainService.testInvoke(
       '9a309cfe03cead5b653bbb11f68ff6beced8f031',
       'GetDomain',
       ['AK2nJJpJr6o664CWJKi1QRXjqeic2zRp8y', 'bucket.neo']

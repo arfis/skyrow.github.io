@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  debug: false
+  debug: false,
+  neoURL: 'https://neoscan.io/api/test_net'
 };
 
 /*
@@ -14,3 +15,4 @@ export const environment = {
  * because it will have performance impact when throw error
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// voteo123 - test wallet 6PYMaLgumubTNUzpcAbd5jgsE46UXA1GC6iTCDzqaobLi9UPKvVJbAqhan -> AVFzqFs7YemHtKmJ2vgEHkVBBaQf6dVyuS

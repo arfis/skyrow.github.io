@@ -29,7 +29,6 @@ export class PollsState {
   @Action(AddPoll)
   AddPoll(ctx: StateContext<PollsModel>, action: AddPoll) {
     const state = ctx.getState();
-    console.log(action);
 
     ctx.setState(
       {

@@ -13,11 +13,13 @@ import { ChangelogPageComponent } from './pages/changelog-page/changelog-page.co
 import { PollListType } from './shared/pools/pollListType';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LoginGuard } from './shared/login/login.guard';
 
 export const appRoutes: Routes = [
   {
     path: '',
     component: PageSkeletComponent,
+    canActivate: [LoginGuard],
     children: [
       {
         path: '',

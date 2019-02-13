@@ -81,7 +81,6 @@ export class CreatePoolProcessPageComponent implements OnInit {
   settingUpdate(data) {
     const {settings, form} = data;
     this.settingsForm = form;
-    console.log(settings, form);
     (this.pool as any).settings = {...settings, privateAddresses: settings.privateAddresses.map(address => address.address)};
   }
 

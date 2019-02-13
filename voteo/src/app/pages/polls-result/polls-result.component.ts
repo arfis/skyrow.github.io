@@ -2,8 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { stringFromHex } from '../../shared/core/helper';
 import { PoolsService } from '../../shared/pools/pools.service';
 import { ActivatedRoute } from '@angular/router';
-import 'jspdf';
-declare let jsPDF;
 
 @Component({
   selector: 'app-polls-result',

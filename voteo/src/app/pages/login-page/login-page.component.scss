@@ -13,24 +13,35 @@
   align-items: center;
   width: 45%;
   position: relative;
-  box-shadow: -2px 7px 30px -2px rgba(0,0,0,0.75);
+  box-shadow: -2px 7px 30px -2px rgba(0, 0, 0, 0.75);
 
   input {
     outline: none !important;
     width: 100%;
     border: 1px solid lightgray;
     padding: 5px 15px;
-    height: 50px;
+    height: 75px;
+  }
+
+  .login-wrapper:focus-within {
+    button {
+      border: 3px solid black;
+    }
+    border: 3px solid black;
   }
 
   button {
     position: absolute;
     right: -25px;
+  }
+}
 
-    &.voteo-button {
-      height: 45px;
-      padding: 5px 20px;
-    }
+button {
+  outline: none !important;
+
+  &.voteo-button {
+    height: 45px;
+    padding: 5px 20px;
   }
 }
 
