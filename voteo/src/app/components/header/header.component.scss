@@ -27,12 +27,21 @@
 
 .item {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px 25px;
+  height: 100%;
+  align-items: center;
+  display: flex;
 
   &:hover {
-    color: $color-bitcoach-azure;
+    color: $color-light-gray;
   }
+}
+
+.active-link {
+  font-weight: bold;
+  color: $color-bitcoach-gold !important;
+  border-bottom: 3px solid $color-bitcoach-gold;
 }
 
 .user {
@@ -54,11 +63,12 @@
   align-items: center;
 }
 
-.wrapper {
+.header-wrapper {
   color: $color-white;
   padding: 0 30px;
   height: 60px;
-  background: $color-bitcoach-blue;
+  background: $color-voteo-gradient;
+  box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.45);
 }
 
 .col-4, span {
@@ -108,16 +118,22 @@ app-profile-detail {
 }
 
 .img-wrapper {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
     background-color: white;
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     padding: 2px;
   }
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

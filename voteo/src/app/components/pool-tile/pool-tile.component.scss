@@ -1,46 +1,70 @@
 @import '../../../lib/styles/colors';
 
 .tile-wrapper {
-  border: .5px solid $color-bitcoach-border;
-}
-
-.upper-part {
-  background-color: $color-bitcoach-blue;
-  border: .5px solid $color-bitcoach-blue;
-  padding-left: 15px;
-  color: $color-white;
-}
-
-.bottom-part {
-  position: relative;
+  border: .5px solid $color-light-gray;
   display: flex;
-  width: 100%;
-  margin: 5px 0px;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
 
-  .actions {
-    width: 40%;
-    display: inline-block;
-    margin: 5px;
-    height: 28px;
-    float: right;
+  &.voted {
+    opacity: .85;
+  }
 
-    button:first-child {
-      margin-right: 4px;
+  .title-part {
+    position: relative;
+    background: $color-voteo-primary;
+    padding: 20px 5px;
+    text-align: left;
+    overflow: hidden;
+
+    .subtitle {
+      font-size: 14px;
+      color: white;
+    }
+
+    h5 {
+      color: $color-bitcoach-gold;
     }
   }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+
+  button:first-child {
+    margin-bottom: 4px;
+  }
+}
+
+.ribbon {
+  position: absolute;
+  color: white;
+  background: red;
+  transform: rotate(45deg);
+  text-align: center;
+  top: 10px;
+  right: -75px;
+  width: 200px;
+  z-index: 10;
 }
 
 .attributes {
   display: inline-block;
   width: 70%;
+  padding-top: 15px;
 
   .attribute {
     display: flex;
     padding-left: 5px;
 
     mat-icon {
-      color: $color-bitcoach-blue;
+      color: $color-voteo-primary;
       cursor: default;
       margin-right: 5px;
     }
@@ -55,5 +79,5 @@
 }
 
 .title {
-  color: $color-white;
+  color: black;
 }

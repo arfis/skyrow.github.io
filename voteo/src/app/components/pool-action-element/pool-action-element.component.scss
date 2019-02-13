@@ -21,7 +21,7 @@
 
 .action-name {
   font-size: 20px;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
 }
 
 .content {
@@ -36,14 +36,14 @@ img {
 
 button {
   cursor: pointer;
-  border: 1px solid $color-bitcoach-blue;
+  border: 1px solid $color-voteo-gradient;
   border-radius: 2px;
   box-shadow: 1px $color-shadow;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
   background: linear-gradient(to right, $color-white , $color-bitcoach-extralightblue);
 
   &:hover {
     color: $color-white;
-    background: linear-gradient(to right, $color-bitcoach-lightBlue , $color-bitcoach-blue);
+    background: linear-gradient(to right, $color-bitcoach-lightBlue , $color-voteo-gradient);
   }
 }

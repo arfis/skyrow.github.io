@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { SetType } from '../../shared/pools/polls.actions';
 import { slideInAnimation } from '../../shared/animations';
 import { PollModel } from '../../shared/pools/poll.model';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-pools-page',
@@ -63,6 +64,11 @@ export class PoolsPageComponent {
             });
           }
         }
+
+
+        if (environment.debug) {
+          this.setupMockPolls();
+        }
         this.allPolls = this.polls;
       }
     );
@@ -72,6 +78,22 @@ export class PoolsPageComponent {
     const {value} = data;
 
     this.itemSize = 12 / value;
+  }
+
+  setupMockPolls() {
+    let pollModel = new PollModel();
+    pollModel.voted = 14;
+    pollModel.questions = [];
+    pollModel.created = new Date();
+    pollModel.numberOfQuestions = '20';
+    pollModel.canVote = 'false';
+    pollModel.poolTitle = 'Testovacka pollov ze ci funguju';
+    pollModel.id = 123123;
+    pollModel.pending = false;
+
+    this.polls = [
+      pollModel
+    ]
   }
 
   changeView(data) {
@@ -87,7 +109,6 @@ export class PoolsPageComponent {
         break;
       }
       case 'voted': {
-        console.log('here');
         this.polls = this.allPolls.filter(poll => poll.canVote === 'true');
         break;
       }

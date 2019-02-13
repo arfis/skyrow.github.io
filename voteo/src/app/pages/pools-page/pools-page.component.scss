@@ -6,10 +6,6 @@
   transition: all .2s;
 }
 
-mat-button-toggle, mat-button-toggle-group {
-  outline: none !important;
-}
-
 .pools-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -38,7 +34,7 @@ mat-button-toggle, mat-button-toggle-group {
   height: 35px;
   font-size: 35px;
   cursor: pointer;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
   user-input: none;
   position: absolute;
   left: -40px;

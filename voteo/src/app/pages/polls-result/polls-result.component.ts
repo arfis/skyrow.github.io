@@ -2,15 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { stringFromHex } from '../../shared/core/helper';
 import { PoolsService } from '../../shared/pools/pools.service';
 import { ActivatedRoute } from '@angular/router';
-import 'jspdf';
-declare let jsPDF;
 
 @Component({
   selector: 'app-polls-result',
   templateUrl: './polls-result.component.html',
   styleUrls: ['./polls-result.component.scss']
 })
-export class PollsResultPageComponent {
+export class PollsResultPageComponent implements OnInit {
 
   poll;
   chartType = 'pie';
@@ -21,6 +19,10 @@ export class PollsResultPageComponent {
   constructor(private route: ActivatedRoute,
               private elementRef: ElementRef) {
     this.poll = JSON.parse(stringFromHex(this.route.snapshot.data.pool.stack[0].value[1].value));
+  }
+
+  ngOnInit() {
+    alert(this.poll);
   }
 
   print() {

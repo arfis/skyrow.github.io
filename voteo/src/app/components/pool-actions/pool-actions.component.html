@@ -1,45 +1,8 @@
-<div class="title">
-  <h1>{{'voteo.title' | translate}}</h1>
-</div>
+<app-tab-layout class="tabs">
+  <div class="tab" routerLink="ownPolls" routerLinkActive="active-link">My polls</div>
+  <div class="tab" routerLink="publicPolls" routerLinkActive="active-link">Public polls</div>
+  <div class="tab" routerLink="privatePolls" routerLinkActive="active-link">Private polls</div>
+  <div class="tab create" routerLink="create" routerLinkActive="active-link">Create poll</div>
+</app-tab-layout>
 
-<div class="actions row">
-  <app-pool-action-element
-    (mouseover)="onMouseOverItem(0)"
-    [isHovered]="hoveredItem === 0"
-    [picture]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNZlggA4RAvHkDD1nPAUczniJr_ts8zpECLEFWayyzxaPwIhPPXQ'"
-    [label]="'pools.types.add'"
-    [redirectLink]="'/create'"
-    class="col-md-3 action">
-    {{'pools.clickAdd' | translate}}
-  </app-pool-action-element>
-
-  <app-pool-action-element
-    (mouseover)="onMouseOverItem(1)"
-    [isHovered]="hoveredItem === 1"
-    [picture]="'assets/img/pools.png'"
-    [label]="'pools.types.create'"
-    [redirectLink]="'/ownPools'"
-    class="col-md-3 action">
-
-    <div>{{'pools.your' | translate: numberOfOwnPolls}}</div>
-  </app-pool-action-element>
-
-  <app-pool-action-element
-    (mouseover)="onMouseOverItem(2)"
-    [isHovered]="hoveredItem === 2"
-    [picture]="'assets/img/vote.png'"
-    [label]="'pools.types.vote'"
-    [redirectLink]="'/pools'"
-    class="col-md-3 action">
-    {{'pools.noPending' | translate: numberOfPrivatePollsCount}}
-  </app-pool-action-element>
-
-  <app-pool-action-element
-    (mouseover)="onMouseOverItem(3)"
-    [isHovered]="hoveredItem === 3"
-    [picture]="'assets/img/public_pools.png'"
-    [label]="'pools.types.public'" class="col-md-3 action"
-    [redirectLink]="'/publicPools'">
-    {{'pools.public' | translate: numberOfPublicPools}}
-  </app-pool-action-element>
-</div>
+<router-outlet></router-outlet>

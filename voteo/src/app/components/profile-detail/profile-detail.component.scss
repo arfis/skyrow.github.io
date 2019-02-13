@@ -3,15 +3,15 @@
 .img-wrapper {
   cursor: pointer;
   display: flex;
-  height: 45px;
+  height: 35px;
   user-select: none;
-  width: 45px;
+  width: 35px;
   justify-content: center;
 
   img {
     padding: 2px;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     background-color: white;
 
     &:hover {
@@ -29,5 +29,5 @@
   right: 0;
   opacity: 1;
   padding: 3px;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
 }

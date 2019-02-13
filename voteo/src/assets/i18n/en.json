@@ -5,6 +5,7 @@
   "header": {
     "title": ".voteo",
     "profile": "my profile",
+    "home": "Home",
     "contactList": "Contact list",
     "about": "About",
     "actions": {
@@ -22,6 +23,7 @@
     "vote": "Vote"
   },
   "pools": {
+    "alreadyVoted": "voted",
     "list" : {
       "all": "All",
       "voted": "Voted",

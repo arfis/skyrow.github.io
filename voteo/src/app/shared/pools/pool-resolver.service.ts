@@ -12,7 +12,10 @@ export class PoolResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     const id = route.paramMap.get('id').toString();
 
+    this._poolsService.getPoolById(id).subscribe(
+      res => alert(JSON.stringify(res))
+    );
+
     return this._poolsService.getPoolById(id);
-   // return this._poolsService.getPool(route.paramMap.get('id'));
   }
 }

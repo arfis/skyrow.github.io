@@ -12,38 +12,53 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ChangelogPageComponent } from './pages/changelog-page/changelog-page.component';
 import { PollListType } from './shared/pools/pollListType';
 import { PollsResultPageComponent } from './pages/polls-result/polls-result.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LoginGuard } from './shared/login/login.guard';
 
 export const appRoutes: Routes = [
   {
     path: '',
     component: PageSkeletComponent,
+    canActivate: [LoginGuard],
     children: [
       {
         path: '',
-        component: PoolActionsComponent,
+        redirectTo: 'home',
+        pathMatch: 'full'
       },
       {
-        path: 'create',
-        component: CreatePoolProcessPageComponent,
+        path: 'home',
+        component: PoolActionsComponent,
+        children: [
+          {
+            path: '',
+            redirectTo: 'ownPolls',
+            pathMatch: 'full'
+          },
+          {
+            path: 'privatePolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.PRIVATE_LIST, animation: 'PollPage'}
+          },
+          {
+            path: 'ownPolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.OWN_LIST, animation: 'PollPage'}
+          },
+          {
+            path: 'publicPolls',
+            component: PoolsPageComponent,
+            data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
+          },
+          {
+            path: 'create',
+            component: CreatePoolProcessPageComponent,
+          }
+        ]
       },
       {
         path: 'contacts',
         component: ContactListPageComponent
-      },
-      {
-        path: 'pools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.PRIVATE_LIST, animation: 'PollPage'}
-      },
-      {
-        path: 'ownPools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.OWN_LIST, animation: 'PollPage'}
-      },
-      {
-        path: 'publicPools',
-        component: PoolsPageComponent,
-        data: {type: PollListType.PUBLIC_LIST, animation: 'PollPage'}
       },
       {
         path: 'pool/:id',
@@ -68,6 +83,10 @@ export const appRoutes: Routes = [
   {
     path: 'changelog',
     component: ChangelogPageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
   },
   {
     path: '**',

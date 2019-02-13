@@ -28,12 +28,48 @@
 
   mat-icon {
    font-size: 22px;
-    color: $color-bitcoach-blue;
+    color: $color-voteo-gradient;
   }
 
 
   .text:hover {
-    color: $color-bitcoach-blue;
+    color: $color-voteo-gradient;
     text-decoration: underline;
   }
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid $color-light-gray;
+
+  .tab {
+    color: $color-light-gray;
+    margin-right: 20px;
+    margin-bottom: -1px;
+    padding: 10px;
+    padding-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    outline: none !important;
+
+    &.create {
+      color: $color-darker-gray;
+      font-weight: bold;
+
+      &:hover {
+        color: $color-bitcoach-gold;
+      }
+    }
+
+    &:hover {
+      color: $color-darker-gray;
+    }
+  }
+}
+
+.active-link {
+  color: black !important;
+  border-bottom: 2px solid black;
 }
