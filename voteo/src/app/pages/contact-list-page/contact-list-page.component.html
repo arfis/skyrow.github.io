@@ -1,6 +1,11 @@
 <div class="list">
+
   <app-profile class="item"
                *ngFor="let contact of contacts$ | async"
-                [profile]="contact"
-                [pictureSize]="100"></app-profile>
+               [profile]="contact"
+               [pictureSize]="100"></app-profile>
+  <div class="actions">
+    <mat-icon class="action-button" (click)="openAddContact()">add</mat-icon>
+  </div>
+
 </div>

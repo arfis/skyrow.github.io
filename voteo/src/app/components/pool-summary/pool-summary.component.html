@@ -1,6 +1,13 @@
 <div class="wrapper">
   <div class="header">{{'pools.newPool' | translate}}</div>
   <div class="title voteo-bold">{{'pools.summary' | translate}}</div>
+
+  <ng-container *ngIf="title.length < 1">
+    <div class="message">
+      {{'pools.noTitle' | translate}}
+    </div>
+  </ng-container>
+
   <div *ngIf="questions.length > 0; else noQuestions" class="voteo-table">
     <ng-container *ngFor="let question of questions">
       <div class="highlight voteo-row">
@@ -22,6 +29,7 @@
     </ng-container>
   </div>
 
+
   <div class="voteo-table">
     <div class="highlight voteo-row">
       {{'pools.create.settings' | translate}}
@@ -31,6 +39,12 @@
         <span class="column key">{{'pools.settings.public' | translate}}</span>
         <span class="column value">{{settings?.public}}</span>
       </div>
+      <ng-container *ngIf="!settings?.public">
+        <div *ngFor="let privateAddress of settings?.privateAddresses; let i=index" class="voteo-row">
+          <span class="column key">{{'pools.create.privateAddress' | translate}} {{i}}</span>
+          <span class="column value">{{privateAddress}}</span>
+        </div>
+      </ng-container>
       <div class="voteo-row">
         <span class="column key">{{'pools.settings.verification' | translate}}</span>
         <span class="column value">{{settings?.verification}}</span>

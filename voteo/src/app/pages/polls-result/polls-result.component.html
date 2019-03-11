@@ -1,0 +1,19 @@
+<div class="pool-wrapper">
+  <h3>
+    <mat-icon class="back-button" (click)="goBack()">arrow_back</mat-icon>
+    {{poll.poolTitle}}
+    <div class="chart-actions">
+      <mat-icon class="action-button" (click)="switchChartType()">{{chartTypeIcon}}</mat-icon>
+      <mat-icon class="action-button" (click)="print()">print</mat-icon>
+    </div>
+  </h3>
+  <div class="results">
+    <div class="col-md-4 col-sm-12" *ngFor="let question of poll.questions; let i=index">
+      <div class="question">
+        <div class="voteo-bold question-name">{{i+1}}. {{question.name}}</div>
+        <app-poll-result class="result" [poll]="poll" [chartType]="chartType"
+                         [options]="question.options"></app-poll-result>
+      </div>
+    </div>
+  </div>
+</div>

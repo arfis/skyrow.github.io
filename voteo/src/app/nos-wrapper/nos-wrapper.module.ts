@@ -8,6 +8,6 @@ import {NosApiService} from './services/nos-api.service';
   ],
   providers: [NosApiService],
   declarations: [],
-  exports: [NosApiService]
+  exports: []
 })
 export class NosWrapperModule { }

@@ -1,7 +1,7 @@
 @import '../../../lib/styles/colors';
 
 .title {
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
   font-size: 20px;
   text-align: center;
 }
@@ -11,6 +11,9 @@
   border-radius: 5px;
 }
 
+.title-input {
+  width: 100%;
+}
 
 .button-wrapper {
   width: 100%;
@@ -20,5 +23,18 @@
 
   button:first-child {
     margin-right: 5px;
+  }
+}
+
+.question {
+  display: block;
+  margin: 25px 0px;
+}
+
+.voteo-button {
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

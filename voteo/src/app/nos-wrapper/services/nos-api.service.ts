@@ -9,6 +9,7 @@ export class NosApiService {
   nos;
   address;
 
+
   constructor() {
     if ((window as any).NOS) {
       this.nos = (window as any).NOS.V1;
@@ -45,13 +46,14 @@ export class NosApiService {
   }
 
   testInvoke(scriptHash: string, operation: string, args?: string[]): Observable<any> {
+
     if (this.nos) {
       return from(this.nos.testInvoke({scriptHash, operation, args}));
     }
   }
 
   invoke(scriptHash: string, operation: string, args?: string[]): Observable<any> {
-    alert(args);
+
 
     if (this.nos) {
       return from(this.nos.invoke({scriptHash, operation, args}));

@@ -1,42 +1,56 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { PollModel } from '../../shared/pools/poll.model';
 
 @Component({
   selector: 'app-pool-tile',
   templateUrl: './pool-tile.component.html',
-  styleUrls: ['./pool-tile.component.scss']
+  styleUrls: ['./pool-tile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PoolTileComponent implements OnInit {
+export class PoolTileComponent {
 
-  @Input()
-  pool;
+  @Input() pool: PollModel;
+  @Input() ownPoll;
 
   constructor(private router: Router) {
   }
 
-  ngOnInit() {
-  }
 
   openVoting() {
     if (this.hasFreeVoting) {
-      this.router.navigate([`pool/${this.pool}`]);
+      this.router.navigate([`/pool/${this.pool.id}`]);
+    }
+  }
+
+  showResults() {
+    if (this.isOwnPoll) {
+      this.router.navigate([`/result/${this.pool.id}`]);
     }
   }
 
   get poolTitle() {
-    return (this.pool.name) ? this.pool.name : this.pool;
+    return this.pool.poolTitle;
   }
 
   get numberOfQuestions() {
-    return (this.pool.questionCount) ? this.pool.questionCount : 0;
+    return this.pool.numberOfQuestions;
   }
 
   get voted() {
-    return (this.pool.voted) ? this.pool.voted : 0;
+    return this.pool.voted;
   }
 
-  get neededVoters() {
-    return (this.pool.needsVotes) ? this.pool.needsVotes : 0;
+  get hasVoted() {
+    return this.pool.canVote === 'true' ? true : false;
+  }
+
+  get isOwnPoll() {
+    return this.ownPoll;
+  }
+
+  get isPending() {
+    return this.pool.pending;
   }
 
   get hasFreeVoting() {

@@ -14,8 +14,8 @@
   <div class="information">
     <div class="voteo-table">
       <input #cryptoAddressElement class="voteo-row"
-             (click)="copyToClipboard()" [(ngModel)]="cryptoAddress">
-      <div class="voteo-row">{{address}}</div>
+             (click)="copyToClipboard()" [ngModel]="cryptoAddress">
+      <div class="voteo-row">{{city}}</div>
       <div class="voteo-row">{{contacts}} {{'profile.contacts' | translate}}</div>
       <div class="voteo-row">{{email}}</div>
     </div>

@@ -6,7 +6,25 @@
       {{'pools.settings.public' | translate}}
     </div>
 
+    <fieldset class="col-12" *ngIf="!isPublic" formArrayName="privateAddresses">
+      <button class="voteo-button add-option" type="button" (click)="addPrivateAddress()">
+        {{'pools.create.addPrivateOption' |
+        translate}}
+      </button>
+      <div class="address" *ngFor="let address of addresses.controls; let j=index"
+           [formGroupName]="j">
+        <div class="option">
+          <span class="label">{{'pools.create.address' | translate}} {{j}}:</span>
+          <input class="question-name" formControlName="address">
+        </div>
+      </div>
+    </fieldset>
+
+    <!--<div class="message">-->
+    <!--{{'message.tbd' | translate}}-->
+    <!--</div>-->
     <div class="col-12">
+      <br>
       <mat-form-field class="full-width">
         <mat-select [placeholder]="'pools.settings.verification' | translate" formControlName="verification">
           <mat-option *ngFor="let verification of verifications" [value]="verification.value">
@@ -16,7 +34,7 @@
       </mat-form-field>
     </div>
 
-    <div class="date col-12">
+    <div class="date col-md-6">
       <mat-form-field class="full-width">
         <input matInput [matDatepicker]="startPicker" [placeholder]="'pools.settings.startDate' | translate"
                formControlName="startDate">
@@ -25,7 +43,7 @@
       </mat-form-field>
     </div>
 
-    <div class="date col-12">
+    <div class="date col-md-6">
       <mat-form-field class="full-width">
         <input matInput [matDatepicker]="endPicker" [placeholder]="'pools.settings.endDate' | translate"
                formControlName="endDate">
@@ -65,34 +83,43 @@
       </mat-checkbox>
     </div>
 
-    <mat-form-field class="col-4">
-      <mat-select [placeholder]="'pools.settings.tokenType' | translate" formControlName="tokenType">
-        <mat-option *ngFor="let tokenType of tokenTypes" [value]="tokenType.value">
-          {{tokenType.label}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
 
     <ng-container *ngIf="areTokenRequirements">
-      <mat-form-field class="col-4 full-width">
+      <mat-form-field class="col-md-6">
+        <mat-select [placeholder]="'pools.settings.tokenType' | translate" formControlName="tokenType">
+          <mat-option *ngFor="let tokenType of tokenTypes" [value]="tokenType.value">
+            {{tokenType.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-6 full-width">
         <input type="number" matInput [placeholder]="'pools.settings.minimumAmount' | translate"
                formControlName="minimumAmount">
-
       </mat-form-field>
 
-      <mat-form-field class="col-4 full-width">
-        <input type="number" matInput [placeholder]="'pools.settings.tokensPerVote' | translate"
-               formControlName="tokensPerVote">
-      </mat-form-field>
+      <!--<mat-form-field class="col-md-6 full-width">-->
+      <!--<input type="number" matInput [placeholder]="'pools.settings.tokensPerVote' | translate"-->
+      <!--formControlName="tokensPerVote">-->
+      <!--</mat-form-field>-->
 
-      <mat-checkbox class="col-4 example-margin" formControlName="audianceSpecification">
-        {{'pools.settings.audianceSpecification' | translate}}
-      </mat-checkbox>
+      <div class="date col-md-6">
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="tokenSnapshot" [placeholder]="'pools.settings.tokenSnapshot' | translate"
+                 formControlName="tokenSnapshot">
+          <mat-datepicker-toggle matSuffix [for]="tokenSnapshot"></mat-datepicker-toggle>
+          <mat-datepicker #tokenSnapshot></mat-datepicker>
+        </mat-form-field>
+      </div>
     </ng-container>
 
-      <ng-content></ng-content>
-      <!--<button (click)="back()" class="voteo-button">{{'actions.back' | translate}}</button>-->
-      <!--<button (click)="submit()" class="voteo-button">{{'actions.submit' | translate}}</button>-->
-
+    <div class="col-12">
+      <mat-checkbox class="example-margin" formControlName="audianceSpecification">
+        {{'pools.settings.audianceSpecification' | translate}}
+      </mat-checkbox>
+    </div>
+    <!--<button (click)="back()" class="voteo-button">{{'actions.back' | translate}}</button>-->
+    <!--<button (click)="submit()" class="voteo-button">{{'actions.submit' | translate}}</button>-->
+    <ng-content></ng-content>
   </form>
 </div>

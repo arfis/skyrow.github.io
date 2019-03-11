@@ -1,28 +1,49 @@
 {
+  "voteo": {
+    "title": "The universal voting system"
+  },
   "header": {
     "title": ".voteo",
     "profile": "my profile",
-    "contactList": "contact list",
-    "about": "about",
+    "contactList": "Contact list",
+    "about": "About",
     "actions": {
       "logout": "Logout"
     }
   },
   "actions" : {
-    "viewAll": "view all",
-    "submit": "submit",
-    "continue": "continue",
-    "back": "back",
-    "delete": "remove"
+    "viewAll": "View all",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "delete": "Remove",
+    "addQuestion": "Add question",
+    "createContact": "Add a new contact",
+    "vote": "Vote"
   },
   "pools": {
+    "list" : {
+      "all": "All",
+      "voted": "Voted",
+      "notVoted": "Not voted",
+      "settings": "View",
+      "columns": "Columns"
+    },
+    "clickAdd": "Add a new poll",
+    "name": "Poll name",
+    "result": "Results",
+    "title": {
+      "public": "Public polls",
+      "private": "Private polls",
+      "own": "Own polls"
+    },
     "settings": {
       "public": "Public",
       "private": "Private",
-      "verification": "Kind of verification",
+      "verification": "Type of verification",
       "startDate": "Start date",
       "endDate": "End date",
-      "reward": "is reward?",
+      "reward": "Set reward",
       "totalReward": "Total reward",
       "totalBudget": "Budget",
       "participans": "Participans",
@@ -30,43 +51,48 @@
       "minimumAmount": "Minimum amount",
       "tokensPerVote": "Token per vote",
       "tokenType": "Token type",
-      "audianceSpecification": "Audiance specification"
+      "tokenSnapshot": "Token snapshot date",
+      "audianceSpecification": "Audience specification (age, nationality, gender, ...)"
     },
     "noQuestions": "No questions where created yet!",
-    "createQuestions": "Create questions",
-    "poolSettings": "PoolSettings",
-    "publicPools": "Public pools",
+    "noTitle": "Please enter a title of the poll on the top",
+    "createQuestions": "Create Questions",
+    "poolSettings": "Poll Settings",
+    "publicPools": "Public polls",
     "done": "Done",
-    "active": "Active pools",
-    "createNew": "Create a new pool",
-    "or": "or",
-    "noPending": "there are no pending pools",
-    "public": "There are {{numberOfPools}} live public pools",
+    "active": "Active polls",
+    "createNew": "Create a new poll",
+    "your": "You have got {{numberOfPools}} polls",
+    "noPending": "You have got {{numberOfPools}} private polls",
+    "public": "You have got {{numberOfPools}} public polls",
     "question": "Question",
     "questions": "Questions",
     "types" : {
-      "create" : "Create pool",
+      "create" : "Your polls",
       "vote": "Vote",
-      "public": "Public pools"
+      "public": "Public polls",
+      "add": "Create new"
     },
-    "newPool": "Create new pool",
+    "newPool": "Create new poll",
     "newQuestion": "New question",
     "create": {
-      "settings": "Pool settings",
-      "name": "question name",
+      "settings": "Poll settings",
+      "name": "Question name",
       "openEnded": "open-ended",
-      "openEndedHint": "(set possible answers)",
+      "openEndedHint": " (set custom answer)",
       "multiple": "multiple choices",
-      "option": "option",
+      "option": "Option",
       "addOption": "Add option",
       "message": "Create",
-      "confirmation": "Click for create"
+      "confirmation": "Click for create",
+      "address": "Wallet address",
+      "addPrivateOption": "Add Wallet"
     },
-    "youHaveGotAssigned": "You have got {{number}} assigned pools",
-    "youHaveCreated": "You have created {{number}} of pools",
-    "voted": "Voted",
-    "vote": "vote",
-    "summary": "Pool summary"
+    "youHaveGotAssigned": "There are {{number}} assigned polls for you",
+    "youHaveCreated": "You have created {{number}} of polls",
+    "voted": "Participants",
+    "vote": "Vote",
+    "summary": "Poll Summary"
   },
   "profile": {
     "contacts": "contacts"

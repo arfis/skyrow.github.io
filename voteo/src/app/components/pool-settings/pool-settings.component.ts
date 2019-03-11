@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pool-settings',
@@ -31,29 +31,47 @@ export class PoolSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.poolSettings = fb.group({
-      public: [false],
-      verification: ['', Validators.required],
+      public: [true],
+      verification: [{value: '', disabled: true}],
       startDate: [new Date()],
       endDate: [''],
-      totalReward: [0],
-      totalBudget: [0],
-      reward: [false],
+      totalReward: [{value: 0, disabled: true}],
+      totalBudget: [{value: 0, disabled: true}],
+      reward: [{value: '', disabled: true}],
       maxParticipants: [''],
       tokenRequirements: [false],
       minimumAmount: [],
-      tokensPerVote: [],
+      tokensPerVote: [{value: '', disabled: true}],
       participans: [],
+      tokenSnapshot: [new Date()],
       tokenType: [],
-      audianceSpecification: [false]
+      privateAddresses: fb.array([]),
+      audianceSpecification: [{value: false, disabled: true}]
     });
   }
 
   ngOnInit() {
     this.poolSettings.valueChanges.subscribe(
-      form => {
-        this.onUpdate.emit(form);
+      settings => {
+        this.onUpdate.emit({settings, form: this.poolSettings});
       }
     );
+    this.onUpdate.emit({settings: this.poolSettings.value, form: this.poolSettings});
+  }
+
+  addPrivateAddress() {
+    const option = this.fb.group({
+      'address': [''],
+    });
+    this.addresses.push(option);
+  }
+
+  get isPublic() {
+    return this.poolSettings.get('public').value;
+  }
+
+  get addresses() {
+    return this.poolSettings.get('privateAddresses') as FormArray;
   }
 
   get isReward() {

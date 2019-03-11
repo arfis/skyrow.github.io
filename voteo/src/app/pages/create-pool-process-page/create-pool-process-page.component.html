@@ -1,20 +1,30 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="questionsForm">
-    <form>
-      <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>
-      <app-new-question-page [question]="currentQuestion"
-                             [numberOfQuestions]="numberOfQuestions"
-                             [currentQuestionIndex]="currentIndex"
-                             (afterNextQuestionPressed)="setNextQuestion($event)"
-                             (afterPreviousQuestionPressed)="setPreviousQuestion($event)"
-                             (afterClickOnRemove)="removeCurrentQuestion($event)"
-                             (onUpdate)="questionsUpdate($event)">
-        <button class="voteo-button" mat-button matStepperNext>Next</button>
-      </app-new-question-page>
-      <div>
+    <div class="questions-part">
+      <mat-form-field class="title-input">
+        <input matInput [placeholder]="'pools.name' | translate" [(ngModel)]="poolName">
+      </mat-form-field>
+      <form>
+        <ng-template matStepLabel>{{'pools.createQuestions' | translate}}</ng-template>
+        <div class="title voteo-bold">{{'pools.questions' | translate}}</div>
+        <app-new-question-page *ngFor="let question of questions; let i = index"
+                               class="question"
+                               [question]="question"
+                               [currentQuestionIndex]="i"
+                               (afterClickOnRemove)="removeCurrentQuestion(i)"
+                               (onUpdate)="questionsUpdate($event, i)">
+        </app-new-question-page>
+        <div class="button-wrapper">
+          <button #newQuestion class="voteo-button" mat-button (click)="addNew()">
+            <span class="content"><mat-icon>add</mat-icon>{{'actions.addQuestion' | translate}}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="button-wrapper">
+      <button class="voteo-button" [disabled]="questionsForm?.invalid || poolName.length < 1" mat-button matStepperNext>Next</button>
+    </div>
 
-      </div>
-    </form>
   </mat-step>
   <mat-step [stepControl]="settingsForm">
     <form>
@@ -22,7 +32,7 @@
       <app-pool-settings (onUpdate)="settingUpdate($event)">
         <div class="button-wrapper">
           <button class="voteo-button" mat-button matStepperPrevious>Back</button>
-          <button class="voteo-button" mat-button matStepperNext>Next</button>
+          <button [disabled]="settingsForm?.invalid" class="voteo-button" mat-button matStepperNext>Next</button>
         </div>
       </app-pool-settings>
     </form>
@@ -31,11 +41,14 @@
     <form>
       <ng-template matStepLabel>{{'pools.summary' | translate}}</ng-template>
       <app-pool-summary [pool]="pool"
+                        [title]="poolName"
                         (onSubmitPressed)="createPool()"
                         (onBackPressed)="goToEdit()">
         <div class="button-wrapper">
           <button class="voteo-button" mat-button matStepperPrevious>Back</button>
-          <button class="voteo-button" mat-button [disabled]="!hasQuestions" (click)="createPool()">{{'pools.create.message' | translate}}</button>
+          <button class="voteo-button" mat-button [disabled]="!hasQuestions || poolName.length < 1"
+                  (click)="createPool()">{{'pools.create.message' | translate}}
+          </button>
         </div>
       </app-pool-summary>
       <div>
@@ -44,12 +57,12 @@
     </form>
   </mat-step>
   <!--<mat-step>-->
-    <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->
-    <!--{{'pools.confirmation' | translate}}-->
-    <!--<div>-->
-      <!--<button mat-button matStepperPrevious>Back</button>-->
-      <!--<button mat-button [disabled]="!hasQuestions" (click)="createPool()">{{'pools.create.message' | translate}}</button>-->
-      <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
-    <!--</div>-->
+  <!--<ng-template matStepLabel>{{'pools.done' | translate}}</ng-template>-->
+  <!--{{'pools.confirmation' | translate}}-->
+  <!--<div>-->
+  <!--<button mat-button matStepperPrevious>Back</button>-->
+  <!--<button mat-button [disabled]="!hasQuestions" (click)="createPool()">{{'pools.create.message' | translate}}</button>-->
+  <!--<button mat-button (click)="stepper.reset()">Reset</button>-->
+  <!--</div>-->
   <!--</mat-step>-->
 </mat-horizontal-stepper>

@@ -1,26 +1,35 @@
-<div class="wrapper">
-  <div class="row">
-    <div class="col-7 menu">
-      <div class="logo-wrapper">
-        <img routerLink="/" class="logo" src="assets/img/voteologobiele.png">
-      </div>
-      <!--<span  class="item">{{'header.profile' | translate}}</span>-->
-      <span routerLink="/contacts" class="item">{{'header.contactList' | translate}}</span>
-      <span routerLink="/about" class="item">{{'header.about' | translate}}<span class="gold">{{'header.title' | translate}}</span></span>
-    </div>
-
-    <div class="col-4">
-      <div routerLink="/profile" class="user">
-        <span class="gold">Kamil bitcoach</span>
-        <span class="address">{{address}}</span>
-      </div>
-    </div>
-    <div class="col-1 menu">
-      <app-language-selector
-        [languages]="languages"
-        [selectedLanguage]="selectedLanguage"
-        (onSelectChange)="changeLanguage($event)">
-      </app-language-selector>
-    </div>
+<header class="header-wrapper d-flex flex-row justify-content-between">
+  <div class="logo-wrapper">
+    <img routerLink="/" class="logo" src="assets/img/voteologobiele.png">
   </div>
-</div>
+  <ng-container *ngIf="isLoggedIn">
+    <div class="align-center">
+      <!--<span  class="item">{{'header.profile' | translate}}</span>-->
+      <span routerLink="/home" routerLinkActive="active-link" class="item">{{'header.home' | translate}}</span>
+      <span routerLink="/contacts" routerLinkActive="active-link"
+            class="item">{{'header.contactList' | translate}}</span>
+      <span routerLink="/changelog" routerLinkActive="active-link" class="item">Changelog</span>
+      <span routerLink="/about" routerLinkActive="active-link" class="item">{{'header.about' | translate}}</span>
+    </div>
+    <app-profile-detail>
+      <div class="align-items-center">
+        <div routerLink="/profile" class="user">
+          <div class="img-wrapper">
+            <img class="rounded-circle" src="/assets/img/siluette.png">
+          </div>
+          <div class="details">
+            <!--<span class="gold">Kamil bitcoach</span>-->
+            <span class="gold">{{address}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="language-selector align-items-center">
+        <app-language-selector
+          [languages]="languages"
+          [selectedLanguage]="selectedLanguage"
+          (onSelectChange)="changeLanguage($event)">
+        </app-language-selector>
+      </div>
+    </app-profile-detail>
+  </ng-container>
+</header>

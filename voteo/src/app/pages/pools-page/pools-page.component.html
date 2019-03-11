@@ -1,4 +1,19 @@
-<div class="pools-wrapper">
-  <span>{{'pools.active' | translate}}</span>
-  <app-pool-tile class="pool-item" *ngFor="let pool of pools$ | async" [pool]="pool"></app-pool-tile>
+<div class="content-wrapper">
+  <div class="floating">
+    <div class="settings-wrapper">
+      <div class="settings">
+        <mat-button-toggle-group [value]="'all'" (change)="changeView($event)">
+          <mat-button-toggle value="all">{{'pools.list.all' | translate}}</mat-button-toggle>
+          <mat-button-toggle value="notVoted">{{'pools.list.notVoted' | translate}}</mat-button-toggle>
+          <mat-button-toggle value="voted">{{'pools.list.voted' | translate}}</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="pools-wrapper">
+    <app-pool-tile [class]="'pool-item col-ms-12 col-md-12'" *ngFor="let pool of polls; trackBy: pollTracker"
+                   [ownPoll]="areOwnPools" [pool]="pool"></app-pool-tile>
+  </div>
 </div>

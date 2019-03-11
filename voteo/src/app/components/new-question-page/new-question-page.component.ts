@@ -1,22 +1,30 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component, ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PoolsService} from '../../shared/pools/pools.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-new-question-page',
   templateUrl: './new-question-page.component.html',
-  styleUrls: ['./new-question-page.component.scss']
+  styleUrls: ['./new-question-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewQuestionPageComponent implements OnChanges {
+export class NewQuestionPageComponent implements OnChanges, AfterViewInit {
 
   @Output()
   onUpdate = new EventEmitter();
   @Output()
-  afterNextQuestionPressed = new EventEmitter<any>();
-  @Output()
-  afterPreviousQuestionPressed = new EventEmitter();
-  @Output()
-  afterClickOnRemove = new EventEmitter<number>();
+  afterClickOnRemove = new EventEmitter();
 
   @Input()
   question;
@@ -26,9 +34,16 @@ export class NewQuestionPageComponent implements OnChanges {
   currentQuestionIndex;
 
   createQuestionForm: FormGroup;
+  optionIndex = 0;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private _el: ElementRef) {
     this.initForm();
+  }
+
+  ngAfterViewInit() {
+    this._el.nativeElement.scrollIntoView({
+      behavior: 'smooth'
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -47,9 +62,15 @@ export class NewQuestionPageComponent implements OnChanges {
     }
   }
 
+  removeOption(index) {
+    this.options.removeAt(index);
+  }
+
   initForm() {
+    this.optionIndex = 0;
+
     this.createQuestionForm = this.fb.group({
-      'name': [''],
+      'name': ['', Validators.required],
       'openEnded': [false],
       'multiple': [false],
       'options': this.fb.array([])
@@ -57,29 +78,23 @@ export class NewQuestionPageComponent implements OnChanges {
 
     this.createQuestionForm.valueChanges.subscribe(
       questions => {
-        console.log('questions change', questions);
-        this.onUpdate.emit(questions);
+        this.onUpdate.emit({form: this.createQuestionForm, questions});
       }
     );
   }
 
   addOption(label = '') {
     const option = this.fb.group({
+      'id': [uuid()],
       'label': [label, Validators.required]
     });
+    this.optionIndex++;
+
     this.options.push(option);
   }
 
-  getNextQuestion({value}) {
-    this.afterNextQuestionPressed.next(value);
-  }
-
-  getPreviousQuestion({value}) {
-    this.afterPreviousQuestionPressed.next(value);
-  }
-
   removeCurrentQuestion() {
-    this.afterClickOnRemove.next(this.currentQuestionIndex);
+    this.afterClickOnRemove.next();
   }
 
   get hasMoreQuestions() {
@@ -87,6 +102,10 @@ export class NewQuestionPageComponent implements OnChanges {
   }
   get options() {
     return this.createQuestionForm.get('options') as FormArray;
+  }
+
+  set options(options) {
+    this.createQuestionForm.get('options').setValue(options);
   }
 
   get operation() {

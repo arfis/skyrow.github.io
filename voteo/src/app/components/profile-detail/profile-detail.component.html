@@ -1,0 +1,12 @@
+<div class="profile-wrapper">
+  <div (click)="toggleShowDetail()" class="img-wrapper">
+    <img class="rounded-circle" src="/assets/img/siluette.png">
+  </div>
+  <ng-container *ngIf="showDetail">
+    <div class="detail-wrapper">
+      <ng-content></ng-content>
+    </div>
+  </ng-container>
+</div>
+
+

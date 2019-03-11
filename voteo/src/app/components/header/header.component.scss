@@ -2,7 +2,7 @@
 
 .logo-wrapper {
   float: left;
-  margin: 5px 35px 5px 15px;
+  margin: 5px 35px 5px 0;
   cursor: pointer;
 
   .name {
@@ -21,19 +21,31 @@
   color: white;
 }
 
+.address {
+  color: black;
+}
+
 .item {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   padding: 10px 25px;
+  height: 100%;
+  align-items: center;
+  display: flex;
 
   &:hover {
-    color: $color-bitcoach-azure;
+    color: $color-light-gray;
   }
+}
+
+.active-link {
+  font-weight: bold;
+  color: $color-bitcoach-gold !important;
+  border-bottom: 3px solid $color-bitcoach-gold;
 }
 
 .user {
   display: flex;
-  flex-direction: column;
   float: right;
   padding-right: 10px;
   height: 100%;
@@ -51,11 +63,12 @@
   align-items: center;
 }
 
-.wrapper {
+.header-wrapper {
   color: $color-white;
-  width: 100%;
+  padding: 0 30px;
   height: 60px;
-  background: linear-gradient(to right, $color-bitcoach-lightBlue , $color-bitcoach-blue);
+  background: $color-voteo-gradient;
+  box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.45);
 }
 
 .col-4, span {
@@ -85,4 +98,42 @@ mat-form-field {
 
 .logo {
   height: 50px;
+}
+
+app-profile-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .details {
+    margin: 3px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.language-selector {
+  float: right;
+  padding: 10px;
+}
+
+.img-wrapper {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+  }
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import { Component, HostBinding, Input, OnChanges } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,27 +6,25 @@ import {Router} from '@angular/router';
   templateUrl: './pool-action-element.component.html',
   styleUrls: ['./pool-action-element.component.scss']
 })
-export class PoolActionElementComponent implements OnInit {
+export class PoolActionElementComponent implements OnChanges {
 
   @Input() label;
   @Input() picture;
   @Input() redirectLink;
+  @Input() isHovered;
 
-  hovered;
-
-  @HostListener('mouseover', ['$event'])
-  onMouseOver() {
-    this.hovered = true;
-  }
-
-  @HostListener('mouseout', ['$event'])
-  onMouseOut() {
-    this.hovered = false;
-  }
+  @HostBinding('style.zIndex') index;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnChanges(changes) {
+    if (changes.isHovered) {
+      if (this.isHovered) {
+        this.index = 100000;
+      } else {
+        this.index = 10;
+      }
+    }
   }
 
   redirectToPage() {

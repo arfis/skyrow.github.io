@@ -11,10 +11,9 @@ export class ProfileComponent implements OnInit {
   @ViewChild('cryptoAddressElement')
   cryptoAddressElement;
 
-  @Input()
-  profile;
-  @Input()
-  pictureSize = 150;
+  @Input() profile;
+  @Input() pictureSize = 150;
+  @Input() isOwn = false;
 
   constructor(private _poolsService: PoolsService) { }
 
@@ -28,10 +27,14 @@ export class ProfileComponent implements OnInit {
   }
 
   get cryptoAddress() {
-    return this._poolsService.address || '-';
+    if (this.isOwn) {
+      return this._poolsService.address || '-';
+    } else {
+      return this.profile.address;
+    }
   }
 
-  get address() {
+  get city() {
     return this.profile.city;
   }
 

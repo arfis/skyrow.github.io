@@ -1,5 +1,5 @@
-<div class="wrapper" [ngClass]="{'hovered': hovered}">
-  <div class="content">
+<mat-card class="action-wrapper" (click)="redirectToPage()" [ngClass]="{'hovered': isHovered}">
+  <mat-card-content class="content">
     <div class="icon">
       <img class="img-fluid" [src]="picture">
     </div>
@@ -12,9 +12,9 @@
       <ng-content></ng-content>
     </div>
 
-    <div class="button-wrapper">
-      <button (click)="redirectToPage()" class="voteo-bold">{{'actions.viewAll' | translate}}</button>
-    </div>
-  </div>
+    <!--<div class="button-wrapper">-->
+      <!--<button (click)="redirectToPage()" class="voteo-bold">{{'actions.viewAll' | translate}}</button>-->
+    <!--</div>-->
+  </mat-card-content>
 
-</div>
+</mat-card>

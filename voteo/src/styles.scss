@@ -12,7 +12,9 @@ body {
   font-family: BrochaLight !important;
 
   * {
-    font-family: BrochaLight !important;
+    &:not(mat-icon) {
+      font-family: BrochaLight !important;
+    }
   }
 }
 
@@ -29,7 +31,7 @@ em {
   font-family: BrochaRegular !important;
   font-size: 72px;
   margin: auto;
-  color: $color-bitcoach-blue;
+  color: $color-voteo-gradient;
 }
 
 .splash-wrapper {
@@ -67,26 +69,36 @@ em {
 
 .voteo-button {
   cursor: pointer;
-  border: 1px solid $color-bitcoach-blue;
-  border-radius: 2px;
+  border: none;
   box-shadow: 1px $color-shadow;
   color: $color-white;
-  background: linear-gradient(to right, $color-bitcoach-lightBlue, $color-bitcoach-blue);
+  background: $color-voteo-secondary;
+  transition: all 400ms;
 
   &:hover {
-    color: $color-bitcoach-blue;
-    background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
+    color: $color-voteo-primary;
+    background: $color-bitcoach-extralightblue;
   }
 
   &[disabled] {
     cursor: not-allowed;
-    color: $color-bitcoach-blue;
-    background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
+    color: $color-darker-gray;
+    background: $color-light-gray;
+  }
+}
 
-    &:hover {
-      color: $color-bitcoach-blue;
-      background: linear-gradient(to right, $color-white, $color-bitcoach-extralightblue);
-    }
+.action-button {
+  cursor: pointer;
+  background-color: $color-bitcoach-gray;
+  border-radius: 5px;
+  width: 40px;
+  user-input: none;
+  text-align: center;
+  color: $color-voteo-gradient;
+  margin: 2px;
+
+  &:hover {
+    color: $color-bitcoach-gold;
   }
 }
 
@@ -152,4 +164,10 @@ strong em {
     max-width: 100% !important;
     flex: 0 0 100% !important;
   }
+}
+
+mat-button-toggle,
+mat-button-toggle-group,
+.mat-button-toggle-button {
+  outline: none !important;
 }

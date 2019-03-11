@@ -13,10 +13,13 @@ export class PoolSummaryComponent implements OnInit {
   onBackPressed = new EventEmitter();
   @Input()
   pool;
+  @Input()
+  title;
 
   constructor() { }
 
   ngOnInit() {
+    this.pool.settings.privateAddresses = this.pool.settings.privateAddresses.map(address => address.address);
   }
 
   submit() {
